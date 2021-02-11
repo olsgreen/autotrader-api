@@ -56,15 +56,13 @@ class GuzzleClient extends AbstractClient implements ClientInterface
         array $headers = []
     ): RequestInterface
     {
+        $this->doPreflightCallback($method, $uri, $headers, $body);
+
         $headers = array_merge($this->headers, $headers);
 
         $uri = $this->baseUri . $uri . '?' . http_build_query($params);
 
-        $request = new Request($method, $uri, $headers, $body);
-
-        $this->doPreflightCallback($request);
-
-        return $request;
+        return new Request($method, $uri, $headers, $body);
     }
 
     /**

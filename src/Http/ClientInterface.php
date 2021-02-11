@@ -79,12 +79,12 @@ interface ClientInterface
     public function setPreflightCallback(Closure $callback): ClientInterface;
 
     /**
-     * Execute the preflight callback.
+     * Set the global middleware stack.
      *
-     * @param RequestInterface $request
-     * @return ClientInterface
+     * @param array $middleware
+     * @return $this
      */
-    public function doPreflightCallback(RequestInterface &$request): ClientInterface;
+    public function withMiddleware(array $middleware): ClientInterface;
 
     /**
      * Execute a GET request.

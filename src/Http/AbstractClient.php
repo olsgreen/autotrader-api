@@ -165,15 +165,18 @@ abstract class AbstractClient implements ClientInterface
     /**
      * Execute the preflight callback.
      *
-     * @param RequestInterface $request
+     * @param $method
+     * @param $uri
+     * @param $headers
+     * @param $body
      * @return ClientInterface
      */
-    public function doPreflightCallback(RequestInterface &$request): ClientInterface
+    protected function doPreflightCallback(&$method, &$uri, &$headers, &$body): ClientInterface
     {
         if ($this->preflightCallback) {
             call_user_func_array(
                 $this->preflightCallback,
-                [$request, $this]
+                [&$method, &$uri, &$headers, &$body, $this]
             );
         }
 
@@ -186,7 +189,7 @@ abstract class AbstractClient implements ClientInterface
      * @param array $middleware
      * @return $this
      */
-    public function withMiddleware(array $middleware)
+    public function withMiddleware(array $middleware): ClientInterface
     {
         $this->middleware = $middleware;
 
