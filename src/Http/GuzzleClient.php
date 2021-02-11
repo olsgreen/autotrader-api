@@ -88,7 +88,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
             $options[RequestOptions::SINK] = $sink;
         }
 
-        return $this->guzzle->send($request, $options);
+        return $this->sendRequest($request, $options);
     }
 
     /**
@@ -112,7 +112,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
 
         $request = $this->createRequestObject('POST', $uri, $params, $body, $headers);
 
-        return $this->guzzle->send($request);
+        return $this->sendRequest($request);
     }
 
     /**
@@ -129,7 +129,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
     {
         $request = $this->createRequestObject('PUT', $uri, $params, $body, $headers);
 
-        return $this->guzzle->send($request);
+        return $this->sendRequest($request);
     }
 
     /**
@@ -145,6 +145,20 @@ class GuzzleClient extends AbstractClient implements ClientInterface
     {
         $request = $this->createRequestObject('DELETE', $uri, $params, null, $headers);
 
-        return $this->guzzle->send($request);
+        return $this->sendRequest($request);
+    }
+
+    /**
+     * Process the middleware and send the requet.
+     *
+     * @param RequestInterface $request
+     * @param array $options
+     * @return ResponseInterface
+     */
+    private function sendRequest(RequestInterface $request, array $options = []): ResponseInterface
+    {
+        return $this->processMiddleware($request, function($request) use ($options) {
+            return $this->guzzle->send($request, $options);
+        });
     }
 }

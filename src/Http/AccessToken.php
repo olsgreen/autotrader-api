@@ -5,7 +5,7 @@ namespace Olsgreen\AutoTrader\Http;
 
 use DateTime;
 
-class AccessToken implements \ArrayAccess, \JsonSerializable
+class AccessToken implements \JsonSerializable
 {
     protected $access_token;
 
@@ -46,57 +46,18 @@ class AccessToken implements \ArrayAccess, \JsonSerializable
         ];
     }
 
-
-
     public function toJson(): string
     {
-        return $this->jsonSerialize();
+        return json_encode($this->jsonSerialize());
     }
 
     public function __toString(): string
     {
-        return $this->toJson();
+        return $this->getToken();
     }
 
-    private function isValidOffset($offest): bool
+    public function jsonSerialize(): array
     {
-        return in_array($offest, ['access_token', 'expires']);
-    }
-
-    public function offsetExists($offset)
-    {
-        if ($this->isValidOffset($offset)) {
-            return isset($this->$offset);
-        }
-
-        return false;
-    }
-
-    public function offsetGet($offset)
-    {
-        if ($this->isValidOffset($offset)) {
-            return $this->$offset;
-        }
-
-        return null;
-    }
-
-    public function offsetSet($offset, $value)
-    {
-        if ($this->isValidOffset($offset)) {
-            $this->$offset = $value;
-        }
-    }
-
-    public function offsetUnset($offset)
-    {
-        if ($this->isValidOffset($offset)) {
-            $this->$offset = null;
-        }
-    }
-
-    public function jsonSerialize(): string
-    {
-        return json_encode($this->toArray());
+        return $this->toArray();
     }
 }

@@ -4,7 +4,9 @@
 namespace Olsgreen\AutoTrader\Http;
 
 use Closure;
+use Optimus\Onion\Onion;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * AbstractClient
@@ -40,6 +42,13 @@ abstract class AbstractClient implements ClientInterface
      * @var mixed
      */
     protected $accessToken;
+
+    /**
+     * Middleware stack.
+     *
+     * @var array
+     */
+    protected $middleware = [];
 
     /**
      * Set the clients base URI.
@@ -169,5 +178,33 @@ abstract class AbstractClient implements ClientInterface
         }
 
         return $this;
+    }
+
+    /**
+     * Set the global middleware stack.
+     *
+     * @param array $middleware
+     * @return $this
+     */
+    public function withMiddleware(array $middleware)
+    {
+        $this->middleware = $middleware;
+
+        return $this;
+    }
+
+    /**
+     * Process the global middleware.
+     *
+     * @param RequestInterface $request
+     * @param Closure $dispatch
+     * @return ResponseInterface
+     */
+    protected function processMiddleware(RequestInterface $request, Closure $dispatch): ResponseInterface
+    {
+        return  (new Onion)->layer($this->middleware)
+            ->peel($request, function($request) use ($dispatch) {
+                return $dispatch($request);
+            });
     }
 }
