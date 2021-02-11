@@ -1,0 +1,150 @@
+<?php
+
+
+namespace Olsgreen\AutoTrader\Http;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface as GuzzleClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\MultipartStream;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+/**
+ * GuzzleClient
+ * An client implementation that wraps GuzzleHTTP to provide HTTP communication.
+ */
+class GuzzleClient extends AbstractClient implements ClientInterface
+{
+    /**
+     * Guzzle HTTP Client Instance.
+     *
+     * @var Client|GuzzleClientInterface|null
+     */
+    protected $guzzle;
+
+    /**
+     * GuzzleClient constructor.
+     * @param GuzzleClientInterface|null $guzzle
+     */
+    public function __construct(GuzzleClientInterface $guzzle = null)
+    {
+        if (!$guzzle) {
+            $guzzle = new Client();
+        }
+
+        $this->guzzle = $guzzle;
+    }
+
+    /**
+     * Create a request object instance.
+     *
+     * @param string $method
+     * @param string $uri
+     * @param array $params
+     * @param null $body
+     * @param array $headers
+     * @return Request
+     */
+    protected function createRequestObject(
+        string $method, 
+        string $uri, 
+        array $params = [], 
+        $body = null, 
+        array $headers = []
+    ): RequestInterface
+    {
+        $headers = array_merge($this->headers, $headers);
+
+        $uri = $this->baseUri . $uri . '?' . http_build_query($params);
+
+        $request = new Request($method, $uri, $headers, $body);
+
+        $this->doPreflightCallback($request);
+
+        return $request;
+    }
+
+    /**
+     * Execute a GET request.
+     *
+     * @param string $uri
+     * @param array $params
+     * @param array $headers
+     * @param null $sink string|resource|StreamInterface
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    public function get(string $uri, array $params = [], array $headers = [], $sink = null): ResponseInterface
+    {
+        $request = $this->createRequestObject('GET', $uri, $params, null, $headers);
+
+        $options = [];
+
+        if ($sink) {
+            // Save the response body to resource, stream, path.
+            $options[RequestOptions::SINK] = $sink;
+        }
+
+        return $this->guzzle->send($request, $options);
+    }
+
+    /**
+     * Execute a POST request.
+     *
+     * @param string $uri
+     * @param array $params
+     * @param null $body
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    public function post(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
+    {
+        if ($body instanceof SimpleMultipartBody) {
+            $body = new MultipartStream($body->toArray());
+        } elseif ($body instanceof UrlEncodedFormBody) {
+            $headers['Content-Type'] = 'application/x-www-form-urlencoded';
+            $body = $body->encode();
+        }
+
+        $request = $this->createRequestObject('POST', $uri, $params, $body, $headers);
+
+        return $this->guzzle->send($request);
+    }
+
+    /**
+     * Execute a PUT request.
+     *
+     * @param string $uri
+     * @param array $params
+     * @param null $body
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    public function put(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
+    {
+        $request = $this->createRequestObject('PUT', $uri, $params, $body, $headers);
+
+        return $this->guzzle->send($request);
+    }
+
+    /**
+     * Execute a DELETE request.
+     *
+     * @param string $uri
+     * @param array $params
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    public function delete(string $uri, array $params = [], array $headers = []): ResponseInterface
+    {
+        $request = $this->createRequestObject('DELETE', $uri, $params, null, $headers);
+
+        return $this->guzzle->send($request);
+    }
+}
