@@ -19,7 +19,7 @@ AutoTrader require that you exchange your key & secret for an access token, this
 ```php
 // Create an instance of the client to obtain an access token.
 $api = new \Olsgreen\AutoTrader\Client();
-$accessToken = $api->authentication()->getAccessToken();
+$accessToken = $api->authentication()->getAccessToken('YOUR_KEY', 'YOUR_SECRET');
 
 // once you have your access token you can create client instances like:
 $api = new \Olsgreen\AutoTrader\Client(['access_token' => $accessToken]);
@@ -67,6 +67,9 @@ $vehicle = $api->vehicles()->lookup('HG17XXX');
 
 You can retrieve extra datasets for a VRM via the `lookup` method by supplying the one or all of the following flags:
 
+**Note:** The `VehicleLookupFlags::VEHICLE_METRICS` & `VehicleLookupFlags::VALUATIONS` flags also require the current mileage to be passed in as the last parameter as below.
+
+
  - **VehicleLookupFlags::MOT_TESTS**
    
    Provides most recent MOT test information for the specified vehicle.
@@ -100,8 +103,6 @@ You can retrieve extra datasets for a VRM via the `lookup` method by supplying t
 - **VehicleLookupFlags::COMPETITORS**
 
     Provides a pre-constructed URL, allowing users to explore market competition.
-
-**Note:** The `VehicleLookupFlags::VEHICLE_METRICS` & `VehicleLookupFlags::VALUATIONS` flags also require the current mileage to be passed in as the last parameter as below.
 
 ```php
 // For example, to retrieve the MOT & basic vehicle check datasets
