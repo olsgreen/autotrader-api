@@ -108,12 +108,16 @@ You can retrieve extra datasets for a VRM via the `lookup` method by supplying t
 // For example, to retrieve the MOT & basic vehicle check datasets
 // we can do the following:
 
-$datasets = [
-    VehicleLookupFlags::BASIC_VEHICLE_CHECK, 
-    VehicleLookupFlags::VEHICLE_METRICS
-];
+use Olsgreen\AutoTrader\Api\Builders\LookupRequestBuilder;
 
-$vehicle = $api->vehicles()->lookup('HG17XXX', $datasets, 35000);
+$request = LookupRequestBuilder::create()
+    ->setRegistration('EO66XXX')
+    ->setFlags([
+        VehicleLookupFlags::BASIC_VEHICLE_CHECK, 
+        VehicleLookupFlags::VEHICLE_METRICS
+    ]);
+
+$vehicle = $api->vehicles()->lookup($request);
 
 /*
  * Will return something similar to the below.
@@ -121,7 +125,7 @@ $vehicle = $api->vehicles()->lookup('HG17XXX', $datasets, 35000);
  * [
  *     "vehicle" => [
  *       "ownershipCondition" => "Used",
- *       "registration" => "HG17XXX",
+ *       "registration" => "EO66XXX",
  *       "vin" => "WMWWG320503CXXXXX",
  *       "make" => "MINI",
  *       "model" => "Convertible",

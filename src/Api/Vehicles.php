@@ -4,8 +4,7 @@
 namespace Olsgreen\AutoTrader\Api;
 
 
-use Olsgreen\AutoTrader\Api\Enums\VehicleLookupFlags as LookupFlags;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Olsgreen\AutoTrader\Api\Builders\LookupRequestBuilder;
 
 class Vehicles extends AbstractApi
 {
@@ -17,76 +16,67 @@ class Vehicles extends AbstractApi
      * additional data parameters, these can be added individually or concurrently.
      *
      * Note that the VehicleLookupFlags::VEHICLE_METRICS & VehicleLookupFlags::VALUATIONS flags
-     * also require the current mileage to be passed in as the last parameter.
+     * also require the `odimeterReadingMileage` attribute.
      *
-     * The flags array can consist of the following:
+     * @see Enums\VehicleLookupFlags for more information on the flags.
      *
-     * - VehicleLookupFlags::MOT_TESTS
-     *   Provides most recent MOT test information for the specified vehicle.
+     * This method is intended for use in one of three ways:
      *
-     * - VehicleLookupFlags::FEATURES
-     *   Provides an array of standard and possible optional features for the specified vehicle.
+     * 1) For basic vehicle information lookups by simply specifying the registration:
+     *    $basicVehicleData = $api->vehicles()->lookup('EO66XXX')
      *
-     * - VehicleLookupFlags::BASIC_VEHICLE_CHECK
-     *   Provides a variety of vehicle specific provenance data.
+     * 2) For more complex requests with multiple flags via array:
+     *    $request = [
+     *      'registration' => 'EO66XXX',
+     *      'odimeterReadingMileage' => 35000,
+     *      'flags' => [VehicleLookupFlags::VALUATIONS]
+     *    ];
      *
-     * - VehicleLookupFlags::FULL_VEHICLE_CHECK
-     *   Provides a variety of vehicle specific provenance data.
+     *    $vehicleDataWithValuation = $api->vehicles()->lookup($request);
      *
-     * - VehicleLookupFlags::VALUATIONS
-     *   Provides a variety of Auto Trader valuations for the specified vehicle.
+     *  3) For complex requests using the builder:
+     *     $request = LookupRequestBuilder::create()
+     *          ->setRegistration('EO66XXX')
+     *          ->setOdimeterReadingMileage(35000)
+     *          ->setFlags([
+     *              VehicleLookupFlags::VALUATIONS,
+     *              VehicleLookupFlags::VEHICLE_METRICS
+     *           ]);
      *
-     * - VehicleLookupFlags::VEHICLE_METRICS
-     *   Provides a variety of Auto Trader valuations and vehicle metrics for the specified vehicle.
+     *     $vehicleMetricsValuation = $api->vehicles()->lookup($request);
      *
-     * - VehicleLookupFlags::COMPETITORS
-     *   Provides a pre-constructed URL, allowing users to explore market competition.
-     *
-     * @param string $vrm
-     * @param string|array $flags
-     * @param string"int $odometerReadingMiles
+     * @param $request LookupRequestBuilder|string|array
      * @return array
      */
-    public function lookup(string $vrm, $flags = [], $odometerReadingMiles = null): array
+    public function lookup($request): array
     {
-        $resolver = new OptionsResolver();
+        if (!($request instanceof LookupRequestBuilder)) {
+            // Handle lookups for basic vehicle information by registration.
+            // i.e. $api->vehicles()->lookup('EO66XXX')
+            if (is_string($request)) {
+                $request = LookupRequestBuilder::create()
+                    ->setRegistration($request);
+            }
 
-        $requiresOdometerReading = !empty(array_intersect(
-            [LookupFlags::VALUATIONS, LookupFlags::VEHICLE_METRICS], (array) $flags
-        ));
+            // Handle arrays based representations of the request.
+            // i.e. $request = [
+            //  'registration' => 'EO66XXX',
+            //  'flags' => ['valuations', 'mots'],
+            //  'odometerReadingMiles' => 35000
+            //];
+            // $api->vehicles()->lookup($request);
+            elseif (is_array($request)) {
+                $request = LookupRequestBuilder::create($request);
+            }
 
-        // Prepare the payload.
-        $payload = ['registration' => preg_replace('/\s/', '', $vrm)];
-
-        foreach ((array) $flags as $flag) {
-            $payload[$flag] = true;
+            // Throw an invalid argument exception if it's anything else.
+            else {
+                throw new \InvalidArgumentException(
+                    'The $request argument must be a string, array or LookupRequestBuilder.'
+                );
+            }
         }
 
-        if (isset($odometerReadingMiles)) {
-            $payload['odometerReadingMiles'] = $odometerReadingMiles;
-        }
-
-        // Configure the option validator / resolver.
-        $resolver->setDefined('registration')
-            ->setAllowedTypes('registration', 'string')
-            ->setRequired('registration');
-
-        foreach ((new LookupFlags)->all() as $key) {
-            $resolver->setDefined($key)
-                ->setAllowedTypes($key, 'boolean')
-                ->setNormalizer($key, $this->booleanNormalizer());
-        }
-
-        $resolver->setDefined('odometerReadingMiles')
-            ->setAllowedTypes('odometerReadingMiles', ['string', 'numeric'])
-            ->setAllowedValues('odometerReadingMiles', function($value) {
-                return intval($value) > 1000;
-            });
-
-        if ($requiresOdometerReading) {
-            $resolver->setRequired('odometerReadingMiles');
-        }
-
-        return $this->_get('/service/stock-management/vehicles', $resolver->resolve($payload));
+        return $this->_get('/service/stock-management/vehicles', $request->prepare());
     }
 }

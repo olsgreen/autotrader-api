@@ -6,11 +6,32 @@ namespace Olsgreen\AutoTrader\Api\Enums;
 
 class VehicleLookupFlags extends AbstractEnum
 {
-    const MOT_TESTS = 'motTests',
-          FEATURES = 'features',
-          BASIC_VEHICLE_CHECK = 'basicVehicleCheck',
-          FULL_VEHICLE_CHECK = 'fullVehicleCheck',
-          VALUATIONS = 'valuations',
-          VEHICLE_METRICS ='vehicleMetrics',
-          COMPETITORS = 'competitors';
+    const
+        // VehicleLookupFlags::MOT_TESTS
+        // Provides most recent MOT test information for the specified vehicle.
+        MOT_TESTS = 'motTests',
+
+        // VehicleLookupFlags::FEATURES
+        // Provides an array of standard and possible optional features for the specified vehicle.
+        FEATURES = 'features',
+
+        // VehicleLookupFlags::BASIC_VEHICLE_CHECK
+        // Provides a variety of vehicle specific provenance data.
+        BASIC_VEHICLE_CHECK = 'basicVehicleCheck',
+
+        // VehicleLookupFlags::FULL_VEHICLE_CHECK
+        // Provides a variety of vehicle specific provenance data.
+        FULL_VEHICLE_CHECK = 'fullVehicleCheck',
+
+        // VehicleLookupFlags::VALUATIONS
+        // Provides a variety of Auto Trader valuations for the specified vehicle.
+        VALUATIONS = 'valuations',
+
+        // VehicleLookupFlags::VEHICLE_METRICS
+        // Provides a variety of Auto Trader valuations and vehicle metrics for the specified vehicle.
+        VEHICLE_METRICS ='vehicleMetrics',
+
+        // VehicleLookupFlags::COMPETITORS
+        // Provides a pre-constructed URL, allowing users to explore market competition.
+        COMPETITORS = 'competitors';
 }
