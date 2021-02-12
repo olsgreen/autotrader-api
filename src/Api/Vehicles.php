@@ -43,22 +43,22 @@ class Vehicles extends AbstractApi
      *   Provides a pre-constructed URL, allowing users to explore market competition.
      *
      * @param string $vrm
-     * @param array $flags
+     * @param string|array $flags
      * @param string"int $odometerReadingMiles
      * @return array
      */
-    public function lookup(string $vrm, array $flags = [], $odometerReadingMiles = null): array
+    public function lookup(string $vrm, $flags = [], $odometerReadingMiles = null): array
     {
         $resolver = new OptionsResolver();
 
         $requiresOdometerReading = !empty(array_intersect(
-            [LookupFlags::VALUATIONS, LookupFlags::VEHICLE_METRICS], $flags
+            [LookupFlags::VALUATIONS, LookupFlags::VEHICLE_METRICS], (array) $flags
         ));
 
         // Prepare the payload.
         $payload = ['registration' => preg_replace('/\s/', '', $vrm)];
 
-        foreach ($flags as $flag) {
+        foreach ((array) $flags as $flag) {
             $payload[$flag] = true;
         }
 

@@ -14,7 +14,7 @@ Add the client to your project using composer.
 ## Usage
 AutoTrader require that you exchange your key & secret for an access token, this is then used to access the API.
 
-### Get an access token
+### Authentication
 
 ```php
 // Create an instance of the client to obtain an access token.
