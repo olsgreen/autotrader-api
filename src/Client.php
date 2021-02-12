@@ -6,6 +6,7 @@ namespace Olsgreen\AutoTrader;
 
 use Closure;
 use Olsgreen\AutoTrader\Api\Authentication;
+use Olsgreen\AutoTrader\Api\Vehicles;
 use Olsgreen\AutoTrader\Http\ClientInterface;
 use Olsgreen\AutoTrader\Http\GuzzleClient;
 
@@ -112,5 +113,10 @@ class Client
     public function authentication(): Authentication
     {
         return new Authentication($this);
+    }
+
+    public function vehicles(): Vehicles
+    {
+        return new Vehicles($this);
     }
 }
