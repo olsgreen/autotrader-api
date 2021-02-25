@@ -10,6 +10,8 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
 
     protected $vehicleFeatures;
 
+    protected $vehicleMedia;
+
     protected $stockItemMetaInfo;
 
     protected $advertsInfo;
@@ -21,6 +23,8 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
         $this->vehicleInfo = new VehicleInfoBuilder($this->dataGet($attributes, 'vehicle', []));
 
         $this->vehicleFeatures = new VehicleFeatureInfoBuilder($this->dataGet($attributes, 'features', []));
+
+        $this->vehicleMedia = new StockItemMediaInfoBuilder($this->dataGet($attributes, 'media', []));
 
         $this->advertsInfo = new StockItemAdvertsInfoBuilder($this->dataGet($attributes, 'adverts', []));
 
@@ -42,6 +46,11 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
         return $this->vehicleFeatures;
     }
 
+    public function media(): StockItemMediaInfoBuilder
+    {
+        return $this->vehicleMedia;
+    }
+
     public function adverts(): StockItemAdvertsInfoBuilder
     {
         return $this->advertsInfo;
@@ -54,9 +63,11 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
 
     public function validate(): bool
     {
-        $this->vehicleInfo->validate();
-
-        $this->stockItemMetaInfo->validate();
+        $this->vehicle()->validate();
+        $this->features()->validate();
+        $this->media()->validate();
+        $this->adverts()->validate();
+        $this->meta()->validate();
 
         return true;
     }
@@ -68,6 +79,7 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
         return $this->filterPrepareOutput([
             'vehicle' => $this->vehicle()->prepare(),
             'features' => $this->features()->prepare(),
+            'media' => $this->media()->prepare(),
             'adverts' => $this->adverts()->prepare(),
             'meta' => $this->meta()->prepare(),
         ]);
