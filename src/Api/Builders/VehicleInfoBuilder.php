@@ -33,11 +33,6 @@ class VehicleInfoBuilder extends AbstractBuilder
         'odometerReadingMiles',
     ];
 
-    public function getFriendlyName(): string
-    {
-        return 'Vehicle';
-    }
-
     public function setRegistration(string $registration)
     {
         $this->registration = $registration;

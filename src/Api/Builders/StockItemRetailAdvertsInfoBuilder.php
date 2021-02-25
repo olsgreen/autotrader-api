@@ -52,11 +52,6 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         );
     }
 
-    public function getFriendlyName(): string
-    {
-        return 'Retail Adverts';
-    }
-
     public function setAttentionGrabber(string $text): StockItemRetailAdvertsInfoBuilder
     {
         $this->attentionGrabber = $text;

@@ -17,11 +17,6 @@ class StockItemMediaInfoBuilder extends AbstractBuilder
         $this->imageInfoBuilder = new StockItemImageInfoBuilder($this->dataGet($attributes, 'images', []));
     }
 
-    public function getFriendlyName(): string
-    {
-        return 'Media';
-    }
-
     public function setVideoUrl(string $url): StockItemMediaInfoBuilder
     {
         $this->videoUrl = $url;

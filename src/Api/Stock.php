@@ -10,7 +10,14 @@ use Olsgreen\AutoTrader\Http\SimpleMultipartBody;
 
 class Stock extends AbstractApi
 {
-    public function create($request): array
+    /**
+     * Create a stock item.
+     *
+     * @param string $advertiserId
+     * @param $request CreateStockItemRequestBuilder|array
+     * @return array
+     */
+    public function create(string $advertiserId, $request): array
     {
         if (is_array($request)) {
             $request = new CreateStockItemRequestBuilder($request);
@@ -20,14 +27,23 @@ class Stock extends AbstractApi
             );
         }
 
-        $json = json_encode($request->prepare());
-
-        $headers = ['Content-Type' => 'application/json'];
-
-        return $this->_post('/service/stock-management/stock', [], $json, $headers);
+        return $this->_post(
+            '/service/stock-management/stock',
+            ['advertiserId' => $advertiserId],
+            $request->toJson(),
+            ['Content-Type' => 'application/json']
+        );
     }
 
-    public function update(string $uuid, $request): array
+    /**
+     * Update a stock item.
+     *
+     * @param string $advertiserId
+     * @param string $uuid
+     * @param $request
+     * @return array
+     */
+    public function update(string $advertiserId, string $uuid, $request): array
     {
         if (is_array($request)) {
             $request = new UpdateStockItemRequestBuilder($request);
@@ -37,19 +53,38 @@ class Stock extends AbstractApi
             );
         }
 
-        $json = json_encode($request->prepare());
-
-        $headers = ['Content-Type' => 'application/json'];
-
-        return $this->_post('/service/stock-management/stock/' . $uuid, [], $json, $headers);
+        return $this->_post(
+            '/service/stock-management/stock/' . $uuid,
+            ['advertiserId' => $advertiserId],
+            $request->toJson(),
+             ['Content-Type' => 'application/json']
+        );
     }
 
-    public function show(string $uuid): array
+    /**
+     * Retrieve a stock item.
+     *
+     * @param string $advertiserId
+     * @param string $uuid
+     * @return array
+     */
+    public function show(string $advertiserId, string $uuid): array
     {
-        return $this->_get('/service/stock-management/stock/' . $uuid);
+        return $this->_get(
+            '/service/stock-management/stock/' . $uuid,
+            ['advertiserId' => $advertiserId],
+        );
     }
 
-    public function uploadImage($path): string
+    /**
+     * Upload an image file.
+     *
+     * @param string $advertiserId
+     * @param string $path
+     * @return string
+     * @throws \Exception
+     */
+    public function uploadImage(string $advertiserId, string $path): string
     {
         if (!is_file($path) || !is_readable($path)) {
             throw new \Exception(
@@ -59,15 +94,26 @@ class Stock extends AbstractApi
 
         $data = fopen($path, 'r');
 
-        return $this->uploadImageData($data);
+        return $this->uploadImageData($advertiserId, $data);
     }
 
-    public function uploadImageData($data): string
+    /**
+     * Upload image binary data.
+     *
+     * @param string $advertiserId
+     * @param $data|resource
+     * @return string
+     */
+    public function uploadImageData(string $advertiserId, $data): string
     {
         $body = new SimpleMultipartBody();
         $body->add('File', $data);
 
-        $response = $this->_post('/service/stock-management/images', [], $body);
+        $response = $this->_post(
+            '/service/stock-management/images',
+            ['advertiserId' => $advertiserId],
+            $body
+        );
 
         return $response['imageId'];
     }

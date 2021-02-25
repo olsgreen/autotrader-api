@@ -20,11 +20,6 @@ class StockItemMetaInfoBuilder extends AbstractBuilder
         'lifecycleState',
     ];
 
-    public function getFriendlyName(): string
-    {
-        return 'Stock Item Meta';
-    }
-
     public function setExternalStockId(string $id): StockItemMetaInfoBuilder
     {
         $this->externalStockId = $id;

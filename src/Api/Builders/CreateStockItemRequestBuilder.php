@@ -31,11 +31,6 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
         $this->stockItemMetaInfo = new StockItemMetaInfoBuilder($this->dataGet($attributes, 'meta', []));
     }
 
-    public function getFriendlyName(): string
-    {
-        return 'Stock Item';
-    }
-
     public function vehicle(): VehicleInfoBuilder
     {
         return $this->vehicleInfo;
@@ -72,7 +67,7 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
         return true;
     }
 
-    public function prepare(): array
+    public function toArray(): array
     {
         $this->validate();
 
@@ -83,5 +78,10 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
             'adverts' => $this->adverts()->prepare(),
             'meta' => $this->meta()->prepare(),
         ]);
+    }
+
+    public function toJson($options = null): string
+    {
+        return json_encode($this->toArray(), $options);
     }
 }

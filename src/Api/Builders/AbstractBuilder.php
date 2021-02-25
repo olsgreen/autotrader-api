@@ -24,7 +24,12 @@ abstract class AbstractBuilder
         $this->setAttributes($attributes);
     }
 
-    abstract public function getFriendlyName(): string;
+    public function getFriendlyName(): string
+    {
+        $class = new \ReflectionClass($this);
+
+        return $class->getShortName();
+    }
 
     /**
      * Factory method.
@@ -111,6 +116,9 @@ abstract class AbstractBuilder
 
         return true;
     }
+
+    abstract public function toArray();
+    abstract public function toJson($options = null);
 
     protected function dataGet(array $array, $key, $default = false)
     {

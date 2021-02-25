@@ -14,11 +14,4 @@ class UpdateStockItemRequestBuilder extends CreateStockItemRequestBuilder
 
         $this->meta()->setRequiredAttributes([]);
     }
-
-    /*public function prepare(): array
-    {
-        return array_filter(parent::prepare(), function ($item) {
-            return isset($item) && !(is_array($item) && empty($item));
-        });
-    }*/
 }

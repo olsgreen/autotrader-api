@@ -19,11 +19,6 @@ class VehicleFeatureInfoBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getFriendlyName(): string
-    {
-        return 'Vehicle Features';
-    }
-
     public function add(string $name, string $type): VehicleFeatureInfoBuilder
     {
         $types = new VehicleFeatureTypes();

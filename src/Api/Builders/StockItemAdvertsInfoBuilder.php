@@ -24,11 +24,6 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
         );
     }
 
-    public function getFriendlyName(): string
-    {
-        return 'Adverts';
-    }
-
     public function forecourtPrice(): StockItemPriceInfoBuilder
     {
         return $this->forecourtPrice;
