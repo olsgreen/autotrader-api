@@ -10,17 +10,17 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
 
     protected $stockItemMetaInfo;
 
+    protected $advertsInfo;
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        $this->vehicleInfo = new VehicleInfoBuilder(
-            array_key_exists('vehicle', $attributes) ? $attributes['vehicle'] : []
-        );
+        $this->vehicleInfo = new VehicleInfoBuilder($this->dataGet($attributes, 'vehicle', []));
 
-        $this->stockItemMetaInfo = new StockItemMetaInfoBuilder(
-            array_key_exists('meta', $attributes) ? $attributes['meta'] : []
-        );
+        $this->advertsInfo = new StockItemAdvertsInfoBuilder($this->dataGet($attributes, 'adverts', []));
+
+        $this->stockItemMetaInfo = new StockItemMetaInfoBuilder($this->dataGet($attributes, 'meta', []));
     }
 
     public function getFriendlyName(): string
@@ -31,6 +31,11 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
     public function vehicle(): VehicleInfoBuilder
     {
         return $this->vehicleInfo;
+    }
+
+    public function adverts(): StockItemAdvertsInfoBuilder
+    {
+        return $this->advertsInfo;
     }
 
     public function meta(): StockItemMetaInfoBuilder
@@ -53,6 +58,7 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
 
         return $this->filterPrepareOutput([
             'vehicle' => $this->vehicle()->prepare(),
+            'adverts' => $this->adverts()->prepare(),
             'meta' => $this->meta()->prepare(),
         ]);
     }

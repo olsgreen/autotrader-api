@@ -81,8 +81,11 @@ abstract class AbstractBuilder
      */
     protected function filterPrepareOutput(array $output)
     {
-        return array_filter($output, function($item) {
+        /*return array_filter($output, function($item) {
             return !is_null($item);
+        });*/
+        return array_filter($output, function ($item) {
+            return isset($item) && !(is_array($item) && empty($item));
         });
     }
 
@@ -107,5 +110,14 @@ abstract class AbstractBuilder
         }
 
         return true;
+    }
+
+    protected function dataGet(array $array, $key, $default = false)
+    {
+        if (array_key_exists($key, $array)) {
+            return $array[$key];
+        }
+
+        return $default;
     }
 }
