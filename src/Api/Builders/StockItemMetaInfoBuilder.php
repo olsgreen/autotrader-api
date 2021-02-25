@@ -64,7 +64,7 @@ class StockItemMetaInfoBuilder extends AbstractBuilder
         return $this->lifecycleState;
     }
 
-    public function prepare(): array
+    public function toArray(): array
     {
         $this->validate();
 

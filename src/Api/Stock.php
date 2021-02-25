@@ -53,7 +53,7 @@ class Stock extends AbstractApi
             );
         }
 
-        return $this->_post(
+        return $this->_patch(
             '/service/stock-management/stock/' . $uuid,
             ['advertiserId' => $advertiserId],
             $request->toJson(),
@@ -107,7 +107,7 @@ class Stock extends AbstractApi
     public function uploadImageData(string $advertiserId, $data): string
     {
         $body = new SimpleMultipartBody();
-        $body->add('File', $data);
+        $body->add('file', $data);
 
         $response = $this->_post(
             '/service/stock-management/images',

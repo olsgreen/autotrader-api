@@ -117,8 +117,12 @@ abstract class AbstractBuilder
         return true;
     }
 
-    abstract public function toArray();
-    abstract public function toJson($options = null);
+    abstract public function toArray(): array;
+
+    public function toJson($options = null)
+    {
+        return json_encode($this->toArray(), $options);
+    }
 
     protected function dataGet(array $array, $key, $default = false)
     {

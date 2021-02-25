@@ -28,7 +28,7 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
 
         $this->advertsInfo = new StockItemAdvertsInfoBuilder($this->dataGet($attributes, 'adverts', []));
 
-        $this->stockItemMetaInfo = new StockItemMetaInfoBuilder($this->dataGet($attributes, 'meta', []));
+        $this->stockItemMetaInfo = new StockItemMetaInfoBuilder($this->dataGet($attributes, 'metadata', []));
     }
 
     public function vehicle(): VehicleInfoBuilder
@@ -51,7 +51,7 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
         return $this->advertsInfo;
     }
 
-    public function meta(): StockItemMetaInfoBuilder
+    public function metadata(): StockItemMetaInfoBuilder
     {
         return $this->stockItemMetaInfo;
     }
@@ -62,7 +62,7 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
         $this->features()->validate();
         $this->media()->validate();
         $this->adverts()->validate();
-        $this->meta()->validate();
+        $this->metadata()->validate();
 
         return true;
     }
@@ -72,16 +72,11 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'vehicle' => $this->vehicle()->prepare(),
-            'features' => $this->features()->prepare(),
-            'media' => $this->media()->prepare(),
-            'adverts' => $this->adverts()->prepare(),
-            'meta' => $this->meta()->prepare(),
+            'vehicle' => $this->vehicle()->toArray(),
+            'features' => $this->features()->toArray(),
+            'media' => $this->media()->toArray(),
+            'adverts' => $this->adverts()->toArray(),
+            'metadata' => $this->metadata()->toArray(),
         ]);
-    }
-
-    public function toJson($options = null): string
-    {
-        return json_encode($this->toArray(), $options);
     }
 }

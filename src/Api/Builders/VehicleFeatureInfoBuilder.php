@@ -48,7 +48,7 @@ class VehicleFeatureInfoBuilder extends AbstractBuilder
         return $this->features;
     }
 
-    public function prepare():array
+    public function toArray():array
     {
         return $this->all();
     }

@@ -4,7 +4,7 @@
 namespace Olsgreen\AutoTrader\Api\Builders;
 
 
-class AbstractNameableBuilder extends AbstractBuilder
+abstract class AbstractNameableBuilder extends AbstractBuilder
 {
     protected $friendlyName;
 

@@ -20,7 +20,7 @@ class StockItemPriceInfoBuilder extends AbstractNameableBuilder
         return $this->amountGBP;
     }
 
-    public function prepare(): array
+    public function toArray(): array
     {
         return $this->filterPrepareOutput([
             'amountGBP' => $this->amountGBP

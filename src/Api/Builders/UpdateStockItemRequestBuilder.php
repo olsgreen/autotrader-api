@@ -12,6 +12,6 @@ class UpdateStockItemRequestBuilder extends CreateStockItemRequestBuilder
 
         $this->vehicle()->setRequiredAttributes([]);
 
-        $this->meta()->setRequiredAttributes([]);
+        $this->metadata()->setRequiredAttributes([]);
     }
 }

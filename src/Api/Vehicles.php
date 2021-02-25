@@ -77,6 +77,6 @@ class Vehicles extends AbstractApi
             }
         }
 
-        return $this->_get('/service/stock-management/vehicles', $request->prepare());
+        return $this->_get('/service/stock-management/vehicles', $request->toArray());
     }
 }

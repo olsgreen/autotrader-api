@@ -34,7 +34,7 @@ class StockItemMediaInfoBuilder extends AbstractBuilder
         return $this->imageInfoBuilder;
     }
 
-    public function prepare(): array
+    public function toArray(): array
     {
         return $this->filterPrepareOutput([
             'videoUrl' => $this->videoUrl,

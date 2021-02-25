@@ -34,13 +34,13 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
         return $this->retailAdverts;
     }
 
-    public function prepare(): array
+    public function toArray(): array
     {
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'forecourtPrice' => $this->forecourtPrice->prepare(),
-            'retailAdverts' => $this->retailAdverts->prepare(),
+            'forecourtPrice' => $this->forecourtPrice->toArray(),
+            'retailAdverts' => $this->retailAdverts->toArray(),
         ]);
     }
 }

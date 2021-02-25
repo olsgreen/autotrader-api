@@ -165,7 +165,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      * @return array
      * @throws ValidationException
      */
-    public function prepare(): array
+    public function toArray(): array
     {
         $this->validate();
 

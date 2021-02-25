@@ -111,7 +111,7 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         return $this->profileAdvert;
     }
 
-    public function prepare(): array
+    public function toArray(): array
     {
         $this->validate();
 
@@ -119,11 +119,11 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
             'attentionGrabber' => $this->attentionGrabber,
             'description' => $this->description,
             'description2' => $this->description2,
-            'autotraderAdvert' => $this->autotraderAdvert->prepare(),
-            'advertiserAdvert' => $this->advertiserAdvert->prepare(),
-            'locatorAdvert' => $this->locatorAdvert->prepare(),
-            'exportAdvert' => $this->exportAdvert->prepare(),
-            'profileAdvert' => $this->profileAdvert->prepare(),
+            'autotraderAdvert' => $this->autotraderAdvert->toArray(),
+            'advertiserAdvert' => $this->advertiserAdvert->toArray(),
+            'locatorAdvert' => $this->locatorAdvert->toArray(),
+            'exportAdvert' => $this->exportAdvert->toArray(),
+            'profileAdvert' => $this->profileAdvert->toArray(),
         ]);
     }
 

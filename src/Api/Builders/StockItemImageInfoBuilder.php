@@ -11,15 +11,10 @@ class StockItemImageInfoBuilder extends AbstractBuilder
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        
+
         foreach ($attributes as $imageId) {
             $this->add($imageId);
         }
-    }
-
-    public function getFriendlyName(): string
-    {
-        return 'Images';
     }
 
     public function add(string $id): StockItemImageInfoBuilder
@@ -50,7 +45,7 @@ class StockItemImageInfoBuilder extends AbstractBuilder
         return $this->images;
     }
 
-    public function prepare(): array
+    public function toArray(): array
     {
         return $this->all();
     }

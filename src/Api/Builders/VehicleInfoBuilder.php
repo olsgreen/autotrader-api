@@ -23,6 +23,8 @@ class VehicleInfoBuilder extends AbstractBuilder
 
     protected $odometerReadingMiles;
 
+    protected $colour;
+
     protected $requiredAttributes = [
         'registration',
         'derivativeId',
@@ -133,7 +135,19 @@ class VehicleInfoBuilder extends AbstractBuilder
         return $this->odometerReadingMiles;
     }
 
-    public function prepare(): array
+    public function setColour(string $colour): VehicleInfoBuilder
+    {
+        $this->colour = $colour;
+
+        return $this;
+    }
+
+    public function getColour():? string
+    {
+        return $this->colour;
+    }
+
+    public function toArray(): array
     {
         $this->validate();
 
@@ -142,6 +156,7 @@ class VehicleInfoBuilder extends AbstractBuilder
             'derivativeId' => $this->derivativeId,
             'make' => $this->make,
             'model' => $this->model,
+            'colour' => $this->colour,
             'vehicleType' => $this->vehicleType,
             'ownershipCondition' => $this->ownershipCondition,
             'odometerReadingMiles' => $this->odometerReadingMiles,

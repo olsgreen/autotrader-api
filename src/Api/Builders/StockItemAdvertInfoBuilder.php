@@ -30,7 +30,7 @@ class StockItemAdvertInfoBuilder extends AbstractNameableBuilder
         return $this->status;
     }
 
-    public function prepare(): array
+    public function toArray(): array
     {
         return $this->filterPrepareOutput([
             'status' => $this->status
