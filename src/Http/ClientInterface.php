@@ -119,6 +119,17 @@ interface ClientInterface
      */
     public function put(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface;
 
+        /**
+     * Execute a PATCH request.
+     *
+     * @param string $uri
+     * @param array $params
+     * @param null $body
+     * @param array $headers
+     * @return ResponseInterface
+     */
+    public function patch(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface;
+
     /**
      * Execute a DELETE request.
      *

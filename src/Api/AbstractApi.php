@@ -86,6 +86,13 @@ abstract class AbstractApi
         return $this->parseResponse($response);
     }
 
+    protected function _patch(string $uri, array $params = [], $body = null, array $headers = []): array
+    {
+        $response = $this->client->getHttp()->patch($uri, $params, $body, $headers);
+
+        return $this->parseResponse($response);
+    }
+
     protected function _delete(string $uri, array $params = [], array $headers = []): array
     {
         $response = $this->client->getHttp()->delete($uri, $params, $headers);

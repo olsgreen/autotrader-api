@@ -131,6 +131,23 @@ class GuzzleClient extends AbstractClient implements ClientInterface
     }
 
     /**
+     * Execute a PATCH request.
+     *
+     * @param string $uri
+     * @param array $params
+     * @param null $body
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    public function patch(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
+    {
+        $request = $this->createRequestObject('PATCH', $uri, $params, $body, $headers);
+
+        return $this->sendRequest($request);
+    }
+
+    /**
      * Execute a DELETE request.
      *
      * @param string $uri
