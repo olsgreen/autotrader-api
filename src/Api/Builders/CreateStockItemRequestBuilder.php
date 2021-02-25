@@ -8,6 +8,8 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
 {
     protected $vehicleInfo;
 
+    protected $vehicleFeatures;
+
     protected $stockItemMetaInfo;
 
     protected $advertsInfo;
@@ -17,6 +19,8 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
         parent::__construct($attributes);
 
         $this->vehicleInfo = new VehicleInfoBuilder($this->dataGet($attributes, 'vehicle', []));
+
+        $this->vehicleFeatures = new VehicleFeatureInfoBuilder($this->dataGet($attributes, 'features', []));
 
         $this->advertsInfo = new StockItemAdvertsInfoBuilder($this->dataGet($attributes, 'adverts', []));
 
@@ -31,6 +35,11 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
     public function vehicle(): VehicleInfoBuilder
     {
         return $this->vehicleInfo;
+    }
+
+    public function features(): VehicleFeatureInfoBuilder
+    {
+        return $this->vehicleFeatures;
     }
 
     public function adverts(): StockItemAdvertsInfoBuilder
@@ -58,6 +67,7 @@ class CreateStockItemRequestBuilder extends AbstractBuilder
 
         return $this->filterPrepareOutput([
             'vehicle' => $this->vehicle()->prepare(),
+            'features' => $this->features()->prepare(),
             'adverts' => $this->adverts()->prepare(),
             'meta' => $this->meta()->prepare(),
         ]);
