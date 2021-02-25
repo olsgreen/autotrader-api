@@ -29,6 +29,8 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      */
     protected $odometerReadingMiles;
 
+    protected $requiredAttributes = ['registration'];
+
     /**
      * Get the registration.
      *
@@ -120,12 +122,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      */
     public function validate(): bool
     {
-        // Ensure the registration is set.
-        if (empty($this->registration)) {
-            throw new ValidationException(
-                'The `registration` attribute must be a valid UK vehicle registration mark.'
-            );
-        }
+        parent::validate();
 
         // Validate the odometer status.
         $requiresOdometerReading = !empty(array_intersect(
@@ -173,7 +170,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'registration' => $this->registration,
+            'registration' => preg_replace('/\s/', '', $this->registration),
             'odometerReadingMiles' => $this->odometerReadingMiles,
         ] + $this->transformFlags($this->flags));
     }
