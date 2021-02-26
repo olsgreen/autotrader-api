@@ -87,6 +87,13 @@ interface ClientInterface
     public function withMiddleware(array $middleware): ClientInterface;
 
     /**
+     * Get the global middleware stack.
+     *
+     * @return array
+     */
+    public function getMiddleware(): array;
+
+    /**
      * Execute a GET request.
      *
      * @param string $uri

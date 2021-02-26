@@ -197,6 +197,16 @@ abstract class AbstractClient implements ClientInterface
     }
 
     /**
+     * Get the global middleware stack.
+     *
+     * @return array
+     */
+    public function getMiddleware(): array
+    {
+        return $this->middleware;
+    }
+
+    /**
      * Process the global middleware.
      *
      * @param RequestInterface $request
