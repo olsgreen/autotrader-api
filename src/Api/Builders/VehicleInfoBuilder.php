@@ -4,162 +4,185 @@
 namespace Olsgreen\AutoTrader\Api\Builders;
 
 
+use Olsgreen\AutoTrader\Api\Enums\AxleConfigurations;
+use Olsgreen\AutoTrader\Api\Enums\BodyTypes\BikeBodyTypes;
+use Olsgreen\AutoTrader\Api\Enums\BodyTypes\CarBodyTypes;
+use Olsgreen\AutoTrader\Api\Enums\BodyTypes\VanBodyTypes;
+use Olsgreen\AutoTrader\Api\Enums\CabTypes;
+use Olsgreen\AutoTrader\Api\Enums\Conditions;
+use Olsgreen\AutoTrader\Api\Enums\FuelTypes;
 use Olsgreen\AutoTrader\Api\Enums\OwnershipConditions;
+use Olsgreen\AutoTrader\Api\Enums\TransmissionTypes;
 use Olsgreen\AutoTrader\Api\Enums\VehicleTypes;
+use Olsgreen\AutoTrader\Api\Enums\WheelbaseTypes;
 
-class VehicleInfoBuilder extends AbstractBuilder
+class VehicleInfoBuilder extends AbstractSchemableBuilder
 {
-    protected $registration;
-
-    protected $derivativeId;
-
-    protected $make;
-
-    protected $model;
-
-    protected $vehicleType;
-
-    protected $ownershipCondition;
-
-    protected $odometerReadingMiles;
-
-    protected $colour;
-
-    protected $requiredAttributes = [
-        'registration',
-        'derivativeId',
-        'make',
-        'model',
-        'vehicleType',
-        'ownershipCondition',
-        'odometerReadingMiles',
+    /**
+     * Attribute Schema.
+     *
+     * @var array
+     */
+    protected $schema = [
+        "ownershipCondition"                =>      OwnershipConditions::class,
+        "registration"                      =>      'string',
+        "vin"                               =>      'string',
+        "make"                              =>      'string',
+        "model"                             =>      'string',
+        "generation"                        =>      'string',
+        "derivative"                        =>      'string',
+        "derivativeId"                      =>      'string',
+        'vehicleType'                       =>      VehicleTypes::class,
+        "trim"                              =>      'string',
+        'bodyType'                          =>      [BikeBodyTypes::class, CarBodyTypes::class, VanBodyTypes::class],
+        'fuelType'                          =>      FuelTypes::class,
+        'cabType'                           =>      CabTypes::class,
+        'transmissionType'                  =>      TransmissionTypes::class,
+        'wheelbaseType'                     =>      WheelbaseTypes::class,
+        "roofHeightType"                    =>      'string',
+        "drivetrain"                        =>      'string',
+        "seats"                             =>      'integer',
+        "doors"                             =>      'integer',
+        "co2EmissionGPKM"                   =>      'integer',
+        "topSpeedMPH"                       =>      'integer',
+        "zeroToSixtyMPHSeconds"             =>      'float',
+        "badgeEngineSizeLitres"             =>      'float',
+        "engineCapacityCC"                  =>      'integer',
+        "enginePowerBHP"                    =>      'integer',
+        "fuelCapacityLitres"                =>      'double',
+        "emissionClass"                     =>      'string',
+        "fuelEconomyNEDCExtraUrbanMPG"      =>      'float',
+        "fuelEconomyNEDCUrbanMPG"           =>      'float',
+        "fuelEconomyNEDCCombinedMPG"        =>      'float',
+        "fuelEconomyWLTPLowMPG"             =>      'float',
+        "fuelEconomyWLTPMediumMPG"          =>      'float',
+        "fuelEconomyWLTPHighMPG"            =>      'float',
+        "fuelEconomyWLTPExtraHighMPG"       =>      'float',
+        "fuelEconomyWLTPCombinedMPG"        =>      'float',
+        "bootSpaceSeatsUpLitres"            =>      'double',
+        "insuranceGroup"                    =>      'string',
+        "insuranceSecurityCode"             =>      'string',
+        "firstRegistrationDate"             =>      'date',
+        "colour"                            =>      'string',
+        "style"                             =>      'string',
+        "subStyle"                          =>      'string',
+        "lengthMM"                          =>      'integer',
+        "heightMM"                          =>      'integer',
+        "widthMM"                           =>      'integer',
+        "payloadLengthMM"                   =>      'integer',
+        "payloadWidthMM"                    =>      'integer',
+        "payloadHeightMM"                   =>      'integer',
+        "payloadWeightKG"                   =>      'integer',
+        "minimumKerbWeightKG"               =>      'integer',
+        "grossVehicleWeightKG"              =>      'integer',
+        "cylinders"                         =>      'integer',
+        "bootSpaceSeatsDownLitres"          =>      'integer',
+        "odometerReadingMiles"              =>      'integer',
+        "motExpiryDate"                     =>      'date',
+        "warrantyMonthsOnPurchase"          =>      'integer',
+        "serviceHistory"                    =>      'string',
+        "plate"                             =>      'string',
+        "yearOfManufacture"                 =>      'string',
+        "interiorCondition"                 =>      Conditions::class,
+        "tyreCondition"                     =>      Conditions::class,
+        "bodyCondition"                     =>      Conditions::class,
+        "exDemo"                            =>      'bool',
+        "keys"                              =>      'bool',
+        "v5Certificate"                     =>      'bool',
+        "previousOwners"                    =>      'integer',
+        "driverPosition"                    =>      'string',
+        "axleConfiguration"                 =>      AxleConfigurations::class,
+        "upholstery"                        =>      'string',
+        "interiorColour"                    =>      'string',
+        "exteriorFinish"                    =>      'string',
+        "lastServiceOdometerReadingMiles"   =>      'integer',
+        "lastServiceDate"                   =>      'date',
+        "engineNumber"                      =>      'string',
+        "fuelDelivery"                      =>      'string',
+        "gears"                             =>      'integer',
+        "valves"                            =>      'integer',
+        "startStop"                         =>      'bool',
+        "enginePowerPS"                     =>      'integer',
+        "engineTorqueNM"                    =>      'integer',
+        "engineTorqueLBFT"                  =>      'float',
+        "batteryChargeTime"                 =>      'integer',
+        "batteryQuickChargeTime"            =>      'integer',
+        "batteryRangeMiles"                 =>      'integer',
+        "batteryCapacityKWH"                =>      'integer',
+        "batteryUsableCapacityKWH"          =>      'integer',
+        "wheelbaseMM"                       =>      'integer',
+        "grossCombinedWeightKG"             =>      'integer',
+        "grossTrainWeightKG"                =>      'integer',
+        "boreMM"                            =>      'integer',
+        "strokeMM"                          =>      'integer',
+        "cylinderArrangement"               =>      'string',
+        "engineMake"                        =>      'string',
+        "valveGear"                         =>      'string',
+        "axles"                             =>      'integer',
+        "countryOfOrigin"                   =>      'string',
+        "driveType"                         =>      'string',
+        "payloadVolumeCubicMetres"          =>      'integer',
+        "rde2Compliant"                     =>      'bool',
+        "sector"                            =>      'string',
     ];
 
-    public function setRegistration(string $registration)
-    {
-        $this->registration = $registration;
-
-        return $this;
-    }
-
-    public function getRegistration():? string
-    {
-        return $this->registration;
-    }
-
-    public function setDerivativeId(string $derivativeId): VehicleInfoBuilder
-    {
-        $this->derivativeId = $derivativeId;
-
-        return $this;
-    }
-
-    public function getDerivativeId():? string
-    {
-        return $this->derivativeId;
-    }
-
-    public function setMake(string $make)
-    {
-        $this->make = $make;
-
-        return $this;
-    }
-
-    public function getMake():? string
-    {
-        return $this->make;
-    }
-
-    public function setModel(string $model): VehicleInfoBuilder
-    {
-        $this->model = $model;
-
-        return $this;
-    }
-
-    public function getModel(string $model): string
-    {
-        return $this->model;
-    }
-
-    public function setVehicleType(string $type): VehicleInfoBuilder
-    {
-        $types = new VehicleTypes();
-
-        if (!$types->contains($type)) {
-            throw new \Exception(
-                sprintf('\'%s\' is an invalid type.', $type)
-            );
-        }
-
-        $this->vehicleType = $type;
-
-        return $this;
-    }
-
-    public function getVehicleType(): string
-    {
-        return $this->vehicleType;
-    }
-
-    public function setOwnershipCondition(string $condition): VehicleInfoBuilder
-    {
-        $conditions = new OwnershipConditions();
-
-        if (!$conditions->contains($condition)) {
-            throw new \Exception(
-                sprintf('\'%s\' is an invalid condition.', $condition)
-            );
-        }
-
-        $this->ownershipCondition = $condition;
-
-        return $this;
-    }
-
-    public function getOwnershipCondition():? string
-    {
-        return $this->ownershipCondition;
-    }
-
-    public function setOdometerReadingMiles(int $miles): VehicleInfoBuilder
-    {
-        $this->odometerReadingMiles = $miles;
-
-        return $this;
-    }
-
-    public function getOdometerReadingMiles(): int
-    {
-        return $this->odometerReadingMiles;
-    }
-
-    public function setColour(string $colour): VehicleInfoBuilder
-    {
-        $this->colour = $colour;
-
-        return $this;
-    }
-
-    public function getColour():? string
-    {
-        return $this->colour;
-    }
-
-    public function toArray(): array
-    {
-        $this->validate();
-
-        return $this->filterPrepareOutput([
-            'registration' => $this->registration,
-            'derivativeId' => $this->derivativeId,
-            'make' => $this->make,
-            'model' => $this->model,
-            'colour' => $this->colour,
-            'vehicleType' => $this->vehicleType,
-            'ownershipCondition' => $this->ownershipCondition,
-            'odometerReadingMiles' => $this->odometerReadingMiles,
-        ]);
-    }
+    protected $cast = [
+        "seats",
+        "doors",
+        "co2EmissionGPKM",
+        "topSpeedMPH",
+        "zeroToSixtyMPHSeconds",
+        "badgeEngineSizeLitres",
+        "engineCapacityCC",
+        "enginePowerBHP",
+        "fuelCapacityLitres",
+        "fuelEconomyNEDCExtraUrbanMPG",
+        "fuelEconomyNEDCUrbanMPG",
+        "fuelEconomyNEDCCombinedMPG",
+        "fuelEconomyWLTPLowMPG",
+        "fuelEconomyWLTPMediumMPG",
+        "fuelEconomyWLTPHighMPG",
+        "fuelEconomyWLTPExtraHighMPG",
+        "fuelEconomyWLTPCombinedMPG",
+        "bootSpaceSeatsUpLitres",
+        "lengthMM",
+        "heightMM",
+        "widthMM",
+        "payloadLengthMM",
+        "payloadWidthMM",
+        "payloadHeightMM",
+        "payloadWeightKG",
+        "minimumKerbWeightKG",
+        "grossVehicleWeightKG",
+        "cylinders",
+        "bootSpaceSeatsDownLitres",
+        "odometerReadingMiles",
+        "warrantyMonthsOnPurchase",
+        "exDemo",
+        "keys",
+        "v5Certificate",
+        "previousOwners",
+        "lastServiceOdometerReadingMiles",
+        "engineNumber",
+        "fuelDelivery",
+        "gears",
+        "valves",
+        "startStop",
+        "enginePowerPS",
+        "engineTorqueNM",
+        "engineTorqueLBFT",
+        "batteryChargeTime",
+        "batteryQuickChargeTime",
+        "batteryRangeMiles",
+        "batteryCapacityKWH",
+        "batteryUsableCapacityKWH",
+        "wheelbaseMM",
+        "grossCombinedWeightKG",
+        "grossTrainWeightKG",
+        "boreMM",
+        "strokeMM",
+        "axles",
+        "payloadVolumeCubicMetres",
+        "rde2Compliant",
+    ];
 }

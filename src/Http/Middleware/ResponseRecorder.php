@@ -4,6 +4,7 @@
 namespace Olsgreen\AutoTrader\Http\Middleware;
 
 
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -28,6 +29,25 @@ class ResponseRecorder implements MiddlewareInterface
         $this->path = $path;
     }
 
+    protected function getPrettyBody(MessageInterface $message)
+    {
+        $body = (string) $message->getBody();
+
+        $contentType = $message->getHeaderLine('Content-Type');
+
+        $isJson = stripos($contentType, 'application/json') > -1;
+
+        if ($isJson) {
+            $decoded = json_decode($body, JSON_PRETTY_PRINT);
+
+            if (!json_last_error()) {
+                $body = $decoded;
+            }
+        }
+
+        return $body;
+    }
+
     protected function prepare(RequestInterface $request, ResponseInterface $response)
     {
         return json_encode([
@@ -35,12 +55,12 @@ class ResponseRecorder implements MiddlewareInterface
                 'method' => $request->getMethod(),
                 'uri' => $request->getUri(),
                 'headers' => $request->getHeaders(),
-                'body' => (string) $request->getBody(),
+                'body' => $this->getPrettyBody($request),
             ],
             'response' => [
                 'responseCode' => $response->getStatusCode(),
                 'headers' => $response->getHeaders(),
-                'body' => (string) $response->getBody(),
+                'body' => $this->getPrettyBody($response),
             ]
         ], JSON_PRETTY_PRINT);
     }

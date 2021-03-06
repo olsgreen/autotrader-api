@@ -22,9 +22,20 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
 
     protected $profileAdvert;
 
+    protected $vatExcluded;
+
+    protected $priceOnApplication;
+
+    protected $price;
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
+
+        $this->price = new StockItemPriceInfoBuilder(
+            'Price',
+            $this->dataGet($attributes, 'price', [])
+        );
 
         $this->autotraderAdvert = new StockItemAdvertInfoBuilder(
             'AutoTrader Advert',
@@ -52,9 +63,35 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         );
     }
 
-    public function setAttentionGrabber(string $text): StockItemRetailAdvertsInfoBuilder
+    public function setVatExcluded(bool $state): StockItemRetailAdvertsInfoBuilder
+    {
+        $this->vatExcluded = $state;
+
+        return $this;
+    }
+
+    public function getVatExcluded(): bool
+    {
+        return $this->vatExcluded;
+    }
+
+    public function setPriceOnApplication(bool $state): StockItemRetailAdvertsInfoBuilder
+    {
+        $this->priceOnApplication = $state;
+
+        return $this;
+    }
+
+    public function getPriceOnApplication(): bool
+    {
+        return $this->priceOnApplication;
+    }
+
+    public function setAttentionGrabber($text): StockItemRetailAdvertsInfoBuilder
     {
         $this->attentionGrabber = $text;
+
+        return $this;
     }
 
     public function getAttentionGrabber(): string
@@ -62,7 +99,7 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         return $this->attentionGrabber;
     }
 
-    public function setDescription(string $text): StockItemRetailAdvertsInfoBuilder
+    public function setDescription($text): StockItemRetailAdvertsInfoBuilder
     {
         $this->description = $text;
 
@@ -74,7 +111,7 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         return $this->description;
     }
 
-    public function setDescription2(string $text): StockItemRetailAdvertsInfoBuilder
+    public function setDescription2($text): StockItemRetailAdvertsInfoBuilder
     {
         $this->description2 = $text;
 
@@ -116,6 +153,9 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
+            'price' => $this->price->toArray(),
+            'vatExcluded' => $this->vatExcluded,
+            'priceOnApplication' => $this->priceOnApplication,
             'attentionGrabber' => $this->attentionGrabber,
             'description' => $this->description,
             'description2' => $this->description2,

@@ -2,7 +2,7 @@
 
 namespace Olsgreen\AutoTrader\Api\Enums;
 
-abstract class AbstractEnum
+abstract class AbstractEnum implements Enum
 {
     public function all(): array
     {

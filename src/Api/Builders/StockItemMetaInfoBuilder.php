@@ -14,11 +14,11 @@ class StockItemMetaInfoBuilder extends AbstractBuilder
 
     protected $lifecycleState;
 
-    protected $requiredAttributes = [
+    /*protected $requiredAttributes = [
         'externalStockId',
         'externalStockReference',
         'lifecycleState',
-    ];
+    ];*/
 
     public function setExternalStockId(string $id): StockItemMetaInfoBuilder
     {

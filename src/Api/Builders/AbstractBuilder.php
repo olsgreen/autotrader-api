@@ -48,7 +48,7 @@ abstract class AbstractBuilder
      * @param string $key
      * @return string
      */
-    private function getSetterName(string $key): string
+    protected function getSetterName(string $key): string
     {
         $parts = explode('_', $key);
 
@@ -60,6 +60,23 @@ abstract class AbstractBuilder
     }
 
     /**
+     * Get an attributes name from a setter method name.
+     *
+     * @param string $setter
+     * @return string
+     */
+    protected function getAttributeName(string $setter): string
+    {
+        $setter = substr($setter, 3);
+
+        $parts = preg_split('/(?=[A-Z])/', $setter, -1, PREG_SPLIT_NO_EMPTY);
+
+        $parts = array_map('strtolower', $parts);
+
+        return implode('_', $parts);
+    }
+
+    /**
      * Set the objects attributes from array.
      *
      * @param array $attributes
@@ -68,11 +85,27 @@ abstract class AbstractBuilder
     public function setAttributes(array $attributes = []): AbstractBuilder
     {
         foreach ($attributes as $key => $value) {
-            $setter = $this->getSetterName($key);
+            $this->setAttribute($key, $value);
+        }
 
-            if (method_exists($this, $setter)) {
-                $this->$setter($value);
-            }
+        return $this;
+    }
+
+    private function attributeIsBuilder(string $key): bool
+    {
+        return property_exists($this, $key) &&
+            $this->$key instanceof AbstractBuilder;
+    }
+
+    public function setAttribute(string $key, $value): AbstractBuilder
+    {
+        // Set values that have defined setters.
+        $setter = $this->getSetterName($key);
+
+        if (method_exists($this, $setter)) {
+            $this->$setter($value);
+        } elseif ($this->attributeIsBuilder($key)) {
+            $this->$key->setAttributes($value);
         }
 
         return $this;
@@ -106,10 +139,15 @@ abstract class AbstractBuilder
         return $this;
     }
 
+    protected function attributeEmpty($key): bool
+    {
+        return empty($key);
+    }
+
     public function validate(): bool
     {
         foreach ($this->requiredAttributes as $key) {
-            if (empty($this->$key)) {
+            if ($this->attributeEmpty($this->$key)) {
                 throw new ValidationException($this->getFriendlyName() . ": $key must not be empty.");
             }
         }

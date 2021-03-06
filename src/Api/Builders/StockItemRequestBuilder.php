@@ -4,7 +4,7 @@
 namespace Olsgreen\AutoTrader\Api\Builders;
 
 
-class CreateStockItemRequestBuilder extends AbstractBuilder
+class StockItemRequestBuilder extends AbstractBuilder
 {
     protected $vehicleInfo;
 

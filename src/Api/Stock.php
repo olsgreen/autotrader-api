@@ -4,7 +4,7 @@
 namespace Olsgreen\AutoTrader\Api;
 
 
-use Olsgreen\AutoTrader\Api\Builders\CreateStockItemRequestBuilder;
+use Olsgreen\AutoTrader\Api\Builders\StockItemRequestBuilder;
 use Olsgreen\AutoTrader\Api\Builders\UpdateStockItemRequestBuilder;
 use Olsgreen\AutoTrader\Http\SimpleMultipartBody;
 
@@ -14,16 +14,16 @@ class Stock extends AbstractApi
      * Create a stock item.
      *
      * @param string $advertiserId
-     * @param $request CreateStockItemRequestBuilder|array
+     * @param $request StockItemRequestBuilder|array
      * @return array
      */
     public function create(string $advertiserId, $request): array
     {
         if (is_array($request)) {
-            $request = new CreateStockItemRequestBuilder($request);
-        } elseif (!($request instanceof CreateStockItemRequestBuilder)) {
+            $request = new StockItemRequestBuilder($request);
+        } elseif (!($request instanceof StockItemRequestBuilder)) {
             throw new \InvalidArgumentException(
-                'The $request argument must be an array or CreateStockItemRequestBuilder.'
+                'The $request argument must be an array or StockItemRequestBuilder.'
             );
         }
 
@@ -46,10 +46,10 @@ class Stock extends AbstractApi
     public function update(string $advertiserId, string $uuid, $request): array
     {
         if (is_array($request)) {
-            $request = new UpdateStockItemRequestBuilder($request);
-        } elseif (!($request instanceof UpdateStockItemRequestBuilder)) {
+            $request = new StockItemRequestBuilder($request);
+        } elseif (!($request instanceof StockItemRequestBuilder)) {
             throw new \InvalidArgumentException(
-                'The $request argument must be an array or UpdateStockItemRequestBuilder.'
+                'The $request argument must be an array or StockItemRequestBuilder.'
             );
         }
 
