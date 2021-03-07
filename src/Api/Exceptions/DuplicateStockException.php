@@ -11,7 +11,7 @@ class DuplicateStockException extends ClientException
     /**
      * @var string|null
      */
-    protected $existingStockId;
+    protected $duplicateStockId;
 
     /**
      * DuplicateStockException constructor.
@@ -23,7 +23,11 @@ class DuplicateStockException extends ClientException
      */
     public function __construct(string $message, Request $request, Response $response = null, \Exception $previous = null)
     {
-        $this->existingStockId = $this->parseStockIdFromMessage($message);
+        if ($response) {
+            $this->duplicateStockId = $this->parseStockIdFromBody(
+                (string) $response->getBody()
+            );
+        }
 
         parent::__construct($message, $request, $response, $previous);
     }
@@ -34,7 +38,7 @@ class DuplicateStockException extends ClientException
      * @param string $message
      * @return string|null
      */
-    private function parseStockIdFromMessage(string $message):? string
+    private function parseStockIdFromBody(string $message):? string
     {
         $pattern = '/Duplicate stock found, stockId=([a-z0-9]+)/i';
 
@@ -50,8 +54,8 @@ class DuplicateStockException extends ClientException
      *
      * @return string
      */
-    public function getExistingStockId(): string
+    public function getDuplicateStockId():? string
     {
-        return $this->existingStockId;
+        return $this->duplicateStockId;
     }
 }
