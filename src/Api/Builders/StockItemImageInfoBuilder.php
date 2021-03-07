@@ -8,10 +8,14 @@ class StockItemImageInfoBuilder extends AbstractBuilder
 
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         foreach ($attributes as $imageId) {
-            $this->add($imageId);
+            if (is_string($imageId)) {
+                $this->add($imageId);
+            } elseif (is_array($imageId)) {
+                $this->add($imageId['imageId']);
+            } else {
+                throw new \InvalidArgumentException('Invalid imageId');
+            }
         }
     }
 
