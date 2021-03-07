@@ -3,6 +3,8 @@
 namespace Olsgreen\AutoTrader\Api;
 
 use Olsgreen\AutoTrader\Api\Builders\StockItemRequestBuilder;
+use Olsgreen\AutoTrader\Api\Exceptions\DuplicateStockException;
+use Olsgreen\AutoTrader\Http\Exceptions\ClientException;
 use Olsgreen\AutoTrader\Http\SimpleMultipartBody;
 
 class Stock extends AbstractApi
@@ -25,12 +27,25 @@ class Stock extends AbstractApi
             );
         }
 
-        return $this->_post(
-            '/service/stock-management/stock',
-            ['advertiserId' => $advertiserId],
-            $request->toJson(),
-            ['Content-Type' => 'application/json']
-        );
+        try {
+            return $this->_post(
+                '/service/stock-management/stock',
+                ['advertiserId' => $advertiserId],
+                $request->toJson(),
+                ['Content-Type' => 'application/json']
+            );
+        } catch (ClientException $ex) {
+            if ($ex->getResponse()->getStatusCode() === 409) {
+                throw new DuplicateStockException(
+                   'Duplicate stock found.',
+                   $ex->getRequest(),
+                   $ex->getResponse(),
+                   $ex
+                );
+            }
+
+            throw $ex;
+        }
     }
 
     /**

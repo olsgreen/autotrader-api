@@ -4,10 +4,17 @@ namespace Olsgreen\AutoTrader\Http;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use Olsgreen\AutoTrader\Http\Exceptions\ClientException;
+use Olsgreen\AutoTrader\Http\Exceptions\ForbiddenException;
+use Olsgreen\AutoTrader\Http\Exceptions\HttpException;
+use Olsgreen\AutoTrader\Http\Exceptions\ServerException;
+use Olsgreen\AutoTrader\Http\Exceptions\TemporaryServerException;
+use Olsgreen\AutoTrader\Http\Exceptions\UnauthorizedException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -73,8 +80,6 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * @param array  $headers
      * @param null   $sink    string|resource|StreamInterface
      *
-     * @throws GuzzleException
-     *
      * @return ResponseInterface
      */
     public function get(string $uri, array $params = [], array $headers = [], $sink = null): ResponseInterface
@@ -98,8 +103,6 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * @param array  $params
      * @param null   $body
      * @param array  $headers
-     *
-     * @throws GuzzleException
      *
      * @return ResponseInterface
      */
@@ -183,8 +186,36 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      */
     private function sendRequest(RequestInterface $request, array $options = []): ResponseInterface
     {
-        return $this->processMiddleware($request, function ($request) use ($options) {
-            return $this->guzzle->send($request, $options);
-        });
+        try {
+            return $this->processMiddleware($request, function ($request) use ($options) {
+                return $this->guzzle->send($request, $options);
+            });
+        } catch(BadResponseException $ex) {
+            $statusCode = $ex->getResponse()->getStatusCode();
+
+            $castTo = HttpException::class;
+
+            if ($statusCode >= 400 && $statusCode <= 499) {
+                $castTo = ClientException::class;
+
+                if ($statusCode === 401) {
+                    $castTo = UnauthorizedException::class;
+                } elseif ($statusCode === 403) {
+                    $castTo = ForbiddenException::class;
+                }
+            }
+
+            elseif ($statusCode >= 500 && $statusCode <= 599) {
+                $castTo = ServerException::class;
+
+                if ($statusCode === 503 || $statusCode === 504) {
+                    $castTo = TemporaryServerException::class;
+                }
+            }
+
+            throw new $castTo(
+                $ex->getMessage(), $ex->getRequest(), $ex->getResponse(), $ex
+            );
+        }
     }
 }
