@@ -190,7 +190,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
             return $this->processMiddleware($request, function ($request) use ($options) {
                 return $this->guzzle->send($request, $options);
             });
-        } catch(BadResponseException $ex) {
+        } catch (BadResponseException $ex) {
             $statusCode = $ex->getResponse()->getStatusCode();
 
             $castTo = HttpException::class;
@@ -203,9 +203,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
                 } elseif ($statusCode === 403) {
                     $castTo = ForbiddenException::class;
                 }
-            }
-
-            elseif ($statusCode >= 500 && $statusCode <= 599) {
+            } elseif ($statusCode >= 500 && $statusCode <= 599) {
                 $castTo = ServerException::class;
 
                 if ($statusCode === 503 || $statusCode === 504) {
@@ -214,7 +212,10 @@ class GuzzleClient extends AbstractClient implements ClientInterface
             }
 
             throw new $castTo(
-                $ex->getMessage(), $ex->getRequest(), $ex->getResponse(), $ex
+                $ex->getMessage(),
+                $ex->getRequest(),
+                $ex->getResponse(),
+                $ex
             );
         }
     }

@@ -31,7 +31,7 @@ class HttpException extends \Exception
     }
 
     /**
-     * Get the request that caused the exception
+     * Get the request that caused the exception.
      */
     public function getRequest(): RequestInterface
     {
@@ -39,7 +39,7 @@ class HttpException extends \Exception
     }
 
     /**
-     * Get the associated response
+     * Get the associated response.
      */
     public function getResponse(): ?ResponseInterface
     {
@@ -47,7 +47,7 @@ class HttpException extends \Exception
     }
 
     /**
-     * Check if a response was received
+     * Check if a response was received.
      */
     public function hasResponse(): bool
     {

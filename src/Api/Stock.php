@@ -37,10 +37,10 @@ class Stock extends AbstractApi
         } catch (ClientException $ex) {
             if ($ex->getResponse()->getStatusCode() === 409) {
                 throw new DuplicateStockException(
-                   'Duplicate stock found.',
-                   $ex->getRequest(),
-                   $ex->getResponse(),
-                   $ex
+                    'Duplicate stock found.',
+                    $ex->getRequest(),
+                    $ex->getResponse(),
+                    $ex
                 );
             }
 
