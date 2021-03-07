@@ -18,7 +18,7 @@ class StockItemMetaInfoBuilder extends AbstractBuilder
         'lifecycleState',
     ];*/
 
-    public function setExternalStockId(string $id): StockItemMetaInfoBuilder
+    public function setExternalStockId($id): StockItemMetaInfoBuilder
     {
         $this->externalStockId = $id;
 
@@ -30,7 +30,7 @@ class StockItemMetaInfoBuilder extends AbstractBuilder
         return $this->externalStockId;
     }
 
-    public function setExternalStockReference(string $reference): StockItemMetaInfoBuilder
+    public function setExternalStockReference($reference): StockItemMetaInfoBuilder
     {
         $this->externalStockReference = $reference;
 
