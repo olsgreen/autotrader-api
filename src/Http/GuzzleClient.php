@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Http;
 
 use GuzzleHttp\Client;
@@ -27,6 +26,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
 
     /**
      * GuzzleClient constructor.
+     *
      * @param GuzzleClientInterface|null $guzzle
      */
     public function __construct(GuzzleClientInterface $guzzle = null)
@@ -43,24 +43,24 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      *
      * @param string $method
      * @param string $uri
-     * @param array $params
-     * @param null $body
-     * @param array $headers
+     * @param array  $params
+     * @param null   $body
+     * @param array  $headers
+     *
      * @return Request
      */
     protected function createRequestObject(
-        string $method, 
-        string $uri, 
-        array $params = [], 
-        $body = null, 
+        string $method,
+        string $uri,
+        array $params = [],
+        $body = null,
         array $headers = []
-    ): RequestInterface
-    {
+    ): RequestInterface {
         $this->doPreflightCallback($method, $uri, $headers, $body);
 
         $headers = array_merge($this->headers, $headers);
 
-        $uri = $this->baseUri . $uri . '?' . http_build_query($params);
+        $uri = $this->baseUri.$uri.'?'.http_build_query($params);
 
         return new Request($method, $uri, $headers, $body);
     }
@@ -69,11 +69,13 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * Execute a GET request.
      *
      * @param string $uri
-     * @param array $params
-     * @param array $headers
-     * @param null $sink string|resource|StreamInterface
-     * @return ResponseInterface
+     * @param array  $params
+     * @param array  $headers
+     * @param null   $sink    string|resource|StreamInterface
+     *
      * @throws GuzzleException
+     *
+     * @return ResponseInterface
      */
     public function get(string $uri, array $params = [], array $headers = [], $sink = null): ResponseInterface
     {
@@ -93,11 +95,13 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * Execute a POST request.
      *
      * @param string $uri
-     * @param array $params
-     * @param null $body
-     * @param array $headers
-     * @return ResponseInterface
+     * @param array  $params
+     * @param null   $body
+     * @param array  $headers
+     *
      * @throws GuzzleException
+     *
+     * @return ResponseInterface
      */
     public function post(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
     {
@@ -117,11 +121,13 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * Execute a PUT request.
      *
      * @param string $uri
-     * @param array $params
-     * @param null $body
-     * @param array $headers
-     * @return ResponseInterface
+     * @param array  $params
+     * @param null   $body
+     * @param array  $headers
+     *
      * @throws GuzzleException
+     *
+     * @return ResponseInterface
      */
     public function put(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
     {
@@ -134,11 +140,13 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * Execute a PATCH request.
      *
      * @param string $uri
-     * @param array $params
-     * @param null $body
-     * @param array $headers
-     * @return ResponseInterface
+     * @param array  $params
+     * @param null   $body
+     * @param array  $headers
+     *
      * @throws GuzzleException
+     *
+     * @return ResponseInterface
      */
     public function patch(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
     {
@@ -151,10 +159,12 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * Execute a DELETE request.
      *
      * @param string $uri
-     * @param array $params
-     * @param array $headers
-     * @return ResponseInterface
+     * @param array  $params
+     * @param array  $headers
+     *
      * @throws GuzzleException
+     *
+     * @return ResponseInterface
      */
     public function delete(string $uri, array $params = [], array $headers = []): ResponseInterface
     {
@@ -167,12 +177,13 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      * Process the middleware and send the requet.
      *
      * @param RequestInterface $request
-     * @param array $options
+     * @param array            $options
+     *
      * @return ResponseInterface
      */
     private function sendRequest(RequestInterface $request, array $options = []): ResponseInterface
     {
-        return $this->processMiddleware($request, function($request) use ($options) {
+        return $this->processMiddleware($request, function ($request) use ($options) {
             return $this->guzzle->send($request, $options);
         });
     }

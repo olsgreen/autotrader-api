@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 class StockItemPriceInfoBuilder extends AbstractNameableBuilder
 {
@@ -23,7 +21,7 @@ class StockItemPriceInfoBuilder extends AbstractNameableBuilder
     public function toArray(): array
     {
         return $this->filterPrepareOutput([
-            'amountGBP' => $this->amountGBP
+            'amountGBP' => $this->amountGBP,
         ]);
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Http;
 
 use DateTime;
@@ -41,7 +40,7 @@ class AccessToken implements \JsonSerializable
     {
         return [
             'access_token' => $this->access_token,
-            'expires' => $this->getExpires()
+            'expires'      => $this->getExpires()
                 ->format(DateTime::ATOM),
         ];
     }

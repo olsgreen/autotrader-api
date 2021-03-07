@@ -1,15 +1,13 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api;
-
 
 use Olsgreen\AutoTrader\Api\Builders\ValuationRequestBuilder;
 
 class Valuations extends AbstractApi
 {
     /**
-     * $request = ValuationRequestBuilder::create();
+     * $request = ValuationRequestBuilder::create();.
      *
      * $request->vehicle()
      *  ->setDerivativeId('ABC123')
@@ -20,6 +18,5 @@ class Valuations extends AbstractApi
      */
     public function value(ValuationRequestBuilder $builder)
     {
-
     }
 }

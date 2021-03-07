@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 use Olsgreen\AutoTrader\Api\Enums\AdvertStatus;
 
@@ -33,7 +31,7 @@ class StockItemAdvertInfoBuilder extends AbstractNameableBuilder
     public function toArray(): array
     {
         return $this->filterPrepareOutput([
-            'status' => $this->status
+            'status' => $this->status,
         ]);
     }
 }

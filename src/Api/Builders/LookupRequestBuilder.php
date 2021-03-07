@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 use Olsgreen\AutoTrader\Api\Enums\VehicleLookupFlags;
 
@@ -25,7 +23,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
     /**
      * Mileage.
      *
-     * @var string|integer
+     * @var string|int
      */
     protected $odometerReadingMiles;
 
@@ -45,6 +43,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      * Set the registration.
      *
      * @param string $registration
+     *
      * @return $this
      */
     public function setRegistration(string $registration): LookupRequestBuilder
@@ -68,8 +67,10 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      * Set the dataset flags.
      *
      * @param array $flags
-     * @return $this
+     *
      * @throws \Exception
+     *
+     * @return $this
      */
     public function setFlags(array $flags): LookupRequestBuilder
     {
@@ -105,6 +106,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      * Set the mileage.
      *
      * @param $miles
+     *
      * @return $this
      */
     public function setOdometerReadingMiles($miles): LookupRequestBuilder
@@ -117,8 +119,9 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
     /**
      * Validate the requests attributes.
      *
-     * @return bool
      * @throws ValidationException
+     *
+     * @return bool
      */
     public function validate(): bool
     {
@@ -132,7 +135,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
 
         if ($requiresOdometerReading && empty($this->odometerReadingMiles)) {
             throw new ValidationException(
-                'The attribute `odometerReadingMiles` must be set if the VehicleLookupFlags::VALUATIONS' .
+                'The attribute `odometerReadingMiles` must be set if the VehicleLookupFlags::VALUATIONS'.
                 ' or VehicleLookupFlags::VEHICLE_METRICS flags are set.'
             );
         }
@@ -145,6 +148,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      * format the API recognises.
      *
      * @param array $flags
+     *
      * @return array
      */
     private function transformFlags(array $flags): array
@@ -162,15 +166,16 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      * Validate, prepare and return an array formatted
      * representation of the request.
      *
-     * @return array
      * @throws ValidationException
+     *
+     * @return array
      */
     public function toArray(): array
     {
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'registration' => preg_replace('/\s/', '', $this->registration),
+            'registration'         => preg_replace('/\s/', '', $this->registration),
             'odometerReadingMiles' => $this->odometerReadingMiles,
         ] + $this->transformFlags($this->flags));
     }

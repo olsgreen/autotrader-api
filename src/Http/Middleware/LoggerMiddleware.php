@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Http\Middleware;
-
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -20,10 +18,10 @@ class LoggerMiddleware implements MiddlewareInterface
     protected function prepareRequest(RequestInterface $request)
     {
         return json_encode([
-            'uri' => $request->getUri(),
-            'method' => $request->getMethod(),
+            'uri'     => $request->getUri(),
+            'method'  => $request->getMethod(),
             'headers' => $request->getHeaders(),
-            'body' => (string) $request->getBody(),
+            'body'    => (string) $request->getBody(),
         ], JSON_PRETTY_PRINT);
     }
 
@@ -31,10 +29,9 @@ class LoggerMiddleware implements MiddlewareInterface
     {
         $contentType = $response->getHeader('Content-Type')[0];
 
-        $parsedBody = 'Logging for ' . $contentType . ' is not enabled.';
+        $parsedBody = 'Logging for '.$contentType.' is not enabled.';
 
-        switch ($contentType)
-        {
+        switch ($contentType) {
             case 'application/json':
                 $body = (string) $response->getBody();
                 $parsedBody = json_decode($body, true);
@@ -45,10 +42,10 @@ class LoggerMiddleware implements MiddlewareInterface
         }
 
         return json_encode([
-            'responseCode' => $response->getStatusCode(),
+            'responseCode'   => $response->getStatusCode(),
             'responseReason' => $response->getReasonPhrase(),
-            'header' => $response->getHeaders(),
-            'body' => $parsedBody
+            'header'         => $response->getHeaders(),
+            'body'           => $parsedBody,
         ], JSON_PRETTY_PRINT);
     }
 
@@ -56,9 +53,9 @@ class LoggerMiddleware implements MiddlewareInterface
     {
         $response = $next($request);
 
-        $data = $this->prepareRequest($request) . PHP_EOL . $this->prepareResponse($response);
+        $data = $this->prepareRequest($request).PHP_EOL.$this->prepareResponse($response);
 
-        $this->logger->debug('API Request: ' . $request->getUri() . PHP_EOL . $data);
+        $this->logger->debug('API Request: '.$request->getUri().PHP_EOL.$data);
 
         return $response;
     }

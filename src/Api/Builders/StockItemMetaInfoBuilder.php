@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 use Olsgreen\AutoTrader\Api\Enums\LifecycleStates;
 
@@ -27,7 +25,7 @@ class StockItemMetaInfoBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getExternalStockId():? string
+    public function getExternalStockId(): ?string
     {
         return $this->externalStockId;
     }
@@ -39,7 +37,7 @@ class StockItemMetaInfoBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getExternalStockReference():? string
+    public function getExternalStockReference(): ?string
     {
         return $this->externalStockReference;
     }
@@ -59,7 +57,7 @@ class StockItemMetaInfoBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getLifecycleState():? string
+    public function getLifecycleState(): ?string
     {
         return $this->lifecycleState;
     }
@@ -69,9 +67,9 @@ class StockItemMetaInfoBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'externalStockId' => $this->externalStockId,
+            'externalStockId'        => $this->externalStockId,
             'externalStockReference' => $this->externalStockReference,
-            'lifecycleState' => $this->lifecycleState,
+            'lifecycleState'         => $this->lifecycleState,
         ]);
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
 {
@@ -123,27 +121,27 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         return $this->description2;
     }
 
-    function autotraderAdvert(): StockItemAdvertInfoBuilder
+    public function autotraderAdvert(): StockItemAdvertInfoBuilder
     {
         return $this->autotraderAdvert;
     }
 
-    function advertiserAdvert(): StockItemAdvertInfoBuilder
+    public function advertiserAdvert(): StockItemAdvertInfoBuilder
     {
         return $this->advertiserAdvert;
     }
 
-    function locatorAdvert(): StockItemAdvertInfoBuilder
+    public function locatorAdvert(): StockItemAdvertInfoBuilder
     {
         return $this->locatorAdvert;
     }
 
-    function exportAdvert(): StockItemAdvertInfoBuilder
+    public function exportAdvert(): StockItemAdvertInfoBuilder
     {
         return $this->exportAdvert;
     }
 
-    function profileAdvert(): StockItemAdvertInfoBuilder
+    public function profileAdvert(): StockItemAdvertInfoBuilder
     {
         return $this->profileAdvert;
     }
@@ -153,18 +151,17 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'price' => $this->price->toArray(),
-            'vatExcluded' => $this->vatExcluded,
+            'price'              => $this->price->toArray(),
+            'vatExcluded'        => $this->vatExcluded,
             'priceOnApplication' => $this->priceOnApplication,
-            'attentionGrabber' => $this->attentionGrabber,
-            'description' => $this->description,
-            'description2' => $this->description2,
-            'autotraderAdvert' => $this->autotraderAdvert->toArray(),
-            'advertiserAdvert' => $this->advertiserAdvert->toArray(),
-            'locatorAdvert' => $this->locatorAdvert->toArray(),
-            'exportAdvert' => $this->exportAdvert->toArray(),
-            'profileAdvert' => $this->profileAdvert->toArray(),
+            'attentionGrabber'   => $this->attentionGrabber,
+            'description'        => $this->description,
+            'description2'       => $this->description2,
+            'autotraderAdvert'   => $this->autotraderAdvert->toArray(),
+            'advertiserAdvert'   => $this->advertiserAdvert->toArray(),
+            'locatorAdvert'      => $this->locatorAdvert->toArray(),
+            'exportAdvert'       => $this->exportAdvert->toArray(),
+            'profileAdvert'      => $this->profileAdvert->toArray(),
         ]);
     }
-
 }

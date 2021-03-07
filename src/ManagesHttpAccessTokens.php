@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader;
-
 
 trait ManagesHttpAccessTokens
 {
@@ -20,6 +18,7 @@ trait ManagesHttpAccessTokens
      * Set the access token.
      *
      * @param $token
+     *
      * @return $this
      */
     public function setAccessToken($token): AbstractClient

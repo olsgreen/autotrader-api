@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 interface BuilderInterface
 {
@@ -17,8 +15,9 @@ interface BuilderInterface
      * Validate, prepare and return an array formatted
      * representation of the request.
      *
-     * @return array
      * @throws ValidationException
+     *
+     * @return array
      */
     public function toArray(): array;
 

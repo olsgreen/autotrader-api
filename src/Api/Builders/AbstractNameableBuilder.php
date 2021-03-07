@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 abstract class AbstractNameableBuilder extends AbstractBuilder
 {

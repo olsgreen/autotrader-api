@@ -1,19 +1,14 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader;
 
-
-use Closure;
-use Olsgreen\AutoTrader\Api\Authentication;
 use Olsgreen\AutoTrader\Api\Adverts;
+use Olsgreen\AutoTrader\Api\Authentication;
 use Olsgreen\AutoTrader\Api\Stock;
 use Olsgreen\AutoTrader\Api\Taxonomy;
 use Olsgreen\AutoTrader\Api\Valuations;
 use Olsgreen\AutoTrader\Api\VehicleMetrics;
 use Olsgreen\AutoTrader\Api\Vehicles;
-use Olsgreen\AutoTrader\Http\ClientInterface;
-use Olsgreen\AutoTrader\Http\GuzzleClient;
 
 class Client extends AbstractClient
 {

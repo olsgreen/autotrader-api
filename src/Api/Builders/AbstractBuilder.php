@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 abstract class AbstractBuilder
 {
@@ -35,6 +33,7 @@ abstract class AbstractBuilder
      * Factory method.
      *
      * @param array $attributes
+     *
      * @return static
      */
     public static function create(array $attributes = [])
@@ -46,23 +45,25 @@ abstract class AbstractBuilder
      * Get an setter method name from and attribute name.
      *
      * @param string $key
+     *
      * @return string
      */
     protected function getSetterName(string $key): string
     {
         $parts = explode('_', $key);
 
-        $parts = array_map(function($part) {
+        $parts = array_map(function ($part) {
             return ucwords($part);
         }, $parts);
 
-        return 'set' . implode('', $parts);
+        return 'set'.implode('', $parts);
     }
 
     /**
      * Get an attributes name from a setter method name.
      *
      * @param string $setter
+     *
      * @return string
      */
     protected function getAttributeName(string $setter): string
@@ -80,6 +81,7 @@ abstract class AbstractBuilder
      * Set the objects attributes from array.
      *
      * @param array $attributes
+     *
      * @return $this
      */
     public function setAttributes(array $attributes = []): AbstractBuilder
@@ -115,6 +117,7 @@ abstract class AbstractBuilder
      * Remove empty values from the prepare methods output.
      *
      * @param array $output
+     *
      * @return array]
      */
     protected function filterPrepareOutput(array $output)
@@ -148,7 +151,7 @@ abstract class AbstractBuilder
     {
         foreach ($this->requiredAttributes as $key) {
             if ($this->attributeEmpty($this->$key)) {
-                throw new ValidationException($this->getFriendlyName() . ": $key must not be empty.");
+                throw new ValidationException($this->getFriendlyName().": $key must not be empty.");
             }
         }
 

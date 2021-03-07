@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 class StockItemMediaInfoBuilder extends AbstractBuilder
 {
@@ -38,7 +36,7 @@ class StockItemMediaInfoBuilder extends AbstractBuilder
     {
         return $this->filterPrepareOutput([
             'videoUrl' => $this->videoUrl,
-            'images' => $this->imageInfoBuilder->all(),
+            'images'   => $this->imageInfoBuilder->all(),
         ]);
     }
 }

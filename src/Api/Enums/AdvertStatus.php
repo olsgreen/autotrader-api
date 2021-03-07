@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Enums;
-
 
 class AdvertStatus extends AbstractEnum
 {
