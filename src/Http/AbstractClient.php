@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Http;
 
 use Closure;
@@ -54,6 +53,7 @@ abstract class AbstractClient implements ClientInterface
      * Set the clients base URI.
      *
      * @param string $uri
+     *
      * @return ClientInterface
      */
     public function setBaseUri(string $uri): ClientInterface
@@ -78,6 +78,7 @@ abstract class AbstractClient implements ClientInterface
      *
      * @param string $key
      * @param string $value
+     *
      * @return ClientInterface
      */
     public function withHeader(string $key, string $value): ClientInterface
@@ -101,6 +102,7 @@ abstract class AbstractClient implements ClientInterface
      * Unset global header index.
      *
      * @param string $key
+     *
      * @return ClientInterface
      */
     public function unsetHeader(string $key): ClientInterface
@@ -114,13 +116,14 @@ abstract class AbstractClient implements ClientInterface
      * Set the access token.
      *
      * @param $token
+     *
      * @return ClientInterface
      */
     public function setAccessToken($token): ClientInterface
     {
         $this->accessToken = $token;
 
-        $this->withHeader('Authorization', 'Bearer ' . $token);
+        $this->withHeader('Authorization', 'Bearer '.$token);
 
         return $this;
     }
@@ -153,6 +156,7 @@ abstract class AbstractClient implements ClientInterface
      * Set the callback to be performed before every request.
      *
      * @param Closure $callback
+     *
      * @return ClientInterface
      */
     public function setPreflightCallback(Closure $callback): ClientInterface
@@ -169,6 +173,7 @@ abstract class AbstractClient implements ClientInterface
      * @param $uri
      * @param $headers
      * @param $body
+     *
      * @return ClientInterface
      */
     protected function doPreflightCallback(&$method, &$uri, &$headers, &$body): ClientInterface
@@ -187,6 +192,7 @@ abstract class AbstractClient implements ClientInterface
      * Set the global middleware stack.
      *
      * @param array $middleware
+     *
      * @return $this
      */
     public function withMiddleware(array $middleware): ClientInterface
@@ -210,13 +216,14 @@ abstract class AbstractClient implements ClientInterface
      * Process the global middleware.
      *
      * @param RequestInterface $request
-     * @param Closure $dispatch
+     * @param Closure          $dispatch
+     *
      * @return ResponseInterface
      */
     protected function processMiddleware(RequestInterface $request, Closure $dispatch): ResponseInterface
     {
-        return  (new Onion)->layer($this->middleware)
-            ->peel($request, function($request) use ($dispatch) {
+        return  (new Onion())->layer($this->middleware)
+            ->peel($request, function ($request) use ($dispatch) {
                 return $dispatch($request);
             });
     }

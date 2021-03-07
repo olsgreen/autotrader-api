@@ -1,15 +1,13 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api;
-
 
 use Olsgreen\AutoTrader\Api\Builders\LookupRequestBuilder;
 
 class Vehicles extends AbstractApi
 {
     /**
-     * Lookup vehicle Base Information
+     * Lookup vehicle Base Information.
      *
      * This endpoint is used to look up UK registered vehicles and returns core vehicle data.
      * This endpoint also has the ability to return additional data by including a series of
@@ -46,6 +44,7 @@ class Vehicles extends AbstractApi
      *     $vehicleMetricsValuation = $api->vehicles()->lookup($request);
      *
      * @param $request LookupRequestBuilder|string|array
+     *
      * @return array
      */
     public function lookup($request): array

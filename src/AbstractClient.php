@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader;
 
 use Closure;
@@ -10,7 +9,7 @@ use Olsgreen\AutoTrader\Http\GuzzleClient;
 abstract class AbstractClient
 {
     /**
-     * HTTP Client Instance
+     * HTTP Client Instance.
      *
      * @var ClientInterface
      */
@@ -19,7 +18,7 @@ abstract class AbstractClient
     /**
      * Client constructor.
      *
-     * @param array $options
+     * @param array                $options
      * @param ClientInterface|null $http
      */
     public function __construct(array $options = [], ClientInterface $http = null)
@@ -50,6 +49,7 @@ abstract class AbstractClient
      * Register a callback to be executed before each request.
      *
      * @param Closure $callback
+     *
      * @return $this
      */
     public function preflight(Closure $callback): self
@@ -58,5 +58,4 @@ abstract class AbstractClient
 
         return $this;
     }
-
 }

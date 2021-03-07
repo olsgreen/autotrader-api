@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Http\Middleware;
-
 
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
@@ -52,16 +50,16 @@ class ResponseRecorder implements MiddlewareInterface
     {
         return json_encode([
             'request' => [
-                'method' => $request->getMethod(),
-                'uri' => $request->getUri(),
+                'method'  => $request->getMethod(),
+                'uri'     => $request->getUri(),
                 'headers' => $request->getHeaders(),
-                'body' => $this->getPrettyBody($request),
+                'body'    => $this->getPrettyBody($request),
             ],
             'response' => [
                 'responseCode' => $response->getStatusCode(),
-                'headers' => $response->getHeaders(),
-                'body' => $this->getPrettyBody($response),
-            ]
+                'headers'      => $response->getHeaders(),
+                'body'         => $this->getPrettyBody($response),
+            ],
         ], JSON_PRETTY_PRINT);
     }
 
@@ -71,11 +69,11 @@ class ResponseRecorder implements MiddlewareInterface
 
         $replace = ['/', ':', '=', '?', '&', '.'];
 
-        $handle = $request->getMethod() . '-' . $request->getUri();
+        $handle = $request->getMethod().'-'.$request->getUri();
 
-        $filename = str_replace($replace, '-', $handle) . '.json';
+        $filename = str_replace($replace, '-', $handle).'.json';
 
-        $pathname = $this->path . DIRECTORY_SEPARATOR . $filename;
+        $pathname = $this->path.DIRECTORY_SEPARATOR.$filename;
 
         file_put_contents(
             $pathname,

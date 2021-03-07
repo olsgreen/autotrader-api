@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 class StockItemAdvertsInfoBuilder extends AbstractBuilder
 {
@@ -40,7 +38,7 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
 
         return $this->filterPrepareOutput([
             'forecourtPrice' => $this->forecourtPrice->toArray(),
-            'retailAdverts' => $this->retailAdverts->toArray(),
+            'retailAdverts'  => $this->retailAdverts->toArray(),
         ]);
     }
 }

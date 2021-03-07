@@ -1,11 +1,8 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api;
 
-
 use Olsgreen\AutoTrader\Api\Builders\StockItemRequestBuilder;
-use Olsgreen\AutoTrader\Api\Builders\UpdateStockItemRequestBuilder;
 use Olsgreen\AutoTrader\Http\SimpleMultipartBody;
 
 class Stock extends AbstractApi
@@ -15,6 +12,7 @@ class Stock extends AbstractApi
      *
      * @param string $advertiserId
      * @param $request StockItemRequestBuilder|array
+     *
      * @return array
      */
     public function create(string $advertiserId, $request): array
@@ -41,6 +39,7 @@ class Stock extends AbstractApi
      * @param string $advertiserId
      * @param string $uuid
      * @param $request
+     *
      * @return array
      */
     public function update(string $advertiserId, string $uuid, $request): array
@@ -54,10 +53,10 @@ class Stock extends AbstractApi
         }
 
         return $this->_patch(
-            '/service/stock-management/stock/' . $uuid,
+            '/service/stock-management/stock/'.$uuid,
             ['advertiserId' => $advertiserId],
             $request->toJson(),
-             ['Content-Type' => 'application/json']
+            ['Content-Type' => 'application/json']
         );
     }
 
@@ -66,12 +65,13 @@ class Stock extends AbstractApi
      *
      * @param string $advertiserId
      * @param string $uuid
+     *
      * @return array
      */
     public function show(string $advertiserId, string $uuid): array
     {
         return $this->_get(
-            '/service/stock-management/stock/' . $uuid,
+            '/service/stock-management/stock/'.$uuid,
             ['advertiserId' => $advertiserId],
         );
     }
@@ -81,8 +81,10 @@ class Stock extends AbstractApi
      *
      * @param string $advertiserId
      * @param string $path
-     * @return string
+     *
      * @throws \Exception
+     *
+     * @return string
      */
     public function uploadImage(string $advertiserId, string $path): string
     {
@@ -102,6 +104,7 @@ class Stock extends AbstractApi
      *
      * @param string $advertiserId
      * @param $data|resource
+     *
      * @return string
      */
     public function uploadImageData(string $advertiserId, $data): string

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 use Olsgreen\AutoTrader\Api\Enums\Enum;
 
@@ -26,7 +24,7 @@ class AbstractSchemableBuilder extends AbstractBuilder
 
     private function getEnums(array $array): array
     {
-        return array_filter($array, function($item) {
+        return array_filter($array, function ($item) {
             if (!class_exists($item)) {
                 return false;
             }
@@ -57,7 +55,7 @@ class AbstractSchemableBuilder extends AbstractBuilder
              */
             if ($this->isEnumArray((array) $validator)) {
                 $enums = array_map(function ($enum) {
-                    return (new $enum)->all();
+                    return (new $enum())->all();
                 }, $this->getEnums((array) $validator));
 
                 if (!in_array($value, array_flatten($enums))) {
@@ -72,14 +70,13 @@ class AbstractSchemableBuilder extends AbstractBuilder
             /**
              * Validate other attributes.
              */
-            switch ($validator)
-            {
+            switch ($validator) {
                 case 'string':
                 case 'integer':
                 case 'float':
                 case 'bool':
                 case 'double':
-                    $func = 'is_' . $validator;
+                    $func = 'is_'.$validator;
                     if (!$func($value)) {
                         throw new \InvalidArgumentException(
                             sprintf('"%s" must be a %s value it is a %s.', $key, $validator, gettype($value))
@@ -123,7 +120,7 @@ class AbstractSchemableBuilder extends AbstractBuilder
 
         $type = str_replace(['integer', 'string'], ['int', 'str'], $type);
 
-        $method = $type . 'val';
+        $method = $type.'val';
 
         return $method($value);
     }
@@ -133,6 +130,7 @@ class AbstractSchemableBuilder extends AbstractBuilder
      *
      * @param string $key
      * @param $value
+     *
      * @return AbstractSchemableBuilder
      */
     public function setAttribute(string $key, $value): AbstractSchemableBuilder
@@ -173,6 +171,7 @@ class AbstractSchemableBuilder extends AbstractBuilder
             $startsWith = substr($name, 0, 3);
             if ($startsWith === 'set' && count($args) === 1) {
                 $this->attributes[$attributeName] = array_shift($args);
+
                 return $this;
             } elseif ($startsWith === 'get' && count($args) === 0) {
                 return $this->attributes[$attributeName];

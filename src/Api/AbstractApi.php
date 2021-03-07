@@ -16,7 +16,7 @@ abstract class AbstractApi
 
     protected function booleanNormalizer()
     {
-        return function($options, $value) {
+        return function ($options, $value) {
             return $value ? 'true' : 'false';
         };
     }
@@ -30,8 +30,9 @@ abstract class AbstractApi
     protected function isJsonResponse(ResponseInterface $response): bool
     {
         if ($response->hasHeader('Content-Type')) {
-            $types = array_map(function($type) {
+            $types = array_map(function ($type) {
                 $clean = explode(';', $type);
+
                 return $clean[0];
             }, $response->getHeader('Content-Type'));
 

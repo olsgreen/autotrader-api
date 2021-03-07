@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 class StockItemRequestBuilder extends AbstractBuilder
 {
@@ -72,10 +70,10 @@ class StockItemRequestBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'vehicle' => $this->vehicle()->toArray(),
+            'vehicle'  => $this->vehicle()->toArray(),
             'features' => $this->features()->toArray(),
-            'media' => $this->media()->toArray(),
-            'adverts' => $this->adverts()->toArray(),
+            'media'    => $this->media()->toArray(),
+            'adverts'  => $this->adverts()->toArray(),
             'metadata' => $this->metadata()->toArray(),
         ]);
     }

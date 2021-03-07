@@ -12,12 +12,13 @@ class Authentication extends AbstractApi
      *
      * @param string $key
      * @param string $secret
+     *
      * @return AccessToken
      */
     public function getAccessToken(string $key, string $secret): AccessToken
     {
         $body = new UrlEncodedFormBody([
-            'key' => $key,
+            'key'    => $key,
             'secret' => $secret,
         ]);
 

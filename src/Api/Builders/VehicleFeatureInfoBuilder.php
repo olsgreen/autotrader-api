@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Builders;
-
 
 use Olsgreen\AutoTrader\Api\Enums\VehicleFeatureTypes;
 
@@ -48,7 +46,7 @@ class VehicleFeatureInfoBuilder extends AbstractBuilder
         return $this->features;
     }
 
-    public function toArray():array
+    public function toArray(): array
     {
         return $this->all();
     }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Enums\BodyTypes;
-
 
 use Olsgreen\AutoTrader\Api\Enums\AbstractEnum;
 
@@ -44,7 +42,7 @@ class BikeBodyTypes extends AbstractEnum
 
     const THREE_WHEELER = 'Three Wheeler';
 
-    const TOURER  = 'Tourer';
+    const TOURER = 'Tourer';
 
     const TRAIL_ENDURO = 'Trail (Enduro)';
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Api\Enums\BodyTypes;
-
 
 use Olsgreen\AutoTrader\Api\Enums\AbstractEnum;
 

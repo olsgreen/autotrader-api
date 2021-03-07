@@ -27,7 +27,8 @@ class InfoCollection extends AbstractBuilder implements BuilderInterface
             throw new \Exception(
                 sprintf(
                     'This collection can only accept builders of the \'%s\' type, you passed a \'%s\'.',
-                    $this->infoType, get_class($builder)
+                    $this->infoType,
+                    get_class($builder)
                 )
             );
         }
@@ -39,7 +40,7 @@ class InfoCollection extends AbstractBuilder implements BuilderInterface
 
     public function remove(BuilderInterface $builder)
     {
-        $this->items = array_filter($this->items, function($item) use ($builder) {
+        $this->items = array_filter($this->items, function ($item) use ($builder) {
             return $builder !== $item;
         });
 
@@ -62,7 +63,7 @@ class InfoCollection extends AbstractBuilder implements BuilderInterface
         return empty($errors) ? true : $errors;
     }
 
-    public function  make(): array
+    public function make(): array
     {
         $this->validateOrThrow();
 
@@ -70,7 +71,7 @@ class InfoCollection extends AbstractBuilder implements BuilderInterface
             $item->validateOrThrow();
         }
 
-        return array_map(function($item) {
+        return array_map(function ($item) {
             return $item->make();
         }, $this->items);
     }

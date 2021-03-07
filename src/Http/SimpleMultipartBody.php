@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Olsgreen\AutoTrader\Http;
 
 /**
@@ -11,7 +10,7 @@ namespace Olsgreen\AutoTrader\Http;
 class SimpleMultipartBody
 {
     /**
-     * Parts
+     * Parts.
      *
      * @var array
      */
@@ -23,14 +22,15 @@ class SimpleMultipartBody
      * @param string $name
      * @param $contents
      * @param string|null $filename
-     * @param array $headers
+     * @param array       $headers
+     *
      * @return SimpleMultipartBody
      */
     public function add(string $name, $contents, string $filename = null, array $headers = []): SimpleMultipartBody
     {
         $element = [
-            'name' => $name,
-            'contents' => $contents
+            'name'     => $name,
+            'contents' => $contents,
         ];
 
         if (!is_null($filename)) {
@@ -50,11 +50,12 @@ class SimpleMultipartBody
      * Remove an part.
      *
      * @param $name
+     *
      * @return $this
      */
     public function remove($name): SimpleMultipartBody
     {
-        $this->elements = array_filter($this->elements, function($item) use ($name) {
+        $this->elements = array_filter($this->elements, function ($item) use ($name) {
             return $item['name'] !== $name;
         });
 
