@@ -2,7 +2,7 @@
 
 namespace Olsgreen\AutoTrader\Api\Enums;
 
-class VehicleLookupFlags extends AbstractEnum
+class VehicleLookupFlags extends SharedFlags
 {
     const
         // VehicleLookupFlags::MOT_TESTS
@@ -28,14 +28,4 @@ class VehicleLookupFlags extends AbstractEnum
         // VehicleLookupFlags::VALUATIONS
         // Provides a variety of Auto Trader valuations for the specified vehicle.
         VALUATIONS = 'valuations';
-    const
-
-        // VehicleLookupFlags::VEHICLE_METRICS
-        // Provides a variety of Auto Trader valuations and vehicle metrics for the specified vehicle.
-        VEHICLE_METRICS = 'vehicleMetrics';
-    const
-
-        // VehicleLookupFlags::COMPETITORS
-        // Provides a pre-constructed URL, allowing users to explore market competition.
-        COMPETITORS = 'competitors';
 }

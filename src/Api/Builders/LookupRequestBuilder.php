@@ -6,6 +6,8 @@ use Olsgreen\AutoTrader\Api\Enums\VehicleLookupFlags;
 
 class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
 {
+    use HasFlags;
+
     /**
      * Registration.
      *
@@ -13,12 +15,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      */
     protected $registration;
 
-    /**
-     * Dataset Flags.
-     *
-     * @var array
-     */
-    protected $flags = [];
+    protected $flagsEnum = VehicleLookupFlags::class;
 
     /**
      * Mileage.
@@ -49,45 +46,6 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
     public function setRegistration(string $registration): LookupRequestBuilder
     {
         $this->registration = $registration;
-
-        return $this;
-    }
-
-    /**
-     * Get the dataset flags.
-     *
-     * @return array
-     */
-    public function getFlags(): array
-    {
-        return $this->flags;
-    }
-
-    /**
-     * Set the dataset flags.
-     *
-     * @param array $flags
-     *
-     * @throws \Exception
-     *
-     * @return $this
-     */
-    public function setFlags(array $flags): LookupRequestBuilder
-    {
-        $flagsList = new VehicleLookupFlags();
-
-        if (!$flagsList->contains($flags)) {
-            $badFlags = $flagsList->diff($flags);
-
-            throw new \Exception(
-                sprintf(
-                    'You tried to set invalid flag(s). [%s]',
-                    implode(' | ', $badFlags)
-                )
-            );
-        }
-
-        $this->flags = $flags;
 
         return $this;
     }
@@ -143,24 +101,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
         return true;
     }
 
-    /**
-     * Transform the dataset flags into the
-     * format the API recognises.
-     *
-     * @param array $flags
-     *
-     * @return array
-     */
-    private function transformFlags(array $flags): array
-    {
-        $tranformed = [];
 
-        foreach ($flags as $flag) {
-            $tranformed[$flag] = 'true';
-        }
-
-        return $tranformed;
-    }
 
     /**
      * Validate, prepare and return an array formatted
