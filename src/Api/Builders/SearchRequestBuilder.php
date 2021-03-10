@@ -20,6 +20,8 @@ class SearchRequestBuilder extends AbstractBuilder
 
     protected $flags = [];
 
+    protected $flagsEnum = SearchFlags::class;
+
     /**
      * Get the dataset flags.
      *

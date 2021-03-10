@@ -13,7 +13,7 @@ trait HasFlags
      */
     protected $flags = [];
 
-    protected $flagsEnum;
+    //protected $flagsEnum;
 
     /**
      * Get the dataset flags.
