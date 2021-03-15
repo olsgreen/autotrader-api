@@ -45,6 +45,7 @@ abstract class AbstractBuilder
      * Add attribute to the 'empty' whitelist.
      *
      * @param string $key
+     *
      * @return $this
      */
     public function allowEmpty(string $key): AbstractBuilder
@@ -122,6 +123,7 @@ abstract class AbstractBuilder
      * Checks whether a given key is that of a child builder.
      *
      * @param string $key
+     *
      * @return bool
      */
     private function attributeIsBuilder(string $key): bool
@@ -135,6 +137,7 @@ abstract class AbstractBuilder
      *
      * @param string $key
      * @param $value
+     *
      * @return $this
      */
     public function setAttribute(string $key, $value): AbstractBuilder
@@ -182,6 +185,7 @@ abstract class AbstractBuilder
      * be set fo validation.
      *
      * @param array $keys
+     *
      * @return $this
      */
     public function setRequiredAttributes(array $keys): AbstractBuilder
@@ -192,9 +196,10 @@ abstract class AbstractBuilder
     }
 
     /**
-     * Checks whether an attribute key is empty;
+     * Checks whether an attribute key is empty;.
      *
      * @param $key
+     *
      * @return bool
      */
     protected function attributeEmpty($key): bool
@@ -205,8 +210,9 @@ abstract class AbstractBuilder
     /**
      * Validates the state of the builder.
      *
-     * @return bool
      * @throws ValidationException
+     *
+     * @return bool
      */
     public function validate(): bool
     {
@@ -232,6 +238,7 @@ abstract class AbstractBuilder
      * Gets the JSON formatted representation of the builder.
      *
      * @param null $options
+     *
      * @return false|string
      */
     public function toJson($options = null)
@@ -242,10 +249,11 @@ abstract class AbstractBuilder
     /**
      * Gets an item from an array returning the
      * default if it does not exist.
-     * 
+     *
      * @param array $array
      * @param $key
      * @param false $default
+     *
      * @return false|mixed
      */
     protected function dataGet(array $array, $key, $default = false)

@@ -8,7 +8,7 @@ class Adverts extends AbstractApi
 {
     /**
      * $request = (new SearchRequestBuilder())
-     *     ->setPublicSearch()
+     *     ->setPublicSearch().
      *
      * $request->standardParameters()
      *  ->setDerivativeId(123456)
@@ -16,6 +16,7 @@ class Adverts extends AbstractApi
      *  ->setDistance(10)
      *
      * $api->adverts()->search($request)
+     *
      * @return array
      */
     public function search($request): array

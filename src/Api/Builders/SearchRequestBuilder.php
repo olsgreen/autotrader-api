@@ -68,7 +68,7 @@ class SearchRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getSearchId():? string
+    public function getSearchId(): ?string
     {
         return $this->searchId;
     }
@@ -80,7 +80,7 @@ class SearchRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getStockId():? string
+    public function getStockId(): ?string
     {
         return $this->stockId;
     }
@@ -92,7 +92,7 @@ class SearchRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getAdvertiserId():? string
+    public function getAdvertiserId(): ?string
     {
         return $this->advertiserId;
     }
@@ -104,7 +104,7 @@ class SearchRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getPage():? int
+    public function getPage(): ?int
     {
         return $this->page;
     }
@@ -116,14 +116,14 @@ class SearchRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getPageSize():? int
+    public function getPageSize(): ?int
     {
         return $this->pageSize;
     }
 
     public function validate(): bool
     {
-        $setKeys = array_filter(['advertiserId', 'searchId', 'stockId', 'searchType'], function($key) {
+        $setKeys = array_filter(['advertiserId', 'searchId', 'stockId', 'searchType'], function ($key) {
             return !empty($this->$key);
         });
 
@@ -143,13 +143,13 @@ class SearchRequestBuilder extends AbstractBuilder
         $flags = $this->transformFlags($this->flags);
 
         return $this->filterPrepareOutput([
-            'stockId' => $this->stockId,
-            'searchId' => $this->searchId,
+            'stockId'      => $this->stockId,
+            'searchId'     => $this->searchId,
             'advertiserId' => $this->advertiserId,
-            'pageSize' => $this->pageSize,
-            'page' => $this->page,
-            'searchType' => in_array(SearchFlags::PUBLIC_SEARCH, $this->flags) ? 'public' : null,
-        ] + array_filter($flags, function($key) {
+            'pageSize'     => $this->pageSize,
+            'page'         => $this->page,
+            'searchType'   => in_array(SearchFlags::PUBLIC_SEARCH, $this->flags) ? 'public' : null,
+        ] + array_filter($flags, function ($key) {
             return $key !== SearchFlags::PUBLIC_SEARCH;
         }, ARRAY_FILTER_USE_KEY));
     }

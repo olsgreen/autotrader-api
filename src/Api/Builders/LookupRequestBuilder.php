@@ -101,8 +101,6 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
         return true;
     }
 
-
-
     /**
      * Validate, prepare and return an array formatted
      * representation of the request.
