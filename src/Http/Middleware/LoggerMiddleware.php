@@ -31,6 +31,8 @@ class LoggerMiddleware implements MiddlewareInterface
 
         if ($response->hasHeader('Content-Type')) {
             $contentType = $response->getHeader('Content-Type')[0];
+            $contentType = explode(';', $contentType);
+            $contentType = array_shift($contentType);
         }
 
         $parsedBody = 'Logging for '.$contentType.' is not enabled.';
@@ -41,6 +43,7 @@ class LoggerMiddleware implements MiddlewareInterface
                 $parsedBody = json_decode($body, true);
                 break;
             case 'text/plain':
+            case 'text/html':
                 $parsedBody = (string) $response->getBody();
                 break;
         }
