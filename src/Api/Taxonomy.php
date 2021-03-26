@@ -4,12 +4,12 @@ namespace Olsgreen\AutoTrader\Api;
 
 class Taxonomy extends AbstractApi
 {
-    public function types()
+    public function types(): array
     {
         return $this->_get('/service/stock-management/taxonomy/vehicleTypes');
     }
 
-    public function makes(string $vehicleType)
+    public function makes(string $vehicleType): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/makes',
@@ -17,7 +17,7 @@ class Taxonomy extends AbstractApi
         );
     }
 
-    public function models(string $makeId)
+    public function models(string $makeId): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/models',
@@ -25,7 +25,7 @@ class Taxonomy extends AbstractApi
         );
     }
 
-    public function generations(string $modelId)
+    public function generations(string $modelId): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/generations',
@@ -33,7 +33,7 @@ class Taxonomy extends AbstractApi
         );
     }
 
-    public function derivatives(string $generationId)
+    public function derivatives(string $generationId): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/derivatives',
@@ -41,14 +41,14 @@ class Taxonomy extends AbstractApi
         );
     }
 
-    public function technicalData(string $derivativeId)
+    public function technicalData(string $derivativeId): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/derivatives/' . $derivativeId
         );
     }
 
-    public function features(string $derivativeId, string $effectiveDate)
+    public function features(string $derivativeId, string $effectiveDate): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/features',
