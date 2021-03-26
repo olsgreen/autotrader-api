@@ -44,7 +44,7 @@ class Taxonomy extends AbstractApi
     public function technicalData(string $derivativeId): array
     {
         return $this->_get(
-            '/service/stock-management/taxonomy/derivatives/' . $derivativeId
+            '/service/stock-management/taxonomy/derivatives/'.$derivativeId
         );
     }
 
