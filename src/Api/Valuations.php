@@ -18,5 +18,10 @@ class Valuations extends AbstractApi
      */
     public function value(ValuationRequestBuilder $builder)
     {
+        return $this->_post(
+            '/service/stock-management/valuations',
+            [],
+            $builder->toJson()
+        );
     }
 }
