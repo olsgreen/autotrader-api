@@ -20,7 +20,16 @@ class SearchRequestBuilder extends AbstractBuilder
 
     protected $flags = [];
 
+    protected $derivativeId;
+
     protected $flagsEnum = SearchFlags::class;
+
+    public function setDerivativeId(string $id): SearchRequestBuilder
+    {
+        $this->derivativeId = $id;
+
+        return $this;
+    }
 
     /**
      * Get the dataset flags.
@@ -149,6 +158,7 @@ class SearchRequestBuilder extends AbstractBuilder
             'pageSize'     => $this->pageSize,
             'page'         => $this->page,
             'searchType'   => in_array(SearchFlags::PUBLIC_SEARCH, $this->flags) ? 'public' : null,
+            'derivativeId' => $this->derivativeId,
         ] + array_filter($flags, function ($key) {
             return $key !== SearchFlags::PUBLIC_SEARCH;
         }, ARRAY_FILTER_USE_KEY));
