@@ -27,7 +27,7 @@ class Client extends AbstractClient
 
         $baseUri = 'https://api.autotrader.co.uk';
 
-        if (isset($options['sandbox'])) {
+        if (isset($options['sandbox']) && $options['sandbox'] === true) {
             $baseUri = 'https://api-sandbox.autotrader.co.uk';
         }
 
