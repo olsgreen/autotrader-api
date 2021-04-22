@@ -125,7 +125,7 @@ class Stock extends AbstractApi
     public function uploadImageData(string $advertiserId, $data): string
     {
         $body = new SimpleMultipartBody();
-        $body->add('file', $data);
+        $body->add('file', $data, 'image.jpg', ['Content-Type' => 'image/jpeg']);
 
         $response = $this->_post(
             '/service/stock-management/images',

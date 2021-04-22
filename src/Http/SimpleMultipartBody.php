@@ -34,7 +34,7 @@ class SimpleMultipartBody
         ];
 
         if (!is_null($filename)) {
-            $element['File-Name'] = $filename;
+            $element['filename'] = $filename;
         }
 
         if (!empty($headers)) {
