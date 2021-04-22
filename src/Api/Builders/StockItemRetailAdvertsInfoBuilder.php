@@ -61,9 +61,9 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         );
     }
 
-    public function setVatExcluded(bool $state): StockItemRetailAdvertsInfoBuilder
+    public function setVatExcluded($state): StockItemRetailAdvertsInfoBuilder
     {
-        $this->vatExcluded = $state;
+        $this->vatExcluded = boolval($state);
 
         return $this;
     }
@@ -73,9 +73,9 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         return $this->vatExcluded;
     }
 
-    public function setPriceOnApplication(bool $state): StockItemRetailAdvertsInfoBuilder
+    public function setPriceOnApplication($state): StockItemRetailAdvertsInfoBuilder
     {
-        $this->priceOnApplication = $state;
+        $this->priceOnApplication = boolval($state);
 
         return $this;
     }
