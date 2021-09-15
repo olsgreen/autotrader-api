@@ -4,6 +4,7 @@ namespace Olsgreen\AutoTrader;
 
 use Olsgreen\AutoTrader\Api\Adverts;
 use Olsgreen\AutoTrader\Api\Authentication;
+use Olsgreen\AutoTrader\Api\RetailMetrics;
 use Olsgreen\AutoTrader\Api\Stock;
 use Olsgreen\AutoTrader\Api\Taxonomy;
 use Olsgreen\AutoTrader\Api\Valuations;
@@ -69,5 +70,10 @@ class Client extends AbstractClient
     public function vehicleMetrics(): VehicleMetrics
     {
         return new VehicleMetrics($this);
+    }
+
+    public function retailMetrics(): RetailMetrics
+    {
+        return new RetailMetrics($this);
     }
 }
