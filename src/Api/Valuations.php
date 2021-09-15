@@ -20,7 +20,7 @@ class Valuations extends AbstractApi
     {
         return $this->_post(
             '/service/stock-management/valuations',
-            ['advertiseId' => $advertiserId],
+            ['advertiserId' => $advertiserId],
             $builder->toJson()
         );
     }

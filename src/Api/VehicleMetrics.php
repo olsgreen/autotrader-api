@@ -20,7 +20,7 @@ class VehicleMetrics extends AbstractApi
     {
         return $this->_post(
             '/service/stock-management/vehicleMetrics',
-            ['advertiseId' => $advertiserId],
+            ['advertiserId' => $advertiserId],
             $builder->toJson()
         );
     }

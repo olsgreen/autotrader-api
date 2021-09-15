@@ -19,7 +19,7 @@ class RetailMetrics extends AbstractApi
     {
         return $this->_post(
             '/service/retail-metrics/4.1/vehicle',
-            ['advertiseId' => $advertiserId],
+            ['advertiserId' => $advertiserId],
             $builder->toJson()
         );
     }
