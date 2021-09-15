@@ -6,7 +6,7 @@ use Olsgreen\AutoTrader\Api\Builders\ValuationRequestBuilder;
 
 class Valuations extends AbstractApi
 {
-    /**
+    /**     *
      * $request = ValuationRequestBuilder::create();.
      *
      * $request->vehicle()
@@ -16,11 +16,11 @@ class Valuations extends AbstractApi
      *
      * $valuation = $api->valuations()->retrieve($request)
      */
-    public function value(ValuationRequestBuilder $builder)
+    public function value(string $advertiserId, ValuationRequestBuilder $builder)
     {
         return $this->_post(
             '/service/stock-management/valuations',
-            [],
+            ['advertiseId' => $advertiserId],
             $builder->toJson()
         );
     }
