@@ -28,7 +28,7 @@ class StockSearchRequestBuilder extends AbstractBuilder
 
     protected $vin;
 
-    public function getVin():? string
+    public function getVin(): ?string
     {
         return $this->vin;
     }
@@ -40,7 +40,7 @@ class StockSearchRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getRegistration():? string
+    public function getRegistration(): ?string
     {
         return $this->registration;
     }
@@ -52,7 +52,7 @@ class StockSearchRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getLifecycleState():? string
+    public function getLifecycleState(): ?string
     {
         return $this->lifecycleState;
     }
@@ -187,7 +187,7 @@ class StockSearchRequestBuilder extends AbstractBuilder
             'stockId'      => $this->stockId,
             'searchId'     => $this->searchId,
             'pageSize'     => $this->pageSize,
-            'page'         => $this->page
+            'page'         => $this->page,
         ]);
     }
 }

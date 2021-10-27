@@ -13,14 +13,14 @@ class MetricRequestBuilder extends ValuationRequestBuilder
         }
 
         $this->location = [
-            'latitude' => $latLng['latitude'],
-            'longitude' => $latLng['longitude']
+            'latitude'  => $latLng['latitude'],
+            'longitude' => $latLng['longitude'],
         ];
 
         return $this;
     }
 
-    public function getLocation():? array
+    public function getLocation(): ?array
     {
         return $this->location;
     }
@@ -32,7 +32,7 @@ class MetricRequestBuilder extends ValuationRequestBuilder
         return $this->filterPrepareOutput(
             array_merge(
                 $array,
-                ["location" => $this->location]
+                ['location' => $this->location]
             )
         );
     }

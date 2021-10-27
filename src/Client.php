@@ -2,8 +2,8 @@
 
 namespace Olsgreen\AutoTrader;
 
-use Olsgreen\AutoTrader\Api\Search;
 use Olsgreen\AutoTrader\Api\Authentication;
+use Olsgreen\AutoTrader\Api\Search;
 use Olsgreen\AutoTrader\Api\Stock;
 use Olsgreen\AutoTrader\Api\Taxonomy;
 use Olsgreen\AutoTrader\Api\Valuations;
@@ -18,6 +18,7 @@ class Client extends AbstractClient
      * Set client options from array.
      *
      * @param array $options
+     *
      * @return AbstractClient
      */
     protected function configureFromArray(array $options): AbstractClient
@@ -41,6 +42,7 @@ class Client extends AbstractClient
      * Access Token Management.
      *
      * @see https://developers.autotrader.co.uk/api#authentication
+     *
      * @return Authentication
      */
     public function authentication(): Authentication
@@ -52,6 +54,7 @@ class Client extends AbstractClient
      * Stock Endpoint.
      *
      * @see https://developers.autotrader.co.uk/api#stock-endpoint
+     *
      * @return Stock
      */
     public function stock(): Stock
@@ -63,6 +66,7 @@ class Client extends AbstractClient
      * Taxonomy Endpoint.
      *
      * @see https://developers.autotrader.co.uk/api#taxonomy-endpoint
+     *
      * @return Taxonomy
      */
     public function taxonomy(): Taxonomy
@@ -74,6 +78,7 @@ class Client extends AbstractClient
      * Valuations Endpoint.
      *
      * @see https://developers.autotrader.co.uk/api#valuations-endpoint
+     *
      * @return Valuations
      */
     public function valuations(): Valuations
@@ -82,9 +87,10 @@ class Client extends AbstractClient
     }
 
     /**
-     * Vehicles Endpoint
+     * Vehicles Endpoint.
      *
      * @see https://developers.autotrader.co.uk/api#vehicles-endpoint
+     *
      * @return Vehicles
      */
     public function vehicles(): Vehicles
@@ -96,6 +102,7 @@ class Client extends AbstractClient
      * Vehicle Metrics Endpoint.
      *
      * @see https://developers.autotrader.co.uk/api#vehicle-metrics-endpoint
+     *
      * @return VehicleMetrics
      */
     public function vehicleMetrics(): VehicleMetrics
@@ -104,9 +111,10 @@ class Client extends AbstractClient
     }
 
     /**
-     * Search Endpoint
+     * Search Endpoint.
      *
      * @see https://developers.autotrader.co.uk/api#search-endpoint
+     *
      * @return Search
      */
     public function adverts(): Search

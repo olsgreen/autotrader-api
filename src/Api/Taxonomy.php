@@ -8,12 +8,13 @@ class Taxonomy extends AbstractApi
      * Retrieve available vehicle types.
      *
      * @param string $advertiserId
+     *
      * @return array
      */
     public function types(string $advertiserId): array
     {
         return $this->_get('/service/stock-management/taxonomy/vehicleTypes', [
-            'advertiserId' => $advertiserId
+            'advertiserId' => $advertiserId,
         ]);
     }
 
@@ -22,6 +23,7 @@ class Taxonomy extends AbstractApi
      *
      * @param string $advertiserId
      * @param string $vehicleType
+     *
      * @return array
      */
     public function makes(string $advertiserId, string $vehicleType): array
@@ -37,6 +39,7 @@ class Taxonomy extends AbstractApi
      *
      * @param string $advertiserId
      * @param string $makeId
+     *
      * @return array
      */
     public function models(string $advertiserId, string $makeId): array
@@ -52,6 +55,7 @@ class Taxonomy extends AbstractApi
      *
      * @param string $advertiserId
      * @param string $modelId
+     *
      * @return array
      */
     public function generations(string $advertiserId, string $modelId): array
@@ -67,6 +71,7 @@ class Taxonomy extends AbstractApi
      *
      * @param string $advertiserId
      * @param string $generationId
+     *
      * @return array
      */
     public function derivatives(string $advertiserId, string $generationId): array
@@ -82,13 +87,15 @@ class Taxonomy extends AbstractApi
      *
      * @param string $advertiserId
      * @param string $derivativeId
+     *
      * @return array
      */
     public function technicalData(string $advertiserId, string $derivativeId): array
     {
         return $this->_get(
-            '/service/stock-management/taxonomy/derivatives/' . $derivativeId, [
-                    'advertiserId' => $advertiserId
+            '/service/stock-management/taxonomy/derivatives/'.$derivativeId,
+            [
+                'advertiserId' => $advertiserId,
             ]
         );
     }
@@ -99,6 +106,7 @@ class Taxonomy extends AbstractApi
      * @param string $advertiserId
      * @param string $derivativeId
      * @param string $effectiveDate
+     *
      * @return array
      */
     public function features(string $advertiserId, string $derivativeId, string $effectiveDate): array
@@ -112,9 +120,10 @@ class Taxonomy extends AbstractApi
     /**
      * Retrieve manufacturer pricing data for a derivativeId.
      *
-     * @param string $advertiserId
-     * @param string $derivativeId
+     * @param string      $advertiserId
+     * @param string      $derivativeId
      * @param string|null $effectiveDate
+     *
      * @return array
      */
     public function prices(string $advertiserId, string $derivativeId, string $effectiveDate = null)

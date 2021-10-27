@@ -77,7 +77,7 @@ class Vehicles extends AbstractApi
         }
 
         $params = array_merge($request->toArray(), [
-            'advertiserId' => $advertiserId
+            'advertiserId' => $advertiserId,
         ]);
 
         return $this->_get('/service/stock-management/vehicles', $params);
