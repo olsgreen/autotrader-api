@@ -4,61 +4,65 @@ namespace Olsgreen\AutoTrader\Api;
 
 class Taxonomy extends AbstractApi
 {
-    public function types(): array
+    public function types(string $advertiserId): array
     {
-        return $this->_get('/service/stock-management/taxonomy/vehicleTypes');
+        return $this->_get('/service/stock-management/taxonomy/vehicleTypes', [
+            'advertiserId' => $advertiserId
+        ]);
     }
 
-    public function makes(string $vehicleType): array
+    public function makes(string $advertiserId, string $vehicleType): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/makes',
-            ['vehicleType' => $vehicleType]
+            ['vehicleType' => $vehicleType, 'advertiserId' => $advertiserId]
         );
     }
 
-    public function models(string $makeId): array
+    public function models(string $advertiserId, string $makeId): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/models',
-            ['makeId' => $makeId]
+            ['makeId' => $makeId, 'advertiserId' => $advertiserId]
         );
     }
 
-    public function generations(string $modelId): array
+    public function generations(string $advertiserId, string $modelId): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/generations',
-            ['modelId' => $modelId]
+            ['modelId' => $modelId, 'advertiserId' => $advertiserId]
         );
     }
 
-    public function derivatives(string $generationId): array
+    public function derivatives(string $advertiserId, string $generationId): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/derivatives',
-            ['generationId' => $generationId]
+            ['generationId' => $generationId, 'advertiserId' => $advertiserId]
         );
     }
 
-    public function technicalData(string $derivativeId): array
+    public function technicalData(string $advertiserId, string $derivativeId): array
     {
         return $this->_get(
-            '/service/stock-management/taxonomy/derivatives/' . $derivativeId
+            '/service/stock-management/taxonomy/derivatives/' . $derivativeId, [
+                    'advertiserId' => $advertiserId
+            ]
         );
     }
 
-    public function features(string $derivativeId, string $effectiveDate): array
+    public function features(string $advertiserId, string $derivativeId, string $effectiveDate): array
     {
         return $this->_get(
             '/service/stock-management/taxonomy/features',
-            ['derivativeId' => $derivativeId, 'effectiveDate' => $effectiveDate]
+            ['derivativeId' => $derivativeId, 'effectiveDate' => $effectiveDate, 'advertiserId' => $advertiserId]
         );
     }
 
-    public function prices(string $derivativeId, string $effectiveDate = null)
+    public function prices(string $advertiserId, string $derivativeId, string $effectiveDate = null)
     {
-        $options = ['derivativeId' => $derivativeId];
+        $options = ['derivativeId' => $derivativeId, 'advertiserId' => $advertiserId];
 
         if ($effectiveDate) {
             $options['effectiveDate'] = $effectiveDate;

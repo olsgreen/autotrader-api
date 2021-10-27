@@ -3,6 +3,7 @@
 namespace Olsgreen\AutoTrader\Api;
 
 use Olsgreen\AutoTrader\Api\Builders\StockItemRequestBuilder;
+use Olsgreen\AutoTrader\Api\Builders\StockSearchRequestBuilder;
 use Olsgreen\AutoTrader\Api\Exceptions\DuplicateStockException;
 use Olsgreen\AutoTrader\Http\Exceptions\ClientException;
 use Olsgreen\AutoTrader\Http\SimpleMultipartBody;
@@ -134,5 +135,34 @@ class Stock extends AbstractApi
         );
 
         return $response['imageId'];
+    }
+
+    /**
+     * Search an advertisers stock.
+     *
+     * @param string $advertiserId
+     * @param $request
+     * @return array
+     */
+    public function search(string $advertiserId, $request): array
+    {
+        if (!($request instanceof StockSearchRequestBuilder)) {
+            if (is_array($request)) {
+                $request = StockSearchRequestBuilder::create($request);
+            }
+
+            // Throw an invalid argument exception if it's anything else.
+            else {
+                throw new \InvalidArgumentException(
+                    'The $request argument must be an array or StockSearchRequestBuilder.'
+                );
+            }
+        }
+
+        $params = array_merge($request->toArray(), [
+           'advertiserId' => $advertiserId
+        ]);
+
+        return $this->_get('/service/stock-management/stock', $params);
     }
 }

@@ -32,7 +32,7 @@ This endpoint is used to look up UK registered vehicles and returns core vehicle
 Retrieves the vehicles base information data for a valid UK registration (VRM).
 
 ```php
-$vehicle = $api->vehicles()->lookup('HG17XXX');
+$vehicle = $api->vehicles()->lookup('123456', 'HG17XXX');
 
 /*
  * Will return something similar to the below.

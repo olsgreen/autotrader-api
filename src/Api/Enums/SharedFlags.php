@@ -9,6 +9,7 @@ abstract class SharedFlags extends AbstractEnum
         // VehicleLookupFlags::VEHICLE_METRICS
         // Provides a variety of Auto Trader valuations and vehicle metrics for the specified vehicle.
         VEHICLE_METRICS = 'vehicleMetrics';
+
     const
 
         // VehicleLookupFlags::COMPETITORS

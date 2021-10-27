@@ -41,13 +41,13 @@ class Vehicles extends AbstractApi
      *              VehicleLookupFlags::VEHICLE_METRICS
      *           ]);
      *
-     *     $vehicleMetricsValuation = $api->vehicles()->lookup($request);
+     *     $vehicleMetricsValuation = $api->vehicles()->lookup(12345, $request);
      *
      * @param $request LookupRequestBuilder|string|array
      *
      * @return array
      */
-    public function lookup($request): array
+    public function lookup(string $advertiserId, $request): array
     {
         if (!($request instanceof LookupRequestBuilder)) {
             // Handle lookups for basic vehicle information by registration.
@@ -76,6 +76,10 @@ class Vehicles extends AbstractApi
             }
         }
 
-        return $this->_get('/service/stock-management/vehicles', $request->toArray());
+        $params = array_merge($request->toArray(), [
+            'advertiserId' => $advertiserId
+        ]);
+
+        return $this->_get('/service/stock-management/vehicles', $params);
     }
 }
