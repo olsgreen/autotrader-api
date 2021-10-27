@@ -4,7 +4,7 @@ namespace Olsgreen\AutoTrader\Api;
 
 use Olsgreen\AutoTrader\Api\Builders\SearchRequestBuilder;
 
-class Adverts extends AbstractApi
+class Search extends AbstractApi
 {
     /**
      * $request = (new SearchRequestBuilder())

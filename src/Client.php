@@ -2,9 +2,8 @@
 
 namespace Olsgreen\AutoTrader;
 
-use Olsgreen\AutoTrader\Api\Adverts;
+use Olsgreen\AutoTrader\Api\Search;
 use Olsgreen\AutoTrader\Api\Authentication;
-use Olsgreen\AutoTrader\Api\RetailMetrics;
 use Olsgreen\AutoTrader\Api\Stock;
 use Olsgreen\AutoTrader\Api\Taxonomy;
 use Olsgreen\AutoTrader\Api\Valuations;
@@ -16,9 +15,10 @@ class Client extends AbstractClient
     use ManagesHttpAccessTokens;
 
     /**
-     * Set this clients options from array.
+     * Set client options from array.
      *
      * @param array $options
+     * @return AbstractClient
      */
     protected function configureFromArray(array $options): AbstractClient
     {
@@ -37,43 +37,80 @@ class Client extends AbstractClient
         return $this;
     }
 
-    public function adverts(): Adverts
-    {
-        return new Adverts($this);
-    }
-
+    /**
+     * Access Token Management.
+     *
+     * @see https://developers.autotrader.co.uk/api#authentication
+     * @return Authentication
+     */
     public function authentication(): Authentication
     {
         return new Authentication($this);
     }
 
+    /**
+     * Stock Endpoint.
+     *
+     * @see https://developers.autotrader.co.uk/api#stock-endpoint
+     * @return Stock
+     */
     public function stock(): Stock
     {
         return new Stock($this);
     }
 
+    /**
+     * Taxonomy Endpoint.
+     *
+     * @see https://developers.autotrader.co.uk/api#taxonomy-endpoint
+     * @return Taxonomy
+     */
     public function taxonomy(): Taxonomy
     {
         return new Taxonomy($this);
     }
 
+    /**
+     * Valuations Endpoint.
+     *
+     * @see https://developers.autotrader.co.uk/api#valuations-endpoint
+     * @return Valuations
+     */
     public function valuations(): Valuations
     {
         return new Valuations($this);
     }
 
+    /**
+     * Vehicles Endpoint
+     *
+     * @see https://developers.autotrader.co.uk/api#vehicles-endpoint
+     * @return Vehicles
+     */
     public function vehicles(): Vehicles
     {
         return new Vehicles($this);
     }
 
+    /**
+     * Vehicle Metrics Endpoint.
+     *
+     * @see https://developers.autotrader.co.uk/api#vehicle-metrics-endpoint
+     * @return VehicleMetrics
+     */
     public function vehicleMetrics(): VehicleMetrics
     {
         return new VehicleMetrics($this);
     }
 
-    public function retailMetrics(): RetailMetrics
+    /**
+     * Search Endpoint
+     *
+     * @see https://developers.autotrader.co.uk/api#search-endpoint
+     * @return Search
+     */
+    public function adverts(): Search
     {
-        return new RetailMetrics($this);
+        return new Search($this);
     }
 }

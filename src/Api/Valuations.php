@@ -6,7 +6,15 @@ use Olsgreen\AutoTrader\Api\Builders\ValuationRequestBuilder;
 
 class Valuations extends AbstractApi
 {
-    /**     *
+
+    /**
+     * Retrieve a valuation.
+     *
+     * @param string $advertiserId
+     * @param ValuationRequestBuilder $builder
+     * @return array
+     *
+     * @example
      * $request = ValuationRequestBuilder::create();.
      *
      * $request->vehicle()
