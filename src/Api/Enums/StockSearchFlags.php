@@ -9,6 +9,4 @@ class StockSearchFlags extends SharedFlags
      * Advert response metrics.
      */
     const RESPONSE_METRICS = 'responseMetrics';
-
-
 }

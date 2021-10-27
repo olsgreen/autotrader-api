@@ -9,8 +9,9 @@ class VehicleMetrics extends AbstractApi
     /**
      * Lookup a vehicles metrics.
      *
-     * @param string $advertiserId
+     * @param string               $advertiserId
      * @param MetricRequestBuilder $builder
+     *
      * @return array
      *
      * @example

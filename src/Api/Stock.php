@@ -142,6 +142,7 @@ class Stock extends AbstractApi
      *
      * @param string $advertiserId
      * @param $request
+     *
      * @return array
      */
     public function search(string $advertiserId, $request): array
@@ -160,7 +161,7 @@ class Stock extends AbstractApi
         }
 
         $params = array_merge($request->toArray(), [
-           'advertiserId' => $advertiserId
+            'advertiserId' => $advertiserId,
         ]);
 
         return $this->_get('/service/stock-management/stock', $params);

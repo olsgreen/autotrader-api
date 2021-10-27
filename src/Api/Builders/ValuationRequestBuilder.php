@@ -33,7 +33,7 @@ class ValuationRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getCondition():? float
+    public function getCondition(): ?float
     {
         return $this->condition;
     }
@@ -45,7 +45,7 @@ class ValuationRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getDerivativeId():? string
+    public function getDerivativeId(): ?string
     {
         return $this->derivativeId;
     }
@@ -61,7 +61,7 @@ class ValuationRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getFirstRegistrationDate():? \DateTime
+    public function getFirstRegistrationDate(): ?\DateTime
     {
         return $this->firstRegistrationDate;
     }
@@ -120,13 +120,13 @@ class ValuationRequestBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            "vehicle" => [
-                "derivativeId" => $this->derivativeId,
-                "firstRegistrationDate" => $this->firstRegistrationDate->format('Y-m-d'),
-                "odometerReadingMiles" => intval($this->odometerReadingMiles),
+            'vehicle' => [
+                'derivativeId'          => $this->derivativeId,
+                'firstRegistrationDate' => $this->firstRegistrationDate->format('Y-m-d'),
+                'odometerReadingMiles'  => intval($this->odometerReadingMiles),
             ],
-            "features" => $this->features->toArray(),
-            "condition" => $this->condition,
+            'features'  => $this->features->toArray(),
+            'condition' => $this->condition,
         ]);
     }
 }

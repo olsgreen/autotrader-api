@@ -65,9 +65,9 @@ class RetailMetricsRequestBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            "vrm" => $this->vrm,
-            "mileage" => $this->mileage,
-            "features" => $this->features->toArray(),
+            'vrm'      => $this->vrm,
+            'mileage'  => $this->mileage,
+            'features' => $this->features->toArray(),
         ]);
     }
 }
