@@ -3,6 +3,7 @@
 namespace Olsgreen\AutoTrader;
 
 use Olsgreen\AutoTrader\Api\Authentication;
+use Olsgreen\AutoTrader\Api\Leads;
 use Olsgreen\AutoTrader\Api\Search;
 use Olsgreen\AutoTrader\Api\Stock;
 use Olsgreen\AutoTrader\Api\Taxonomy;
@@ -120,5 +121,17 @@ class Client extends AbstractClient
     public function adverts(): Search
     {
         return new Search($this);
+    }
+
+    /**
+     * Leads Endpoint.
+     *
+     * @see https://developers.autotrader.co.uk/api#leads-api
+     *
+     * @return Leads
+     */
+    public function leads(): Leads
+    {
+        return new Leads($this);
     }
 }
