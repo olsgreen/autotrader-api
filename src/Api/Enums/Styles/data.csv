@@ -1,0 +1,252 @@
+Vehicle Type,Style,Sub Style
+Farm,4WD Vehicles,4WD Vehicles
+Farm,Attachments,Other Attachments
+Farm,ATVs,ATVs
+Farm,ATVs,ATV Trailers
+Farm,ATVs,Snowmobiles
+Farm,Forage and Hay,Bale Wrappers
+Farm,Forage and Hay,Forage and Hay Attachments
+Farm,Forage and Hay,Forage and Hay Other
+Farm,Forage and Hay,Forage Harvesters
+Farm,Forage and Hay,Hay Bobs
+Farm,Forage and Hay,Mower-conditioners
+Farm,Forage and Hay,Mowers
+Farm,Forage and Hay,Rakes
+Farm,Forage and Hay,Round Balers
+Farm,Forage and Hay,Square Balers
+Farm,Forage and Hay,Stacking and loading Equipment
+Farm,Forage and Hay,Toppers
+Farm,Forage and Hay,Windrowers
+Farm,Forestry and Hedging,Bundlers
+Farm,Forestry and Hedging,Feller Bunchers
+Farm,Forestry and Hedging,Forestry and Hedging Attachments
+Farm,Forestry and Hedging,Forestry and Hedging Other
+Farm,Forestry and Hedging,Forestry Mowers
+Farm,Forestry and Hedging,Forwarders
+Farm,Forestry and Hedging,Hedge Mowers
+Farm,Forestry and Hedging,Loaders
+Farm,Forestry and Hedging,Skidders
+Farm,Forestry and Hedging,Stump Grinders
+Farm,Forestry and Hedging,Tree Harvesters
+Farm,Forestry and Hedging,Verge Mowers
+Farm,Forestry and Hedging,Wood Chippers
+Farm,Ground Care Equipment,Ground Care Other
+Farm,Ground Care Equipment,Ride on Mowers
+Farm,Harvesters,Beet Harvesters
+Farm,Harvesters,Chaser Bins
+Farm,Harvesters,Combine Harvesters
+Farm,Harvesters,Forage Harvesters
+Farm,Harvesters,Fruit Harvesters
+Farm,Harvesters,Harvester Attachments
+Farm,Harvesters,Other Harvesters
+Farm,Harvesters,Potato Harvesters
+Farm,Livestock Equipment,Bale Shredders and Spreaders
+Farm,Livestock Equipment,Livestock Equipment Attachments
+Farm,Livestock Equipment,Livestock Equipment Other
+Farm,Livestock Equipment,Livestock Tow Ball Trailers
+Farm,Livestock Equipment,Livestock Truck Box Body
+Farm,Livestock Equipment,Livestock Truck Drawbar Trailers
+Farm,Livestock Equipment,Livestock Trucks
+Farm,Loaders and Excavators,Attachments
+Farm,Loaders and Excavators,Plant Excavators
+Farm,Loaders and Excavators,Plant Loaders
+Farm,Loaders and Excavators,Telehandlers
+Farm,Loaders and Excavators,Tractor Based Excavators
+Farm,Loaders and Excavators,Tractor Based Loaders
+Farm,Sowing and Planting,Broadcast Spreaders
+Farm,Sowing and Planting,Combination Drills
+Farm,Sowing and Planting,Planters
+Farm,Sowing and Planting,Precision Seeders
+Farm,Sowing and Planting,Seed Drills
+Farm,Sowing and Planting,Sowing and Planting Attachments
+Farm,Sowing and Planting,Sowing and Planting Other
+Farm,Sowing and Planting,Transplanters
+Farm,Spreaders and Sprayers,Fertiliser Spreaders
+Farm,Spreaders and Sprayers,Manure Spreaders
+Farm,Spreaders and Sprayers,Other Sprayers and Spreaders
+Farm,Spreaders and Sprayers,Self Propelled Sprayers
+Farm,Spreaders and Sprayers,Slurry Tankers
+Farm,Spreaders and Sprayers,Spreaders and Sprayers Attachments
+Farm,Spreaders and Sprayers,Tractor Mounted Sprayers
+Farm,Spreaders and Sprayers,Trailer Sprayers
+Farm,Storage and Buildings,Conveyors
+Farm,Storage and Buildings,Gates and Fencing
+Farm,Storage and Buildings,Grain Dryers
+Farm,Storage and Buildings,Out Buildings
+Farm,Storage and Buildings,Silos
+Farm,Storage and Buildings,Storage and Buildings Other
+Farm,Storage and Buildings,Tanks
+Farm,Tillage,Aerators
+Farm,Tillage,Cultivators
+Farm,Tillage,Harrows
+Farm,Tillage,Ploughs
+Farm,Tillage,Power Harrows
+Farm,Tillage,Rollers
+Farm,Tillage,Stone Removal and Crushers
+Farm,Tillage,Subsoilers
+Farm,Tillage,Tillage Attachments
+Farm,Tillage,Tillage Other
+Farm,Tractors,Compact Tractor
+Farm,Tractors,Large Tractor
+Farm,Tractors,Medium Tractor
+Farm,Tractors,Other Tractors
+Farm,Tractors,Small Tractor
+Farm,Tractors,Tractor Attachments
+Farm,Trailers,ATV Trailers
+Farm,Trailers,Bale Trailers
+Farm,Trailers,Car and Van Trailers
+Farm,Trailers,Chaser Bins
+Farm,Trailers,Chaser Bins
+Farm,Trailers,Dropside Trailers
+Farm,Trailers,Dumper Trailers
+Farm,Trailers,Farm Trailer Attachments
+Farm,Trailers,Flatbed Trailers
+Farm,Trailers,Grain and Silage Trailers
+Farm,Trailers,Livestock Trailers
+Farm,Trailers,Other Trailers
+Farm,Trailers,Truck Trailers
+Plant,Aerial Platforms,Articulated Platforms
+Plant,Aerial Platforms,Attachments
+Plant,Aerial Platforms,Scissors
+Plant,Aerial Platforms,Telescopic Platforms
+Plant,Attachments,Other
+Plant,Buildings and Storage,Buildings
+Plant,Buildings and Storage,Containers
+Plant,Buildings and Storage,Farm Related
+Plant,Buildings and Storage,Roofing
+Plant,Buildings and Storage,Tanks
+Plant,Buildings and Storage,Water and Fuel Bowers
+Plant,Buildings and Storage,Welfare Units
+Plant,Compaction Machines,Attachments
+Plant,Compaction Machines,Combination
+Plant,Compaction Machines,Double Drum
+Plant,Compaction Machines,Plate Compactor
+Plant,Compaction Machines,Pneumatic
+Plant,Compaction Machines,Single Drum Padfoot
+Plant,Compaction Machines,Single Drum Smooth
+Plant,Compaction Machines,Trench
+Plant,Compressors,Static
+Plant,Compressors,Trailer
+Plant,Concrete,Batching and Silos
+Plant,Concrete,Mixer
+Plant,Concrete,Pumps
+Plant,Conveyor Belts,Conveyor Belts
+Plant,Cranes,All Terrain Cranes
+Plant,Cranes,Attachments
+Plant,Cranes,Crawler Cranes
+Plant,Cranes,Gantry Cranes
+Plant,Cranes,Jib Cranes
+Plant,Cranes,Overhead Cranes
+Plant,Cranes,Rough Terrain Cranes
+Plant,Cranes,Self Erecting Cranes
+Plant,Cranes,Sidelift Cranes
+Plant,Cranes,Tower Cranes
+Plant,Cranes,Truck Mounted Cranes
+Plant,Dozers,Attachments
+Plant,Dozers,Tracked Dozers
+Plant,Dozers,Wheeled Dozers
+Plant,Dumpers,Articulated Dump Trucks
+Plant,Dumpers,Attachments
+Plant,Dumpers,Dump Trucks
+Plant,Dumpers,Mini Dumpers
+Plant,Dumpers,Skip Dumpers
+Plant,Dumpers,Track Dumpers
+Plant,Excavators,Attachments
+Plant,Excavators,Micro Excavators
+Plant,Excavators,Midi Excavators
+Plant,Excavators,Mini Excavators
+Plant,Excavators,Track Excavators
+Plant,Excavators,Wheeled Excavators
+Plant,Forklifts,All Terrain Forklifts
+Plant,Forklifts,Attachments
+Plant,Forklifts,Container Handlers
+Plant,Forklifts,Counter Balanced Forklifts
+Plant,Forklifts,Narrow Aisle Trucks
+Plant,Forklifts,Pedestrian Stackers
+Plant,Forklifts,Reach Trucks
+Plant,Forklifts,Side Loaders
+Plant,Generators,Static
+Plant,Generators,Trailer
+Plant,Graders,Graders
+Plant,Loaders,Attachments
+Plant,Loaders,Backhoe Loaders
+Plant,Loaders,Front Shovels
+Plant,Loaders,Multi Terrain Loaders
+Plant,Loaders,Skid Steer Loaders
+Plant,Loaders,Track Loaders
+Plant,Loaders,Wheeled Loaders
+Plant,Mining and Quarry Equipment,Mining and Quarry Equipment
+Plant,Road and Paving Machine,Road and Paving Machine
+Plant,Road Construction Equipment,Road Construction Equipment
+Plant,Scrappers,Scrappers
+Plant,Telehandlers,Telehandlers
+Plant,Tools and Equipment,Access Equipment
+Plant,Tools and Equipment,Attachments
+Plant,Tools and Equipment,Climate Control Equipment
+Plant,Tools and Equipment,Gas Tools
+Plant,Tools and Equipment,Hand Tools
+Plant,Tools and Equipment,Lifting Equipment
+Plant,Tools and Equipment,Lighting Equipment
+Plant,Tools and Equipment,Plumbing Tools
+Plant,Tools and Equipment,Pneumatic Tools
+Plant,Tools and Equipment,Power Tools
+Plant,Tools and Equipment,Pumps and hydraulic Equipment
+Plant,Tools and Equipment,Safety Equipment
+Plant,Tools and Equipment,Scaffolding Equipment
+Plant,Tools and Equipment,Welding and Pipework Tools
+Plant,Trailers,Advertising and Exhibition
+Plant,Trailers,All Terrain
+Plant,Trailers,Attachments
+Plant,Trailers,Boat Transporter
+Plant,Trailers,Box
+Plant,Trailers,Car Transporter
+Plant,Trailers,Draw bar trailers
+Plant,Trailers,Farm Trailer
+Plant,Trailers,Flatbed
+Plant,Trailers,General Purpose
+Plant,Trailers,Hook Loader
+Plant,Trailers,Horse and Livestock
+Plant,Trailers,Skip Loader
+Plant,Trailers,Tipping
+Plant,Waste and Recycling,Attachments
+Plant,Waste and Recycling,Other Waste and Recycling
+Plant,Waste and Recycling,Skips
+Plant,Waste and Recycling,Sweepers
+Plant,Waste and Recycling,Waste Compactors
+Plant,Waste and Recycling,Waste Shredders
+Plant,Waste and Recycling,Wood Chippers
+Truck,Trailers,Drawbar Trailers
+Truck,Trailers,Semi Trailers
+Truck,Rigid Trucks,Rigid Trucks
+Truck,Tractor Units,Tractor Units
+Truck,Trailers,Trailers
+Plant,Aerial Platforms,Aerial Platforms
+Plant,Attachments Other,Attachments Other
+Plant,Buildings and Storage,Buildings and Storage
+Plant,Compaction Machines,Compaction Machines
+Plant,Compressors,Compressors
+Plant,Concrete,Concrete
+Plant,Conveyor Belts,Conveyor Belts
+Plant,Cranes,Cranes
+Plant,Dozers,Dozers
+Plant,Dumpers,Dumpers
+Plant,Excavators,Excavators
+Plant,Forklifts,Forklifts
+Plant,Generators,Generators
+Plant,Graders,Graders
+Plant,Loaders,Loaders
+Plant,Mining and Quarry Equipment,Mining and Quarry Equipment
+Plant,Road and Paving Machine,Road and Paving Machine
+Plant,Road Construction Equipment,Road Construction Equipment
+Plant,Scrappers,Scrappers
+Plant,Telehandlers,Telehandlers
+Plant,Tools and Equipment,Tools and Equipment
+Plant,Trailers,Trailers
+Plant,Waste and Recycling,Waste and Recycling
+Farm,4WD Vehicles,4WD Vehicles
+Farm,Attachments,Attachments
+Farm,ATVs,ATVs
+Farm,Forage and Hay,Forage and Hay
+Farm,Forestry and Hedging,Forestry and Hedging
+Caravan,STATIC CARAVAN,STATIC CARAVAN
+Caravan,TOURING CARAVAN,TOURING CARAVAN
