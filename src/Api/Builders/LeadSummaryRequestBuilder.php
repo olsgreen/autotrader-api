@@ -32,7 +32,7 @@ class LeadSummaryRequestBuilder extends AbstractBuilder implements BuilderInterf
      */
     protected ?int $pageSize = null;
 
-    public function getStatus():? string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -52,7 +52,7 @@ class LeadSummaryRequestBuilder extends AbstractBuilder implements BuilderInterf
         return $this;
     }
 
-    public function getFromDate():? DateTime
+    public function getFromDate(): ?DateTime
     {
         return $this->fromDate;
     }
@@ -64,7 +64,7 @@ class LeadSummaryRequestBuilder extends AbstractBuilder implements BuilderInterf
         return $this;
     }
 
-    public function getToDate():? DateTime
+    public function getToDate(): ?DateTime
     {
         return $this->toDate;
     }
@@ -106,8 +106,8 @@ class LeadSummaryRequestBuilder extends AbstractBuilder implements BuilderInterf
             'status'         => $this->status,
             'fromDate'       => $this->fromDate ? $this->fromDate->format('Y-m-d') : null,
             'toDate'         => $this->toDate ? $this->toDate->format('Y-m-d') : null,
-            'pageSize'     => $this->pageSize,
-            'page'         => $this->page
+            'pageSize'       => $this->pageSize,
+            'page'           => $this->page,
         ]);
     }
 }

@@ -2,19 +2,20 @@
 
 namespace Olsgreen\AutoTrader\Api;
 
-use http\Exception\InvalidArgumentException;
 use Olsgreen\AutoTrader\Api\Builders\LeadSummaryRequestBuilder;
 use Olsgreen\AutoTrader\Api\Enums\LeadStatus;
 
 class Leads extends AbstractApi
 {
     /**
-     * Index Leads ( Summary )
+     * Index Leads ( Summary ).
      *
      * @param $advertiserId
      * @param array $request
-     * @return array
+     *
      * @throws Builders\ValidationException
+     *
+     * @return array
      *
      * @see https://developers.autotrader.co.uk/api#index-leads-summary
      */
@@ -44,6 +45,7 @@ class Leads extends AbstractApi
      * Retrieve a lead.
      *
      * @param string $leadId
+     *
      * @return array
      *
      * @see https://developers.autotrader.co.uk/api#retrieve-a-lead
@@ -59,6 +61,7 @@ class Leads extends AbstractApi
      * Lead Messages.
      *
      * @param string $leadId
+     *
      * @return array
      *
      * @see https://developers.autotrader.co.uk/api#lead-messages
@@ -75,6 +78,7 @@ class Leads extends AbstractApi
      *
      * @param string $leadId
      * @param string $message
+     *
      * @return array
      *
      * @see https://developers.autotrader.co.uk/api#retrieve-lead-messages
@@ -82,11 +86,11 @@ class Leads extends AbstractApi
     public function reply(string $leadId, string $message)
     {
         $jsonBody = json_encode([
-            "sender" => "retailer",
-            "payload" => [
-                "type" => "text",
-                "content" => $message
-            ]
+            'sender'  => 'retailer',
+            'payload' => [
+                'type'    => 'text',
+                'content' => $message,
+            ],
         ], JSON_PRETTY_PRINT);
 
         return $this->_post(
@@ -102,13 +106,14 @@ class Leads extends AbstractApi
      *
      * @param string $leadId
      * @param string $status
+     *
      * @return array
      *
      * @see https://developers.autotrader.co.uk/api#update-status-of-a-lead
      */
     public function update(string $leadId, string $status)
     {
-        if (!(new LeadStatus)->contains($status)) {
+        if (!(new LeadStatus())->contains($status)) {
             throw new \InvalidArgumentException('Invalid status given.');
         }
 
