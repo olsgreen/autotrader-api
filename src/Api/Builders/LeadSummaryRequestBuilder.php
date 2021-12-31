@@ -10,7 +10,7 @@ class LeadSummaryRequestBuilder extends AbstractBuilder implements BuilderInterf
     /**
      * Status of a lead. Multiple statuses can be accepted.
      */
-    protected ?string $status = null;
+    protected ?array $status = null;
 
     /**
      * Start date of search. With format YYYY-MM-DD.
@@ -32,19 +32,21 @@ class LeadSummaryRequestBuilder extends AbstractBuilder implements BuilderInterf
      */
     protected ?int $pageSize = null;
 
-    public function getStatus(): ?string
+    public function getStatus(): ?array
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(array $status): self
     {
         $statuses = new LeadStatus();
 
-        if (!$statuses->contains($status)) {
-            throw new \Exception(
-                sprintf('\'%s\' is an invalid lead status.', $status)
-            );
+        foreach ($status as $statusText) {
+            if (!$statuses->contains($statusText)) {
+                throw new \Exception(
+                    sprintf('\'%s\' is an invalid lead status.', $statusText)
+                );
+            }
         }
 
         $this->status = $status;
