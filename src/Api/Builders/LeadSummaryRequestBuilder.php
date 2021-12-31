@@ -37,8 +37,10 @@ class LeadSummaryRequestBuilder extends AbstractBuilder implements BuilderInterf
         return $this->status;
     }
 
-    public function setStatus(array $status): self
+    public function setStatus($status): self
     {
+        $status = (array) $status;
+
         $statuses = new LeadStatus();
 
         foreach ($status as $statusText) {
