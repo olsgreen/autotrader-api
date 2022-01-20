@@ -3,8 +3,6 @@
 namespace Olsgreen\AutoTrader\Api\Builders;
 
 use Olsgreen\AutoTrader\Api\Enums\LifecycleStates;
-use Olsgreen\AutoTrader\Api\Enums\SearchFlags;
-use Olsgreen\AutoTrader\Api\Enums\StockSearchFlags;
 
 class StockSearchRequestBuilder extends AbstractBuilder
 {
