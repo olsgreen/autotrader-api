@@ -3,6 +3,8 @@
 namespace Olsgreen\AutoTrader\Api\Builders;
 
 use Olsgreen\AutoTrader\Api\Enums\LifecycleStates;
+use Olsgreen\AutoTrader\Api\Enums\SearchFlags;
+use Olsgreen\AutoTrader\Api\Enums\StockSearchFlags;
 
 class StockSearchRequestBuilder extends AbstractBuilder
 {
@@ -21,6 +23,10 @@ class StockSearchRequestBuilder extends AbstractBuilder
     protected $registration;
 
     protected $vin;
+
+    protected $flags = [];
+
+    protected $flagsEnum = StockSearchFlags::class;
 
     public function getVin(): ?string
     {
@@ -117,6 +123,46 @@ class StockSearchRequestBuilder extends AbstractBuilder
         return $this->pageSize;
     }
 
+    /**
+     * Get the dataset flags.
+     *
+     * @return array
+     */
+    public function getFlags(): array
+    {
+        return $this->flags;
+    }
+
+    /**
+     * Set the dataset flags.
+     *
+     * @param array $flags
+     *
+     * @throws \Exception
+     *
+     * @return $this
+     */
+    public function setFlags(array $flags): StockSearchRequestBuilder
+    {
+        $flagsList = new StockSearchFlags();
+
+        if (!$flagsList->contains($flags)) {
+            $badFlags = $flagsList->diff($flags);
+
+            throw new \Exception(
+                sprintf(
+                    'You tried to set invalid flag(s). [%s]',
+                    implode(' | ', $badFlags)
+                )
+            );
+        }
+
+        $this->flags = $flags;
+
+        return $this;
+    }
+
+
     public function validate(): bool
     {
         $setKeys = array_filter(['searchId', 'stockId', 'registration', 'vin'], function ($key) {
@@ -136,6 +182,8 @@ class StockSearchRequestBuilder extends AbstractBuilder
     {
         $this->validate();
 
+        $flags = $this->transformFlags($this->flags);
+
         return $this->filterPrepareOutput([
             'stockId'           => $this->stockId,
             'searchId'          => $this->searchId,
@@ -144,6 +192,6 @@ class StockSearchRequestBuilder extends AbstractBuilder
             'vin'               => $this->vin,
             'pageSize'          => $this->pageSize,
             'page'              => $this->page,
-        ]);
+        ]) + $flags;
     }
 }
