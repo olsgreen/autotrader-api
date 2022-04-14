@@ -25,7 +25,7 @@ class DuplicateStockException extends ClientException
     {
         if ($response) {
             $this->duplicateStockId = $this->parseStockIdFromBody(
-                (string) $response->getBody()
+                $response->getBody()->getContents()
             );
         }
 
