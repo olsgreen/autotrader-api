@@ -2,6 +2,8 @@
 
 namespace Olsgreen\AutoTrader\Api\Builders;
 
+use Olsgreen\AutoTrader\Api\Enums\VatStatuses;
+
 class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
 {
     protected $attentionGrabber;
@@ -20,19 +22,19 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
 
     protected $profileAdvert;
 
-    protected $vatExcluded;
+    protected $vatStatus;
 
     protected $priceOnApplication;
 
-    protected $price;
+    protected $suppliedPrice;
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
-        $this->price = new StockItemPriceInfoBuilder(
-            'Price',
-            $this->dataGet($attributes, 'price', [])
+        $this->suppliedPrice = new StockItemPriceInfoBuilder(
+            'Supplied Price',
+            $this->dataGet($attributes, 'suppliedPrice', [])
         );
 
         $this->autotraderAdvert = new StockItemAdvertInfoBuilder(
@@ -61,16 +63,24 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         );
     }
 
-    public function setVatExcluded($state): StockItemRetailAdvertsInfoBuilder
+    public function setVatStatus($status): StockItemRetailAdvertsInfoBuilder
     {
-        $this->vatExcluded = boolval($state);
+        $statuses = new VatStatuses();
+
+        if (!$statuses->contains($status)) {
+            throw new \Exception(
+                sprintf('\'%s\' is an invalid VAT status.', $status)
+            );
+        }
+
+        $this->vatStatus = $status;
 
         return $this;
     }
 
-    public function getVatExcluded(): bool
+    public function getVatStatus(): string
     {
-        return $this->vatExcluded;
+        return $this->vatStatus;
     }
 
     public function setPriceOnApplication($state): StockItemRetailAdvertsInfoBuilder
@@ -151,8 +161,8 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'price'              => $this->price->toArray(),
-            'vatExcluded'        => $this->vatExcluded,
+            'suppliedPrice'      => $this->suppliedPrice->toArray(),
+            'vatStatus'          => $this->vatStatus,
             'priceOnApplication' => $this->priceOnApplication,
             'attentionGrabber'   => $this->attentionGrabber,
             'description'        => $this->description,
