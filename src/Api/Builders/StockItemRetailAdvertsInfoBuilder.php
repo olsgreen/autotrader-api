@@ -28,6 +28,8 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
 
     protected $suppliedPrice;
 
+    protected $displayOptions;
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -60,6 +62,10 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         $this->profileAdvert = new StockItemAdvertInfoBuilder(
             'Profile Advert',
             $this->dataGet($attributes, 'profileAdvert', [])
+        );
+
+        $this->displayOptions = new StockItemRetailAdvertsDisplayOptionsBuilder(
+            $this->dataGet($attributes, 'displayOptions', [])
         );
     }
 
@@ -172,6 +178,7 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
             'locatorAdvert'      => $this->locatorAdvert->toArray(),
             'exportAdvert'       => $this->exportAdvert->toArray(),
             'profileAdvert'      => $this->profileAdvert->toArray(),
+            'displayOptions'     => $this->displayOptions->toArray(),
         ]);
     }
 }
