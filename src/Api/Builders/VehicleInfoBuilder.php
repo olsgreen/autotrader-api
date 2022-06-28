@@ -5,6 +5,7 @@ namespace Olsgreen\AutoTrader\Api\Builders;
 use Olsgreen\AutoTrader\Api\Enums\AxleConfigurations;
 use Olsgreen\AutoTrader\Api\Enums\BodyTypes\BikeBodyTypes;
 use Olsgreen\AutoTrader\Api\Enums\BodyTypes\CarBodyTypes;
+use Olsgreen\AutoTrader\Api\Enums\BodyTypes\MotorhomeBodyTypes;
 use Olsgreen\AutoTrader\Api\Enums\BodyTypes\VanBodyTypes;
 use Olsgreen\AutoTrader\Api\Enums\CabTypes;
 use Olsgreen\AutoTrader\Api\Enums\Conditions;
@@ -32,7 +33,7 @@ class VehicleInfoBuilder extends AbstractSchemableBuilder
         'derivativeId'                      => 'string',
         'vehicleType'                       => VehicleTypes::class,
         'trim'                              => 'string',
-        'bodyType'                          => [BikeBodyTypes::class, CarBodyTypes::class, VanBodyTypes::class],
+        'bodyType'                          => [BikeBodyTypes::class, CarBodyTypes::class, VanBodyTypes::class, MotorhomeBodyTypes::class],
         'fuelType'                          => FuelTypes::class,
         'cabType'                           => CabTypes::class,
         'transmissionType'                  => TransmissionTypes::class,
