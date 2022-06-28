@@ -105,13 +105,13 @@ class StockItemRetailAdvertsDisplayOptionsBuilder extends AbstractBuilder
     public function toArray(): array
     {
         return $this->filterPrepareOutput([
-            'excludePreviousOwners' => $this->excludePreviousOwners,
-            'excludeStrapline' => $this->excludeStrapline,
-            'excludeMot' => $this->excludeMot,
-            'excludeWarranty' => $this->excludeWarranty,
+            'excludePreviousOwners'  => $this->excludePreviousOwners,
+            'excludeStrapline'       => $this->excludeStrapline,
+            'excludeMot'             => $this->excludeMot,
+            'excludeWarranty'        => $this->excludeWarranty,
             'excludeInteriorDetails' => $this->excludeInteriorDetails,
-            'excludeTyreCondition' => $this->excludeTyreCondition,
-            'excludeBodyCondition' => $this->excludeBodyCondition,
+            'excludeTyreCondition'   => $this->excludeTyreCondition,
+            'excludeBodyCondition'   => $this->excludeBodyCondition,
         ]);
     }
 }
