@@ -2,11 +2,17 @@
 
 namespace Olsgreen\AutoTrader\Api\Builders;
 
+use Olsgreen\AutoTrader\Api\Enums\ReservationStatuses;
+
 class StockItemAdvertsInfoBuilder extends AbstractBuilder
 {
+    protected $allowEmpty = ['reservationStatus'];
+
     protected $forecourtPrice;
 
     protected $retailAdverts;
+
+    protected $reservationStatus;
 
     public function __construct(array $attributes = [])
     {
@@ -32,11 +38,35 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
         return $this->retailAdverts;
     }
 
+    public function getReservationStatus():? string
+    {
+        return $this->reservationStatus;
+    }
+
+    public function setReservationStatus($status): self
+    {
+        $statusList = new ReservationStatuses();
+
+        if (!$statusList->contains($status)) {
+            throw new \Exception(
+                sprintf(
+                    'You tried to set invalid status. [%s]',
+                    $status
+                )
+            );
+        }
+
+        $this->reservationStatus = $status;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         $this->validate();
 
         return $this->filterPrepareOutput([
+            'reservationStatus' => $this->reservationStatus,
             'forecourtPrice' => $this->forecourtPrice->toArray(),
             'retailAdverts'  => $this->retailAdverts->toArray(),
         ]);
