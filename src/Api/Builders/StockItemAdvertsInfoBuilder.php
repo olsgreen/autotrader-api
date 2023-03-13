@@ -38,7 +38,7 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
         return $this->retailAdverts;
     }
 
-    public function getReservationStatus():? string
+    public function getReservationStatus(): ?string
     {
         return $this->reservationStatus;
     }
@@ -67,8 +67,8 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
 
         return $this->filterPrepareOutput([
             'reservationStatus' => $this->reservationStatus,
-            'forecourtPrice' => $this->forecourtPrice->toArray(),
-            'retailAdverts'  => $this->retailAdverts->toArray(),
+            'forecourtPrice'    => $this->forecourtPrice->toArray(),
+            'retailAdverts'     => $this->retailAdverts->toArray(),
         ]);
     }
 }
