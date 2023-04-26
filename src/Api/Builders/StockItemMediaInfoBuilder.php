@@ -51,7 +51,7 @@ class StockItemMediaInfoBuilder extends AbstractBuilder
         return $this->filterPrepareOutput([
             'video'    => ['href' => $this->videoUrl],
             'images'   => $this->imageInfoBuilder->all(),
-            'spin'    => ['href' => $this->videoUrl],
+            'spin'    => ['href' => $this->spinUrl],
         ]);
     }
 }
