@@ -6,6 +6,8 @@ class StockItemMediaInfoBuilder extends AbstractBuilder
 {
     protected $videoUrl;
 
+    protected $spinUrl;
+
     protected $imageInfoBuilder;
 
     public function __construct(array $attributes = [])
@@ -27,6 +29,18 @@ class StockItemMediaInfoBuilder extends AbstractBuilder
         return $this->videoUrl;
     }
 
+    public function setSpinUrl($url): StockItemMediaInfoBuilder
+    {
+        $this->spinUrl = $url;
+
+        return $this;
+    }
+
+    public function getSpinUrl(): string
+    {
+        return $this->spinUrl;
+    }
+
     public function images(): StockItemImageInfoBuilder
     {
         return $this->imageInfoBuilder;
@@ -37,6 +51,7 @@ class StockItemMediaInfoBuilder extends AbstractBuilder
         return $this->filterPrepareOutput([
             'video'    => ['href' => $this->videoUrl],
             'images'   => $this->imageInfoBuilder->all(),
+            'spin'    => ['href' => $this->videoUrl],
         ]);
     }
 }
