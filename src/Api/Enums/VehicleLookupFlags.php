@@ -28,4 +28,10 @@ class VehicleLookupFlags extends SharedFlags
         // VehicleLookupFlags::VALUATIONS
         // Provides a variety of Auto Trader valuations for the specified vehicle.
         VALUATIONS = 'valuations';
+
+    const
+
+        // VehicleLookupFlags::CHARGE_TIMES
+        // Provides charge time data for electric vehicles.
+        CHARGE_TIMES = 'chargeTimes';
 }
