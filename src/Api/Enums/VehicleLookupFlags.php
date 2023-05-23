@@ -16,8 +16,14 @@ class VehicleLookupFlags extends SharedFlags
     const
 
         // VehicleLookupFlags::BASIC_VEHICLE_CHECK
-        // Provides a variety of vehicle specific provenance data.
+        // Provides insurance write-off data.
         BASIC_VEHICLE_CHECK = 'basicVehicleCheck';
+    const
+
+        // VehicleLookupFlags::HISTORY
+        // Provides history of the vehicle such as scrapped and stolen markers.
+        HISTORY = 'history';
+        
     const
 
         // VehicleLookupFlags::FULL_VEHICLE_CHECK
