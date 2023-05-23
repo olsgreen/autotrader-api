@@ -23,7 +23,7 @@ class VehicleLookupFlags extends SharedFlags
         // VehicleLookupFlags::HISTORY
         // Provides history of the vehicle such as scrapped and stolen markers.
         HISTORY = 'history';
-        
+
     const
 
         // VehicleLookupFlags::FULL_VEHICLE_CHECK
