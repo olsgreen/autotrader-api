@@ -6,7 +6,7 @@ use Olsgreen\AutoTrader\Api\Enums\ReservationStatuses;
 
 class StockItemAdvertsInfoBuilder extends AbstractBuilder
 {
-    protected $allowEmpty = [];
+    protected $allowEmpty = ['reservationStatus'];
 
     protected $forecourtPrice;
 
