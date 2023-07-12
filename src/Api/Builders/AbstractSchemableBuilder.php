@@ -131,7 +131,7 @@ class AbstractSchemableBuilder extends AbstractBuilder
      * Sets an attribute.
      *
      * @param string $key
-     * @param $value
+     * @param        $value
      *
      * @return AbstractSchemableBuilder
      */
