@@ -12,5 +12,9 @@ class WheelbaseTypes extends AbstractEnum
 
     const LWB = 'LWB';
 
+    const EXLWB = 'EXLWB';
+
     const XLWB = 'XLWB';
+
+    const XXLWB = 'XXLWB';
 }
