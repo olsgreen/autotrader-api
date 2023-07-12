@@ -58,7 +58,9 @@ class AbstractSchemableBuilder extends AbstractBuilder
                     return (new $enum())->all();
                 }, $this->getEnums((array) $validator));
 
-                if (!in_array($value, array_flatten($enums))) {
+                $enums = array_map('strtolower', array_flatten($enums));
+
+                if (!in_array(strtolower($value), $enums)) {
                     throw new \InvalidArgumentException(
                         sprintf('"%s" is not a valid value for the attribute "%s".', $value, $key)
                     );
