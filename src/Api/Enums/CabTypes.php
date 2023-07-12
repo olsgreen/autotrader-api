@@ -8,6 +8,8 @@ class CabTypes extends AbstractEnum
 
     const DAY = 'Day cab';
 
+    const SINGLE = 'Single cab';
+
     const DOUBLE = 'Double cab';
 
     const HIGH_SLEEPER = 'High sleeper cab';
