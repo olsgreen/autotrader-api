@@ -10,7 +10,7 @@ class Leads extends AbstractApi
     /**
      * Index Leads ( Summary ).
      *
-     * @param $advertiserId
+     * @param       $advertiserId
      * @param array $request
      *
      * @throws Builders\ValidationException

@@ -14,7 +14,7 @@ class Stock extends AbstractApi
      * Create a stock item.
      *
      * @param string $advertiserId
-     * @param $request StockItemRequestBuilder|array
+     * @param        $request      StockItemRequestBuilder|array
      *
      * @return array
      */
@@ -54,7 +54,7 @@ class Stock extends AbstractApi
      *
      * @param string $advertiserId
      * @param string $uuid
-     * @param $request
+     * @param        $request
      *
      * @return array
      */
@@ -119,7 +119,7 @@ class Stock extends AbstractApi
      * Upload image binary data.
      *
      * @param string $advertiserId
-     * @param $data|resource
+     * @param        $data|resource
      *
      * @return string
      */
@@ -141,7 +141,7 @@ class Stock extends AbstractApi
      * Search an advertisers stock.
      *
      * @param string $advertiserId
-     * @param $request
+     * @param        $request
      *
      * @return array
      */

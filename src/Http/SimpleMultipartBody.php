@@ -19,8 +19,8 @@ class SimpleMultipartBody
     /**
      * Add a part.
      *
-     * @param string $name
-     * @param $contents
+     * @param string      $name
+     * @param             $contents
      * @param string|null $filename
      * @param array       $headers
      *

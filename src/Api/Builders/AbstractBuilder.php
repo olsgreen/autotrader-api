@@ -136,7 +136,7 @@ abstract class AbstractBuilder
      * Set an attributes value.
      *
      * @param string $key
-     * @param $value
+     * @param        $value
      *
      * @return $this
      */
@@ -251,7 +251,7 @@ abstract class AbstractBuilder
      * default if it does not exist.
      *
      * @param array $array
-     * @param $key
+     * @param       $key
      * @param false $default
      *
      * @return false|mixed
