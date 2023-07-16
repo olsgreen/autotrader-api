@@ -14,6 +14,10 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
 
     protected $reservationStatus;
 
+    protected $dueDate;
+
+    protected $stockInDate;
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -61,6 +65,38 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
         return $this;
     }
 
+    public function setStockInDate($date): self
+    {
+        if (isset($date) && !($date instanceof \DateTime)) {
+            $date = new \DateTime($date);
+        }
+
+        $this->stockInDate = $date;
+
+        return $this;
+    }
+
+    public function getStockInDate(): ?\DateTime
+    {
+        return $this->stockInDate;
+    }
+
+    public function setDueDate($date): self
+    {
+        if (isset($date) && !($date instanceof \DateTime)) {
+            $date = new \DateTime($date);
+        }
+
+        $this->dueDate = $date;
+
+        return $this;
+    }
+
+    public function getDueDate(): ?\DateTime
+    {
+        return $this->dueDate;
+    }
+
     public function toArray(): array
     {
         $this->validate();
@@ -69,6 +105,8 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
             'reservationStatus' => $this->reservationStatus,
             'forecourtPrice'    => $this->forecourtPrice->toArray(),
             'retailAdverts'     => $this->retailAdverts->toArray(),
+            'stockInDate'       => $this->stockInDate ? $this->stockInDate->format('Y-m-d') : null,
+            'dueDate'           => $this->dueDate ? $this->dueDate->format('Y-m-d') : null,
         ]);
     }
 }
