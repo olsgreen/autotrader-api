@@ -16,8 +16,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available fuel types for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function fuelTypes(string $advertiserId, $request): array
@@ -28,8 +29,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available transmission types for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function transmissionTypes(string $advertiserId, $request): array
@@ -37,12 +39,12 @@ class TaxonomyFacets extends AbstractApi
         return $this->facet('transmissionTypes', $advertiserId, $request);
     }
 
-
     /**
      * Retrieve available body types for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function bodyTypes(string $advertiserId, $request): array
@@ -53,8 +55,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available trims for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function trims(string $advertiserId, $request): array
@@ -65,8 +68,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available doors for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function doors(string $advertiserId, $request): array
@@ -77,8 +81,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available drivetrains for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function drivetrains(string $advertiserId, $request): array
@@ -89,8 +94,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available body types for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function wheelbaseTypes(string $advertiserId, $request): array
@@ -101,8 +107,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available cab types for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function cabTypes(string $advertiserId, $request): array
@@ -113,8 +120,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available axle configurations for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function axleConfigurations(string $advertiserId, $request): array
@@ -125,8 +133,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available badge engine sizes for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function badgeEngineSizes(string $advertiserId, $request): array
@@ -137,8 +146,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available styles for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function styles(string $advertiserId, $request): array
@@ -149,8 +159,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available sub styles for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function subStyles(string $advertiserId, $request): array
@@ -161,8 +172,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available end layouts for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function endLayouts(string $advertiserId, $request): array
@@ -173,8 +185,9 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available bedroom layouts for a given set of parameters.
      *
-     * @param string $advertiserId
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
     public function bedroomLayouts(string $advertiserId, $request): array
@@ -185,12 +198,13 @@ class TaxonomyFacets extends AbstractApi
     /**
      * Retrieve available facet items for a given set of parameters.
      *
-     * @param string $name
-     * @param string $advertiserId
+     * @param string                            $name
+     * @param string                            $advertiserId
      * @param array|TaxonomyFacetRequestBuilder $request
+     *
      * @return array
      */
-    public function facet(string $name, string $advertiserId, $request) : array
+    public function facet(string $name, string $advertiserId, $request): array
     {
         $availableFacets = [
             'fuelTypes',
@@ -211,7 +225,7 @@ class TaxonomyFacets extends AbstractApi
 
         if (!in_array($name, $availableFacets)) {
             throw new \InvalidArgumentException(
-                'The $name argument must be one of ' . implode(', ', $availableFacets)
+                'The $name argument must be one of '.implode(', ', $availableFacets)
             );
         }
 
@@ -230,6 +244,6 @@ class TaxonomyFacets extends AbstractApi
 
         $options = array_merge($request->toArray(), ['advertiserId' => $advertiserId]);
 
-        return $this->_get('/taxonomy/' . $name, $options);
+        return $this->_get('/taxonomy/'.$name, $options);
     }
 }

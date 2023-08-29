@@ -21,7 +21,7 @@ class TaxonomyFacetRequestBuilder extends AbstractBuilder
 
     public function setVehicleType(string $vehicleType): TaxonomyFacetRequestBuilder
     {
-         $typesList = new VehicleTypes();
+        $typesList = new VehicleTypes();
 
         if (!$typesList->contains($vehicleType)) {
             throw new \Exception(
@@ -73,7 +73,7 @@ class TaxonomyFacetRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-     public function validate(): bool
+    public function validate(): bool
     {
         $setKeys = array_filter(['vehicleType', 'makeId', 'modelId', 'generationId'], function ($key) {
             return !empty($this->$key);
@@ -93,9 +93,9 @@ class TaxonomyFacetRequestBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'vehicleType' => $this->vehicleType,
-            'makeId' => $this->makeId,
-            'modelId' => $this->modelId,
+            'vehicleType'  => $this->vehicleType,
+            'makeId'       => $this->makeId,
+            'modelId'      => $this->modelId,
             'generationId' => $this->generationId,
         ]);
     }
