@@ -139,4 +139,9 @@ class Taxonomy extends AbstractApi
             $options
         );
     }
+
+    public function facets(): TaxonomyFacets
+    {
+        return new TaxonomyFacets($this->client);
+    }
 }
