@@ -25,4 +25,6 @@ class CabTypes extends AbstractEnum
     const SUPER = 'Super cab';
 
     const TRANSPORTER = 'Transporter cab';
+
+    const EXTENDED_CAB = 'Extended Cab';
 }
