@@ -23,7 +23,7 @@ class TrendedValuationDateRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getDate():? \DateTimeInterface
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
@@ -35,7 +35,7 @@ class TrendedValuationDateRequestBuilder extends AbstractBuilder
         return $this;
     }
 
-    public function getOdometerReadingMiles():? string
+    public function getOdometerReadingMiles(): ?string
     {
         return $this->odometerReadingMiles;
     }
@@ -68,7 +68,7 @@ class TrendedValuationDateRequestBuilder extends AbstractBuilder
 
         return $this->filterPrepareOutput([
             'odometerReading' => $this->odometerReadingMiles,
-            'date'  => $this->date,
+            'date'            => $this->date,
         ]);
     }
 }

@@ -5,15 +5,14 @@ namespace Olsgreen\AutoTrader\Api\Enums;
 class StockSearchFlags extends SharedFlags
 {
     /**
-     * Response Metrics
+     * Response Metrics.
      *
      * Return advertising performance data for stock.
-     *
      */
     const RESPONSE_METRICS = 'responseMetrics';
 
     /**
-     * Valuations
+     * Valuations.
      *
      * Return valuation data for stock.
      */

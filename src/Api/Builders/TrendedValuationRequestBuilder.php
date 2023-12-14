@@ -117,8 +117,8 @@ class TrendedValuationRequestBuilder extends AbstractBuilder
                 'derivativeId'          => $this->derivativeId,
                 'firstRegistrationDate' => $this->firstRegistrationDate->format('Y-m-d'),
             ],
-            'features'  => $this->features->toArray(),
-            'condition' => $this->condition,
+            'features'   => $this->features->toArray(),
+            'condition'  => $this->condition,
             'valuations' => $this->valuations->toArray(),
         ]);
     }

@@ -108,10 +108,10 @@ class TrendedValuationValuationsRequestBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'markets' => $this->markets,
+            'markets'    => $this->markets,
             'frequency'  => $this->frequency,
-            'start' => $this->start->toArray(),
-            'end' => $this->end->toArray(),
+            'start'      => $this->start->toArray(),
+            'end'        => $this->end->toArray(),
         ]);
     }
 }
