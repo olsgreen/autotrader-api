@@ -13,7 +13,7 @@
         "guzzlehttp/guzzle": "^6.0 || ^7.2",
         "symfony/options-resolver": "^5.0",
         "ext-json": "*",
-        "php": ">=7.3",
+        "php": ">=7.4",
         "optimus/onion": "^1.0",
         "psr/log": "^1.1",
         "ext-fileinfo": "*"
