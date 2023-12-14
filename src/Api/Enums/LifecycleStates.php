@@ -10,6 +10,8 @@ class LifecycleStates extends AbstractEnum
 
     const SALE_IN_PROGRESS = 'SALE_IN_PROGRESS';
 
+    const SOLD = 'SOLD';
+
     const WASTEBIN = 'WASTEBIN';
 
     const DELETED = 'DELETED';
