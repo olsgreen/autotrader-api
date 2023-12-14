@@ -2,6 +2,7 @@
 
 namespace Olsgreen\AutoTrader;
 
+use Olsgreen\AutoTrader\Api\Advertisers;
 use Olsgreen\AutoTrader\Api\Authentication;
 use Olsgreen\AutoTrader\Api\Leads;
 use Olsgreen\AutoTrader\Api\Search;
@@ -133,5 +134,17 @@ class Client extends AbstractClient
     public function leads(): Leads
     {
         return new Leads($this);
+    }
+
+    /**
+     * Advertisers Endpoint.
+     *
+     * @see https://developers.autotrader.co.uk/api#search-advertisers
+     *
+     * @return Advertisers
+     */
+    public function advertisers(): Advertisers
+    {
+        return new Advertisers($this);
     }
 }
