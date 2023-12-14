@@ -27,7 +27,7 @@ class VehicleMetrics extends AbstractApi
     public function lookup(string $advertiserId, MetricRequestBuilder $builder)
     {
         return $this->_post(
-            '/service/stock-management/vehicleMetrics',
+            '/vehicle-metrics',
             ['advertiserId' => $advertiserId],
             $builder->toJson()
         );

@@ -30,7 +30,7 @@ class Stock extends AbstractApi
 
         try {
             return $this->_post(
-                '/service/stock-management/stock',
+                '/stock',
                 ['advertiserId' => $advertiserId],
                 $request->toJson(),
                 ['Content-Type' => 'application/json']
@@ -69,7 +69,7 @@ class Stock extends AbstractApi
         }
 
         return $this->_patch(
-            '/service/stock-management/stock/'.$uuid,
+            '/stock/'.$uuid,
             ['advertiserId' => $advertiserId],
             $request->toJson(),
             ['Content-Type' => 'application/json']
@@ -87,7 +87,7 @@ class Stock extends AbstractApi
     public function show(string $advertiserId, string $uuid): array
     {
         return $this->_get(
-            '/service/stock-management/stock/'.$uuid,
+            '/stock/'.$uuid,
             ['advertiserId' => $advertiserId],
         );
     }
@@ -129,7 +129,7 @@ class Stock extends AbstractApi
         $body->add('file', $data, 'image.jpg', ['Content-Type' => 'image/jpeg']);
 
         $response = $this->_post(
-            '/service/stock-management/images',
+            '/images',
             ['advertiserId' => $advertiserId],
             $body
         );
@@ -164,6 +164,6 @@ class Stock extends AbstractApi
             'advertiserId' => $advertiserId,
         ]);
 
-        return $this->_get('/service/stock-management/stock', $params);
+        return $this->_get('/stock', $params);
     }
 }

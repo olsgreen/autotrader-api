@@ -28,7 +28,7 @@ class Valuations extends AbstractApi
     public function value(string $advertiserId, ValuationRequestBuilder $builder)
     {
         return $this->_post(
-            '/service/stock-management/valuations',
+            '/valuations',
             ['advertiserId' => $advertiserId],
             $builder->toJson()
         );
@@ -61,7 +61,7 @@ class Valuations extends AbstractApi
     public function trends(string $advertiserId, TrendedValuationRequestBuilder $builder)
     {
         return $this->_post(
-            '/service/stock-management/valuations/trends',
+            '/valuations/trends',
             ['advertiserId' => $advertiserId],
             $builder->toJson()
         );

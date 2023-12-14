@@ -34,6 +34,6 @@ class Search extends AbstractApi
             }
         }
 
-        return $this->_get('/service/stock-management/search', $request->toArray());
+        return $this->_get('/search', $request->toArray());
     }
 }

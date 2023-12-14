@@ -13,7 +13,7 @@ class Taxonomy extends AbstractApi
      */
     public function types(string $advertiserId): array
     {
-        return $this->_get('/service/stock-management/taxonomy/vehicleTypes', [
+        return $this->_get('/taxonomy/vehicleTypes', [
             'advertiserId' => $advertiserId,
         ]);
     }
@@ -29,7 +29,7 @@ class Taxonomy extends AbstractApi
     public function makes(string $advertiserId, string $vehicleType): array
     {
         return $this->_get(
-            '/service/stock-management/taxonomy/makes',
+            '/taxonomy/makes',
             ['vehicleType' => $vehicleType, 'advertiserId' => $advertiserId]
         );
     }
@@ -45,7 +45,7 @@ class Taxonomy extends AbstractApi
     public function models(string $advertiserId, string $makeId): array
     {
         return $this->_get(
-            '/service/stock-management/taxonomy/models',
+            '/taxonomy/models',
             ['makeId' => $makeId, 'advertiserId' => $advertiserId]
         );
     }
@@ -61,7 +61,7 @@ class Taxonomy extends AbstractApi
     public function generations(string $advertiserId, string $modelId): array
     {
         return $this->_get(
-            '/service/stock-management/taxonomy/generations',
+            '/taxonomy/generations',
             ['modelId' => $modelId, 'advertiserId' => $advertiserId]
         );
     }
@@ -77,7 +77,7 @@ class Taxonomy extends AbstractApi
     public function derivatives(string $advertiserId, string $generationId): array
     {
         return $this->_get(
-            '/service/stock-management/taxonomy/derivatives',
+            '/taxonomy/derivatives',
             ['generationId' => $generationId, 'advertiserId' => $advertiserId]
         );
     }
@@ -93,7 +93,7 @@ class Taxonomy extends AbstractApi
     public function technicalData(string $advertiserId, string $derivativeId): array
     {
         return $this->_get(
-            '/service/stock-management/taxonomy/derivatives/'.$derivativeId,
+            '/taxonomy/derivatives/'.$derivativeId,
             [
                 'advertiserId' => $advertiserId,
             ]
@@ -112,7 +112,7 @@ class Taxonomy extends AbstractApi
     public function features(string $advertiserId, string $derivativeId, string $effectiveDate): array
     {
         return $this->_get(
-            '/service/stock-management/taxonomy/features',
+            '/taxonomy/features',
             ['derivativeId' => $derivativeId, 'effectiveDate' => $effectiveDate, 'advertiserId' => $advertiserId]
         );
     }
@@ -135,7 +135,7 @@ class Taxonomy extends AbstractApi
         }
 
         return $this->_get(
-            '/service/stock-management/taxonomy/prices',
+            '/taxonomy/prices',
             $options
         );
     }

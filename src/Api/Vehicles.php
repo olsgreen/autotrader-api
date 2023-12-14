@@ -80,6 +80,6 @@ class Vehicles extends AbstractApi
             'advertiserId' => $advertiserId,
         ]);
 
-        return $this->_get('/service/stock-management/vehicles', $params);
+        return $this->_get('/vehicles', $params);
     }
 }
