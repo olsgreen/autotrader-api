@@ -6,7 +6,16 @@ class StockSearchFlags extends SharedFlags
 {
     /**
      * Response Metrics
-     * Advert response metrics.
+     *
+     * Return advertising performance data for stock.
+     *
      */
     const RESPONSE_METRICS = 'responseMetrics';
+
+    /**
+     * Valuations
+     *
+     * Return valuation data for stock.
+     */
+    const VALUATIONS = 'valuations';
 }
