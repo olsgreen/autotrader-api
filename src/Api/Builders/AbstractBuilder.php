@@ -2,6 +2,8 @@
 
 namespace Olsgreen\AutoTrader\Api\Builders;
 
+use ReflectionClass;
+
 abstract class AbstractBuilder
 {
     /**
@@ -36,7 +38,7 @@ abstract class AbstractBuilder
      */
     public function getFriendlyName(): string
     {
-        $class = new \ReflectionClass($this);
+        $class = new ReflectionClass($this);
 
         return $class->getShortName();
     }
@@ -62,7 +64,7 @@ abstract class AbstractBuilder
      *
      * @return static
      */
-    public static function create(array $attributes = [])
+    public static function create(array $attributes = []): self
     {
         return new static($attributes);
     }
@@ -252,7 +254,7 @@ abstract class AbstractBuilder
      *
      * @param array $array
      * @param       $key
-     * @param false $default
+     * @param       $default
      *
      * @return false|mixed
      */
