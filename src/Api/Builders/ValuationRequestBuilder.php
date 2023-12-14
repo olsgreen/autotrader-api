@@ -2,6 +2,8 @@
 
 namespace Olsgreen\AutoTrader\Api\Builders;
 
+use Olsgreen\AutoTrader\Api\Enums\ValuationConditionTypes;
+
 class ValuationRequestBuilder extends AbstractBuilder
 {
     protected $derivativeId;
@@ -26,8 +28,19 @@ class ValuationRequestBuilder extends AbstractBuilder
         return $this->features;
     }
 
-    public function setCondition(float $condition): ValuationRequestBuilder
+    public function setCondition(string $condition): ValuationRequestBuilder
     {
+        $conditions = new ValuationConditionTypes();
+
+        if (!$conditions->contains($condition)) {
+            throw new \Exception(
+                sprintf(
+                    'You tried to set invalid condition. [%s]',
+                    $condition
+                )
+            );
+        }
+
         $this->condition = $condition;
 
         return $this;
