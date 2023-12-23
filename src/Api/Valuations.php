@@ -44,16 +44,31 @@ class Valuations extends AbstractApi
      *
      * @example
      * $request = TrendedValuationRequestBuilder::create([
-     * [
-     *       'derivativeId' => '40a80ca0d16541789f2514ebadca3d66',
-     *       'firstRegistrationDate' => '2022-11-10',
-     *       'valuations' => [
-     *           'markets' => ['retail'],
-     *           'frequency' => 'month',
-     *           'start' => ['date' => '2023-09-01', 'odometerReadingMiles' => 40000],
-     *           'end' => ['date' => '2024-08-01', 'odometerReadingMiles' => 52000]
-     *       ]
-     *   ]
+     *     "vehicle" => [
+     *       "derivativeId" => "76744a390e0b44649f718894fec53569",
+     *       "firstRegistrationDate" => "2021-07-29",
+     *     ],
+     *     "features" => [
+     *       [
+     *         "name" => "CarPlay",
+     *         "type" => "Optional",
+     *       ],
+     *     ],
+     *     "conditionRating" => "GOOD",
+     *     "valuations" => [
+     *       "markets" => [
+     *         "retail",
+     *       ],
+     *       "frequency" => "month",
+     *       "start" => [
+     *         "date" => "2023-09-01",
+     *         "odometerReadingMiles" => 40000,
+     *       ],
+     *       "end" => [
+     *         "date" => "2024-03-01",
+     *         "odometerReadingMiles" => 52000,
+     *       ],
+     *     ],
      * ]);
      *
      * $valuation = $api->valuations()->trends($request)

@@ -68,7 +68,7 @@ class TrendedValuationDateRequestBuilder extends AbstractBuilder
 
         return $this->filterPrepareOutput([
             'odometerReading' => $this->odometerReadingMiles,
-            'date'            => $this->date,
+            'date'            => $this->date->format('Y-m-d'),
         ]);
     }
 }

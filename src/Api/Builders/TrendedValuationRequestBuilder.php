@@ -6,9 +6,7 @@ use Olsgreen\AutoTrader\Api\Enums\ValuationConditionTypes;
 
 class TrendedValuationRequestBuilder extends AbstractBuilder
 {
-    protected $derivativeId;
-
-    protected $firstRegistrationDate;
+    protected $vehicle;
 
     protected $features;
 
@@ -18,11 +16,18 @@ class TrendedValuationRequestBuilder extends AbstractBuilder
 
     public function __construct(array $attributes = [])
     {
+        $this->vehicle = new TrendedValuationVehicleRequestBuilder($this->dataGet($attributes, 'vehicle', []));
+
         $this->features = new VehicleFeatureInfoBuilder($this->dataGet($attributes, 'features', []));
 
         $this->valuations = new TrendedValuationValuationsRequestBuilder($this->dataGet($attributes, 'valuations', []));
 
         parent::__construct($attributes);
+    }
+
+    public function vehicle(): TrendedValuationVehicleRequestBuilder
+    {
+        return $this->vehicle;
     }
 
     public function features(): VehicleFeatureInfoBuilder
@@ -58,53 +63,6 @@ class TrendedValuationRequestBuilder extends AbstractBuilder
         return $this->condition;
     }
 
-    public function setDerivativeId(string $id): TrendedValuationRequestBuilder
-    {
-        $this->derivativeId = $id;
-
-        return $this;
-    }
-
-    public function getDerivativeId(): ?string
-    {
-        return $this->derivativeId;
-    }
-
-    public function setFirstRegistrationDate($date): TrendedValuationRequestBuilder
-    {
-        if (!($date instanceof \DateTime)) {
-            $date = new \DateTime($date);
-        }
-
-        $this->firstRegistrationDate = $date;
-
-        return $this;
-    }
-
-    public function getFirstRegistrationDate(): ?\DateTime
-    {
-        return $this->firstRegistrationDate;
-    }
-
-    public function validate(): bool
-    {
-        parent::validate();
-
-        if (empty($this->derivativeId)) {
-            throw new ValidationException(
-                'derivativeId must not be empty.'
-            );
-        }
-
-        if (empty($this->firstRegistrationDate)) {
-            throw new ValidationException(
-                'firstRegistrationDate must not be empty.'
-            );
-        }
-
-        return true;
-    }
-
     /**
      * @throws ValidationException
      */
@@ -113,10 +71,7 @@ class TrendedValuationRequestBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'vehicle' => [
-                'derivativeId'          => $this->derivativeId,
-                'firstRegistrationDate' => $this->firstRegistrationDate->format('Y-m-d'),
-            ],
+            'vehicle' => $this->vehicle->toArray(),
             'features'   => $this->features->toArray(),
             'condition'  => $this->condition,
             'valuations' => $this->valuations->toArray(),
