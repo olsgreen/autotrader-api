@@ -71,7 +71,7 @@ class TrendedValuationRequestBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'vehicle' => $this->vehicle->toArray(),
+            'vehicle'    => $this->vehicle->toArray(),
             'features'   => $this->features->toArray(),
             'condition'  => $this->condition,
             'valuations' => $this->valuations->toArray(),
