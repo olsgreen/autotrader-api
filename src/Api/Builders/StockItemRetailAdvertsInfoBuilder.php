@@ -25,8 +25,6 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
 
     protected $vatStatus;
 
-    protected $vatScheme;
-
     protected $priceOnApplication;
 
     protected $suppliedPrice;
@@ -90,26 +88,6 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
     public function getVatStatus(): string
     {
         return $this->vatStatus;
-    }
-
-    public function setVatScheme($scheme): StockItemRetailAdvertsInfoBuilder
-    {
-        $schemes = new VatSchemes();
-
-        if (!$schemes->contains($scheme)) {
-            throw new \Exception(
-                sprintf('\'%s\' is an invalid VAT schemes.', $scheme)
-            );
-        }
-
-        $this->vatScheme = $scheme;
-
-        return $this;
-    }
-
-    public function getVatScheme(): string
-    {
-        return $this->vatScheme;
     }
 
     public function setPriceOnApplication($state): StockItemRetailAdvertsInfoBuilder
@@ -192,7 +170,6 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         return $this->filterPrepareOutput([
             'suppliedPrice'      => $this->suppliedPrice->toArray(),
             'vatStatus'          => $this->vatStatus,
-            'vatScheme'          => $this->vatScheme,
             'priceOnApplication' => $this->priceOnApplication,
             'attentionGrabber'   => $this->attentionGrabber,
             'description'        => $this->description,

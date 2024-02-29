@@ -3,6 +3,7 @@
 namespace Olsgreen\AutoTrader\Api\Builders;
 
 use Olsgreen\AutoTrader\Api\Enums\ReservationStatuses;
+use Olsgreen\AutoTrader\Api\Enums\VatSchemes;
 
 class StockItemAdvertsInfoBuilder extends AbstractBuilder
 {
@@ -11,6 +12,8 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
     protected $forecourtPrice;
 
     protected $retailAdverts;
+
+    protected $vatScheme;
 
     protected $reservationStatus;
 
@@ -65,6 +68,26 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
         return $this;
     }
 
+    public function setVatScheme($scheme): self
+    {
+        $schemes = new VatSchemes();
+
+        if (!$schemes->contains($scheme)) {
+            throw new \Exception(
+                sprintf('\'%s\' is an invalid VAT scheme.', $scheme)
+            );
+        }
+
+        $this->vatScheme = $scheme;
+
+        return $this;
+    }
+
+    public function getVatScheme(): string
+    {
+        return $this->vatScheme;
+    }
+
     public function setStockInDate($date): self
     {
         if (isset($date) && !($date instanceof \DateTime)) {
@@ -102,6 +125,7 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
+            'vatScheme'          => $this->vatScheme,
             'reservationStatus' => $this->reservationStatus,
             'forecourtPrice'    => $this->forecourtPrice->toArray(),
             'retailAdverts'     => $this->retailAdverts->toArray(),
