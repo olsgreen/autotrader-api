@@ -2,7 +2,6 @@
 
 namespace Olsgreen\AutoTrader\Api\Builders;
 
-use Olsgreen\AutoTrader\Api\Enums\VatSchemes;
 use Olsgreen\AutoTrader\Api\Enums\VatStatuses;
 
 class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder

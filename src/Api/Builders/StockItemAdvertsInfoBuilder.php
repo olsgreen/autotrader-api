@@ -126,11 +126,11 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
 
         return $this->filterPrepareOutput([
             'vatScheme'          => $this->vatScheme,
-            'reservationStatus' => $this->reservationStatus,
-            'forecourtPrice'    => $this->forecourtPrice->toArray(),
-            'retailAdverts'     => $this->retailAdverts->toArray(),
-            'stockInDate'       => $this->stockInDate ? $this->stockInDate->format('Y-m-d') : null,
-            'dueDate'           => $this->dueDate ? $this->dueDate->format('Y-m-d') : null,
+            'reservationStatus'  => $this->reservationStatus,
+            'forecourtPrice'     => $this->forecourtPrice->toArray(),
+            'retailAdverts'      => $this->retailAdverts->toArray(),
+            'stockInDate'        => $this->stockInDate ? $this->stockInDate->format('Y-m-d') : null,
+            'dueDate'            => $this->dueDate ? $this->dueDate->format('Y-m-d') : null,
         ]);
     }
 }
