@@ -36,11 +36,13 @@ class VanBodyTypes extends AbstractEnum
 
     const SPECIALIST_VEHICLE = 'Specialist Vehicle';
 
-    const TEMPRATURE_CONTROLLED = 'Temperature Controlled';
+    const TEMPERATURE_CONTROLLED = 'Temperature Controlled';
 
     const TIPPER = 'Tipper';
 
     const VEHICLE_TRANSPORTER = 'Vehicle Transporter';
 
     const WINDOW_VAN = 'Window Van';
+
+    const WELFARE = 'Welfare';
 }
