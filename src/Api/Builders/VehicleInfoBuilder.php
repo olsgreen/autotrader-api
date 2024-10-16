@@ -129,8 +129,8 @@ class VehicleInfoBuilder extends AbstractSchemableBuilder
         'payloadVolumeCubicMetres'          => 'integer',
         'rde2Compliant'                     => 'bool',
         'sector'                            => 'string',
-        'bedroom_layout'                    => [CaravanBedroomLayouts::class, MotorhomeBedroomLayouts::class],
-        'end_layout'                        => [CaravanEndLayouts::class, MotorhomeEndLayouts::class],
+        'bedroomLayout'                    => [CaravanBedroomLayouts::class, MotorhomeBedroomLayouts::class],
+        'endLayout'                        => [CaravanEndLayouts::class, MotorhomeEndLayouts::class],
         'berths'                            => 'integer',
         'bedrooms'                          => 'integer',
     ];
