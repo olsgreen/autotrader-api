@@ -15,6 +15,11 @@ use Olsgreen\AutoTrader\Api\Enums\OwnershipConditions;
 use Olsgreen\AutoTrader\Api\Enums\TransmissionTypes;
 use Olsgreen\AutoTrader\Api\Enums\VehicleTypes;
 use Olsgreen\AutoTrader\Api\Enums\WheelbaseTypes;
+use Olsgreen\AutoTrader\Api\Enums\BedroomLayouts\CaravanBedroomLayouts;
+use Olsgreen\AutoTrader\Api\Enums\BedroomLayouts\MotorhomeBedroomLayouts;
+use Olsgreen\AutoTrader\Api\Enums\EndLayouts\CaravanEndLayouts;
+use Olsgreen\AutoTrader\Api\Enums\EndLayouts\MotorhomeEndLayouts;
+
 
 class VehicleInfoBuilder extends AbstractSchemableBuilder
 {
@@ -124,6 +129,10 @@ class VehicleInfoBuilder extends AbstractSchemableBuilder
         'payloadVolumeCubicMetres'          => 'integer',
         'rde2Compliant'                     => 'bool',
         'sector'                            => 'string',
+        'bedroom_layout'                    => [CaravanBedroomLayouts::class, MotorhomeBedroomLayouts::class],
+        'end_layout'                        => [CaravanEndLayouts::class, MotorhomeEndLayouts::class],
+        'berths'                            => 'integer',
+        'bedrooms'                          => 'integer',
     ];
 
     protected $cast = [
