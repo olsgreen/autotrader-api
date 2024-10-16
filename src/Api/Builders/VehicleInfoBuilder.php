@@ -3,6 +3,8 @@
 namespace Olsgreen\AutoTrader\Api\Builders;
 
 use Olsgreen\AutoTrader\Api\Enums\AxleConfigurations;
+use Olsgreen\AutoTrader\Api\Enums\BedroomLayouts\CaravanBedroomLayouts;
+use Olsgreen\AutoTrader\Api\Enums\BedroomLayouts\MotorhomeBedroomLayouts;
 use Olsgreen\AutoTrader\Api\Enums\BodyTypes\BikeBodyTypes;
 use Olsgreen\AutoTrader\Api\Enums\BodyTypes\CarBodyTypes;
 use Olsgreen\AutoTrader\Api\Enums\BodyTypes\MotorhomeBodyTypes;
@@ -10,16 +12,13 @@ use Olsgreen\AutoTrader\Api\Enums\BodyTypes\TruckBodyTypes;
 use Olsgreen\AutoTrader\Api\Enums\BodyTypes\VanBodyTypes;
 use Olsgreen\AutoTrader\Api\Enums\CabTypes;
 use Olsgreen\AutoTrader\Api\Enums\Conditions;
+use Olsgreen\AutoTrader\Api\Enums\EndLayouts\CaravanEndLayouts;
+use Olsgreen\AutoTrader\Api\Enums\EndLayouts\MotorhomeEndLayouts;
 use Olsgreen\AutoTrader\Api\Enums\FuelTypes;
 use Olsgreen\AutoTrader\Api\Enums\OwnershipConditions;
 use Olsgreen\AutoTrader\Api\Enums\TransmissionTypes;
 use Olsgreen\AutoTrader\Api\Enums\VehicleTypes;
 use Olsgreen\AutoTrader\Api\Enums\WheelbaseTypes;
-use Olsgreen\AutoTrader\Api\Enums\BedroomLayouts\CaravanBedroomLayouts;
-use Olsgreen\AutoTrader\Api\Enums\BedroomLayouts\MotorhomeBedroomLayouts;
-use Olsgreen\AutoTrader\Api\Enums\EndLayouts\CaravanEndLayouts;
-use Olsgreen\AutoTrader\Api\Enums\EndLayouts\MotorhomeEndLayouts;
-
 
 class VehicleInfoBuilder extends AbstractSchemableBuilder
 {
@@ -129,8 +128,8 @@ class VehicleInfoBuilder extends AbstractSchemableBuilder
         'payloadVolumeCubicMetres'          => 'integer',
         'rde2Compliant'                     => 'bool',
         'sector'                            => 'string',
-        'bedroomLayout'                    => [CaravanBedroomLayouts::class, MotorhomeBedroomLayouts::class],
-        'endLayout'                        => [CaravanEndLayouts::class, MotorhomeEndLayouts::class],
+        'bedroomLayout'                     => [CaravanBedroomLayouts::class, MotorhomeBedroomLayouts::class],
+        'endLayout'                         => [CaravanEndLayouts::class, MotorhomeEndLayouts::class],
         'berths'                            => 'integer',
         'bedrooms'                          => 'integer',
     ];
