@@ -2,8 +2,6 @@
 
 namespace Olsgreen\AutoTrader\Api\Enums\BedroomLayouts;
 
-use Olsgreen\AutoTrader\Api\Enums\AbstractEnum;
-
 class MotorhomeBedroomLayouts extends BaseBedroomLayouts
 {
     const FIXED_DOUBLE_BED = 'Fixed double bed';
