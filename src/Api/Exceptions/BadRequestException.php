@@ -8,29 +8,29 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class BadRequestException extends ClientException
 {
-    protected array $messages = [];
+    protected array $warnings = [];
 
     public function __construct(string $message, Request $request, Response $response = null, \Exception $previous = null)
     {
         if ($response) {
             $body = json_decode($response->getBody(), true);
 
-            $this->messages = $body['messages'] ?? [];
+            $this->warnings = $body['warnings'] ?? [];
         }
 
         parent::__construct($message, $request, $response, $previous);
     }
 
-    public function getMessages(): array
+    public function getWarnings(): array
     {
-        return $this->messages;
+        return $this->warnings;
     }
 
-    public function messagesContain(string $pattern): bool
+    public function warningsContain(string $pattern): bool
     {
         $pattern = preg_quote($pattern);
 
-        foreach ($this->messages as $message) {
+        foreach ($this->warnings as $message) {
             if (preg_match("/$pattern/i", $message)) {
                 return true;
             }
