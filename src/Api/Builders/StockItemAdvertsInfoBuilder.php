@@ -54,7 +54,7 @@ class StockItemAdvertsInfoBuilder extends AbstractBuilder
     {
         $statusList = new ReservationStatuses();
 
-        if (!$statusList->contains($status)) {
+        if ($status !== BuilderFlag::EXCLUDE_PROPERTY && !$statusList->contains($status)) {
             throw new \Exception(
                 sprintf(
                     'You tried to set invalid status. [%s]',

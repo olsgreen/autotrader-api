@@ -166,8 +166,8 @@ abstract class AbstractBuilder
     protected function filterPrepareOutput(array $output): array
     {
         return array_filter($output, function ($item, $key) {
-            return in_array($key, $this->allowEmpty) ||
-                isset($item) && !(is_array($item) && empty($item));
+            return $item !== BuilderFlag::EXCLUDE_PROPERTY && (in_array($key, $this->allowEmpty) ||
+                isset($item) && !(is_array($item) && empty($item)));
         }, ARRAY_FILTER_USE_BOTH);
     }
 
