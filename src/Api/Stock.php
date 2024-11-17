@@ -58,8 +58,9 @@ class Stock extends AbstractApi
      * @param string $uuid
      * @param        $request
      *
-     * @return array
      * @throws BadRequestException
+     *
+     * @return array
      */
     public function update(string $advertiserId, string $uuid, $request): array
     {
@@ -73,7 +74,7 @@ class Stock extends AbstractApi
 
         try {
             return $this->_patch(
-                '/stock/' . $uuid,
+                '/stock/'.$uuid,
                 ['advertiserId' => $advertiserId],
                 $request->toJson(),
                 ['Content-Type' => 'application/json']
