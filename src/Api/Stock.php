@@ -4,7 +4,9 @@ namespace Olsgreen\AutoTrader\Api;
 
 use Olsgreen\AutoTrader\Api\Builders\StockItemRequestBuilder;
 use Olsgreen\AutoTrader\Api\Builders\StockSearchRequestBuilder;
+use Olsgreen\AutoTrader\Api\Exceptions\BadRequestException;
 use Olsgreen\AutoTrader\Api\Exceptions\DuplicateStockException;
+use Olsgreen\AutoTrader\Api\Exceptions\RateLimitException;
 use Olsgreen\AutoTrader\Http\Exceptions\ClientException;
 use Olsgreen\AutoTrader\Http\SimpleMultipartBody;
 
@@ -57,6 +59,7 @@ class Stock extends AbstractApi
      * @param        $request
      *
      * @return array
+     * @throws BadRequestException
      */
     public function update(string $advertiserId, string $uuid, $request): array
     {
@@ -68,12 +71,34 @@ class Stock extends AbstractApi
             );
         }
 
-        return $this->_patch(
-            '/stock/'.$uuid,
-            ['advertiserId' => $advertiserId],
-            $request->toJson(),
-            ['Content-Type' => 'application/json']
-        );
+        try {
+            return $this->_patch(
+                '/stock/' . $uuid,
+                ['advertiserId' => $advertiserId],
+                $request->toJson(),
+                ['Content-Type' => 'application/json']
+            );
+        } catch (ClientException $ex) {
+            $status = $ex->getResponse()->getStatusCode();
+
+            if ($status === 400) {
+                throw new BadRequestException(
+                    'Bad request.',
+                    $ex->getRequest(),
+                    $ex->getResponse(),
+                    $ex
+                );
+            } elseif ($status === 429) {
+                throw new RateLimitException(
+                    'Rate limit exceeded.',
+                    $ex->getRequest(),
+                    $ex->getResponse(),
+                    $ex
+                );
+            }
+
+            throw $ex;
+        }
     }
 
     /**
