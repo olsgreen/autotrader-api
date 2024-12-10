@@ -21,4 +21,6 @@ class FuelTypes extends AbstractEnum
     const PETROL_HYBRID = 'Petrol Hybrid';
 
     const PETROL_PLUGIN_HYBRID = 'Petrol Plug-in Hybrid';
+
+    const ELECTRIC_PETROL_RANGE_EXTENDER = 'Elec/Pet Range Ext';
 }
