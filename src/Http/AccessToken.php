@@ -8,7 +8,7 @@ class AccessToken implements \JsonSerializable
 {
     protected $access_token;
 
-    protected $expires;
+    protected $expires_at;
 
     public function __construct(array $data)
     {
@@ -16,14 +16,14 @@ class AccessToken implements \JsonSerializable
             $this->access_token = $data['access_token'];
         }
 
-        if (!empty($data['expires'])) {
-            $this->expires = $data['expires'];
+        if (!empty($data['expires_at'])) {
+            $this->expires_at = $data['expires_at'];
         }
     }
 
     public function hasExpired(): bool
     {
-        return $this->getExpires() < new DateTime();
+        return $this->getExpiresAt() < new DateTime();
     }
 
     public function getToken(): string
@@ -31,16 +31,29 @@ class AccessToken implements \JsonSerializable
         return $this->access_token;
     }
 
+    /**
+     * @deprecated Use getExpiresAt() - this method will be removed in the next major version
+     */
     public function getExpires(): DateTime
     {
-        return new DateTime($this->expires);
+        return $this->getExpiresAt();
+    }
+
+    public function getExpiresAt(): DateTime
+    {
+        return new DateTime($this->expires_at);
     }
 
     public function toArray(): array
     {
         return [
             'access_token' => $this->access_token,
-            'expires'      => $this->getExpires()
+            'expires_at'      => $this->getExpiresAt()
+                ->format(DateTime::ATOM),
+            /**
+             * @deprecated `expires` will be removed in the next major version
+             */
+            'expires'      => $this->getExpiresAt()
                 ->format(DateTime::ATOM),
         ];
     }
