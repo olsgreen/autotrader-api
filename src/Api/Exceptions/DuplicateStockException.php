@@ -21,7 +21,7 @@ class DuplicateStockException extends ClientException
      * @param Response|null   $response
      * @param \Exception|null $previous
      */
-    public function __construct(string $message, Request $request, Response $response = null, \Exception $previous = null)
+    public function __construct(string $message, Request $request, ?Response $response = null, ?\Exception $previous = null)
     {
         if ($response) {
             $this->duplicateStockId = $this->parseStockIdFromBody(

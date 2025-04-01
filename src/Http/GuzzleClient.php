@@ -36,7 +36,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      *
      * @param GuzzleClientInterface|null $guzzle
      */
-    public function __construct(GuzzleClientInterface $guzzle = null)
+    public function __construct(?GuzzleClientInterface $guzzle = null)
     {
         if (!$guzzle) {
             $guzzle = new Client();

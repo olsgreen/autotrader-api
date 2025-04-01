@@ -26,7 +26,7 @@ class SimpleMultipartBody
      *
      * @return SimpleMultipartBody
      */
-    public function add(string $name, $contents, string $filename = null, array $headers = []): SimpleMultipartBody
+    public function add(string $name, $contents, ?string $filename = null, array $headers = []): SimpleMultipartBody
     {
         $element = [
             'name'     => $name,

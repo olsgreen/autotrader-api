@@ -47,7 +47,7 @@ class AccessToken implements \JsonSerializable
     public function toArray(): array
     {
         return [
-            'access_token' => $this->access_token,
+            'access_token'    => $this->access_token,
             'expires_at'      => $this->getExpiresAt()
                 ->format(DateTime::ATOM),
             /**

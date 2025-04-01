@@ -21,7 +21,7 @@ abstract class AbstractClient
      * @param array                $options
      * @param ClientInterface|null $http
      */
-    public function __construct(array $options = [], ClientInterface $http = null)
+    public function __construct(array $options = [], ?ClientInterface $http = null)
     {
         $this->http = $http ?? new GuzzleClient();
 

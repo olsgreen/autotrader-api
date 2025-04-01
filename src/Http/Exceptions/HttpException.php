@@ -20,8 +20,8 @@ class HttpException extends \Exception
     public function __construct(
         string $message,
         RequestInterface $request,
-        ResponseInterface $response = null,
-        \Exception $previous = null
+        ?ResponseInterface $response = null,
+        ?\Exception $previous = null
     ) {
         // Set the code of the exception if the response is set and not future.
         $code = $response ? $response->getStatusCode() : 0;
