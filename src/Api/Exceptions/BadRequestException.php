@@ -10,7 +10,7 @@ class BadRequestException extends ClientException
 {
     protected array $warnings = [];
 
-    public function __construct(string $message, Request $request, Response $response = null, \Exception $previous = null)
+    public function __construct(string $message, Request $request, ?Response $response = null, ?\Exception $previous = null)
     {
         if ($response) {
             $body = json_decode($response->getBody(), true);

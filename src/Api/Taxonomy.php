@@ -126,7 +126,7 @@ class Taxonomy extends AbstractApi
      *
      * @return array
      */
-    public function prices(string $advertiserId, string $derivativeId, string $effectiveDate = null)
+    public function prices(string $advertiserId, string $derivativeId, ?string $effectiveDate = null)
     {
         $options = ['derivativeId' => $derivativeId, 'advertiserId' => $advertiserId];
 

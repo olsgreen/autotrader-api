@@ -16,7 +16,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
     protected $registration;
 
     /**
-     * VIN
+     * VIN.
      *
      * @var string
      */
