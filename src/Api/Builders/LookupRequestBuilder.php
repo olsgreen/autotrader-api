@@ -15,6 +15,13 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      */
     protected $registration;
 
+    /**
+     * VIN
+     *
+     * @var string
+     */
+    protected $vin;
+
     protected $flagsEnum = VehicleLookupFlags::class;
 
     /**
@@ -24,7 +31,7 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
      */
     protected $odometerReadingMiles;
 
-    protected $requiredAttributes = ['registration'];
+    protected $requiredAttributes = [];
 
     /**
      * Get the registration.
@@ -46,6 +53,20 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
     public function setRegistration(string $registration): LookupRequestBuilder
     {
         $this->registration = $registration;
+
+        return $this;
+    }
+
+    /**
+     * Set the VIN.
+     *
+     * @param string $vin
+     *
+     * @return $this
+     */
+    public function setVin(string $vin): LookupRequestBuilder
+    {
+        $this->vin = $vin;
 
         return $this;
     }
@@ -85,6 +106,11 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
     {
         parent::validate();
 
+        // Require a registration or VIN
+        if (empty($this->registration) && empty($this->vin)) {
+            throw new ValidationException('A registration or VIN must be set.');
+        }
+
         // Validate the odometer status.
         $requiresOdometerReading = !empty(array_intersect(
             [VehicleLookupFlags::VALUATIONS, VehicleLookupFlags::VEHICLE_METRICS],
@@ -114,7 +140,8 @@ class LookupRequestBuilder extends AbstractBuilder implements BuilderInterface
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'registration'         => preg_replace('/\s/', '', $this->registration),
+            'registration'         => !empty($this->registration) ? preg_replace('/\s/', '', $this->registration) : null,
+            'vin'                  => !empty($this->vin) ? preg_replace('/\s/', '', $this->vin) : null,
             'odometerReadingMiles' => $this->odometerReadingMiles,
         ] + $this->transformFlags($this->flags));
     }
