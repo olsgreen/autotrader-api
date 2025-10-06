@@ -157,7 +157,8 @@ class Stock extends AbstractApi
         $response = $this->_post(
             '/images',
             ['advertiserId' => $advertiserId],
-            $body
+            $body,
+            ['Content-Type' => 'multipart/form-data']
         );
 
         return $response['imageId'];
