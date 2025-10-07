@@ -2,13 +2,13 @@
 
 namespace Olsgreen\AutoTrader\Api;
 
+use GuzzleHttp\Psr7\MultipartStream;
 use Olsgreen\AutoTrader\Api\Builders\StockItemRequestBuilder;
 use Olsgreen\AutoTrader\Api\Builders\StockSearchRequestBuilder;
 use Olsgreen\AutoTrader\Api\Exceptions\BadRequestException;
 use Olsgreen\AutoTrader\Api\Exceptions\DuplicateStockException;
 use Olsgreen\AutoTrader\Api\Exceptions\RateLimitException;
 use Olsgreen\AutoTrader\Http\Exceptions\ClientException;
-use Olsgreen\AutoTrader\Http\SimpleMultipartBody;
 
 class Stock extends AbstractApi
 {
@@ -151,14 +151,19 @@ class Stock extends AbstractApi
      */
     public function uploadImageData(string $advertiserId, $data): string
     {
-        $body = new SimpleMultipartBody();
-        $body->add('file', $data, 'image.jpg', ['Content-Type' => 'image/jpeg']);
+        $body = new MultipartStream([
+            [
+                'name'     => 'file',
+                'contents' => $data,
+                'filename' => 'image.jpg',
+                'headers'  => ['Content-Type' => 'image/jpeg'],
+            ]
+        ]);
 
         $response = $this->_post(
             '/images',
             ['advertiserId' => $advertiserId],
-            $body,
-            ['Content-Type' => 'multipart/form-data']
+            $body
         );
 
         return $response['imageId'];

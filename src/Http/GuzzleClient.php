@@ -108,9 +108,7 @@ class GuzzleClient extends AbstractClient implements ClientInterface
      */
     public function post(string $uri, array $params = [], $body = null, array $headers = []): ResponseInterface
     {
-        if ($body instanceof SimpleMultipartBody) {
-            $body = new MultipartStream($body->toArray());
-        } elseif ($body instanceof UrlEncodedFormBody) {
+        if ($body instanceof UrlEncodedFormBody) {
             $headers['Content-Type'] = 'application/x-www-form-urlencoded';
             $body = $body->encode();
         }
