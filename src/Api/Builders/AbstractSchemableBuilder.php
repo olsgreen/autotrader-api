@@ -61,7 +61,7 @@ class AbstractSchemableBuilder extends AbstractBuilder
                 $enums = array_map('strtolower', array_flatten($enums));
 
                 if (!in_array(strtolower($value), $enums)) {
-                    throw new \InvalidArgumentException(
+                    throw new ValidationException(
                         sprintf('"%s" is not a valid value for the attribute "%s".', $value, $key)
                     );
                 }
@@ -80,7 +80,7 @@ class AbstractSchemableBuilder extends AbstractBuilder
                 case 'double':
                     $func = 'is_'.$validator;
                     if (!$func($value)) {
-                        throw new \InvalidArgumentException(
+                        throw new ValidationException(
                             sprintf('"%s" must be a %s value it is a %s.', $key, $validator, gettype($value))
                         );
                     }
@@ -88,13 +88,13 @@ class AbstractSchemableBuilder extends AbstractBuilder
                 case 'date':
                     $date = \DateTime::createFromFormat('Y-m-d', $value);
                     if (!$date) {
-                        throw new \InvalidArgumentException(
+                        throw new ValidationException(
                             sprintf('"%s" must be a valid date in Y-m-d format.', $key)
                         );
                     }
                     break;
                 default:
-                    throw new \InvalidArgumentException(
+                    throw new ValidationException(
                         sprintf("There is no validator registered for '%s'", $validator)
                     );
             }
@@ -115,7 +115,7 @@ class AbstractSchemableBuilder extends AbstractBuilder
         $castable = ['string', 'integer', 'float', 'bool', 'double'];
 
         if (!in_array($type, $castable)) {
-            throw new \InvalidArgumentException(
+            throw new ValidationException(
                 sprintf('%s is not a castable type.', $type)
             );
         }
