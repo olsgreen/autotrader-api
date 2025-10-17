@@ -38,16 +38,7 @@ class Stock extends AbstractApi
                 ['Content-Type' => 'application/json']
             );
         } catch (ClientException $ex) {
-            if ($ex->getResponse()->getStatusCode() === 409) {
-                throw new DuplicateStockException(
-                    'Duplicate stock found.',
-                    $ex->getRequest(),
-                    $ex->getResponse(),
-                    $ex
-                );
-            }
-
-            throw $ex;
+            $this->transformAndThrowClientException($ex);
         }
     }
 
@@ -80,26 +71,38 @@ class Stock extends AbstractApi
                 ['Content-Type' => 'application/json']
             );
         } catch (ClientException $ex) {
-            $status = $ex->getResponse()->getStatusCode();
-
-            if ($status === 400) {
-                throw new BadRequestException(
-                    'Bad request.',
-                    $ex->getRequest(),
-                    $ex->getResponse(),
-                    $ex
-                );
-            } elseif ($status === 429) {
-                throw new RateLimitException(
-                    'Rate limit exceeded.',
-                    $ex->getRequest(),
-                    $ex->getResponse(),
-                    $ex
-                );
-            }
-
-            throw $ex;
+           $this->transformAndThrowClientException($ex);
         }
+    }
+
+    protected function transformAndThrowClientException(ClientException $ex)
+    {
+         $status = $ex->getResponse()->getStatusCode();
+
+        if ($status === 400) {
+            throw new BadRequestException(
+                'Bad request.',
+                $ex->getRequest(),
+                $ex->getResponse(),
+                $ex
+            );
+        } elseif ($status === 429) {
+            throw new RateLimitException(
+                'Rate limit exceeded.',
+                $ex->getRequest(),
+                $ex->getResponse(),
+                $ex
+            );
+        } elseif ($ex->getResponse()->getStatusCode() === 409) {
+            throw new DuplicateStockException(
+                'Duplicate stock found.',
+                $ex->getRequest(),
+                $ex->getResponse(),
+                $ex
+            );
+        }
+
+        throw $ex;
     }
 
     /**
