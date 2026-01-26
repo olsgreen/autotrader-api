@@ -4,6 +4,14 @@ namespace Olsgreen\AutoTrader\Api;
 
 class Deals extends AbstractApi
 {
+    public function get(string $advertiserId, string $uuid): array
+    {
+        return $this->_get(
+            '/deals',
+            ['advertiserId' => $advertiserId],
+        );
+    }
+
     public function show(string $advertiserId, string $uuid): array
     {
         return $this->_get(
