@@ -35,11 +35,11 @@ class Deals extends AbstractApi
         $this->_patch(
             '/deals/'.$uuid,
             ['advertiserId' => $advertiserId],
-            json_encode([
+            json_encode(array_filter([
                 'advertiserDealStatus' => 'Cancelled',
                 'advertiserCancellationReason' => $reason,
                 'advertiserCancellationNotes' => $notes
-            ]),
+            ])),
             ['Content-Type' => 'application/json']
         );
     }
