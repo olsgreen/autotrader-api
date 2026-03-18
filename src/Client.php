@@ -4,7 +4,11 @@ namespace Olsgreen\AutoTrader;
 
 use Olsgreen\AutoTrader\Api\Advertisers;
 use Olsgreen\AutoTrader\Api\Authentication;
+use Olsgreen\AutoTrader\Api\Deals;
+use Olsgreen\AutoTrader\Api\Finance;
 use Olsgreen\AutoTrader\Api\Leads;
+use Olsgreen\AutoTrader\Api\Messages;
+use Olsgreen\AutoTrader\Api\PartExchanges;
 use Olsgreen\AutoTrader\Api\Search;
 use Olsgreen\AutoTrader\Api\Stock;
 use Olsgreen\AutoTrader\Api\Taxonomy;
@@ -122,6 +126,26 @@ class Client extends AbstractClient
     public function adverts(): Search
     {
         return new Search($this);
+    }
+
+    public function deals(): Deals
+    {
+        return new Deals($this);
+    }
+
+    public function finance(): Finance
+    {
+        return new Finance($this);
+    }
+
+    public function messages(): Messages
+    {
+        return new Messages($this);
+    }
+
+    public function partExchanges(): PartExchanges
+    {
+        return new PartExchanges($this);
     }
 
     /**
