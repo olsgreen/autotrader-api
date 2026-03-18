@@ -30,15 +30,15 @@ class Deals extends AbstractApi
         );
     }
 
-    public function cancel(string $advertiserId, string $uuid, string $reason, string $notes = null): void
+    public function cancel(string $advertiserId, string $uuid, string $reason, ?string $notes = null): void
     {
         $this->_patch(
             '/deals/'.$uuid,
             ['advertiserId' => $advertiserId],
             json_encode(array_filter([
-                'advertiserDealStatus' => 'Cancelled',
+                'advertiserDealStatus'         => 'Cancelled',
                 'advertiserCancellationReason' => $reason,
-                'advertiserCancellationNotes' => $notes
+                'advertiserCancellationNotes'  => $notes,
             ])),
             ['Content-Type' => 'application/json']
         );
