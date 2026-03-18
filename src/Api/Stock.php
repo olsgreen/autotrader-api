@@ -71,13 +71,13 @@ class Stock extends AbstractApi
                 ['Content-Type' => 'application/json']
             );
         } catch (ClientException $ex) {
-           $this->transformAndThrowClientException($ex);
+            $this->transformAndThrowClientException($ex);
         }
     }
 
     protected function transformAndThrowClientException(ClientException $ex)
     {
-         $status = $ex->getResponse()->getStatusCode();
+        $status = $ex->getResponse()->getStatusCode();
 
         if ($status === 400) {
             throw new BadRequestException(
@@ -160,7 +160,7 @@ class Stock extends AbstractApi
                 'contents' => $data,
                 'filename' => 'image.jpg',
                 'headers'  => ['Content-Type' => 'image/jpeg'],
-            ]
+            ],
         ]);
 
         $response = $this->_post(
