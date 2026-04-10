@@ -168,7 +168,7 @@ class Stock extends AbstractApi
             ['advertiserId' => $advertiserId],
             $body,
             [
-                'Content-Type' => 'multipart/form-data; boundary="' . $body->getBoundary() . '"'
+                'Content-Type' => 'multipart/form-data; boundary="'.$body->getBoundary().'"',
             ]
         );
 
