@@ -15,7 +15,7 @@
         "ext-json": "*",
         "php": ">=7.4",
         "optimus/onion": "^1.0",
-        "psr/log": "^1.1",
+        "psr/log": "^1.1 || ^2 || ^3",
         "ext-fileinfo": "*"
     },
     "require-dev": {
