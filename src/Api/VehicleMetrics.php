@@ -29,7 +29,8 @@ class VehicleMetrics extends AbstractApi
         return $this->_post(
             '/vehicle-metrics',
             ['advertiserId' => $advertiserId],
-            $builder->toJson()
+            $builder->toJson(),
+            ['Content-Type' => 'application/json']
         );
     }
 }

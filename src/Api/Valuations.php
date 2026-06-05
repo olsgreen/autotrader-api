@@ -30,7 +30,8 @@ class Valuations extends AbstractApi
         return $this->_post(
             '/valuations',
             ['advertiserId' => $advertiserId],
-            $builder->toJson()
+            $builder->toJson(),
+            ['Content-Type' => 'application/json']
         );
     }
 
@@ -78,7 +79,8 @@ class Valuations extends AbstractApi
         return $this->_post(
             '/valuations/trends',
             ['advertiserId' => $advertiserId],
-            $builder->toJson()
+            $builder->toJson(),
+            ['Content-Type' => 'application/json']
         );
     }
 }
