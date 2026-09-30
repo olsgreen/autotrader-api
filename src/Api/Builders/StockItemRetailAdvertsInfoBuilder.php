@@ -26,6 +26,14 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
 
     protected $priceOnApplication;
 
+    protected $advertiserVehicleHighlight1;
+
+    protected $advertiserVehicleHighlight2;
+
+    protected $advertiserVehicleHighlight3;
+
+    protected $priceCommentary;
+
     protected $suppliedPrice;
 
     protected $displayOptions;
@@ -139,6 +147,54 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         return $this->description2;
     }
 
+    public function setAdvertiserVehicleHighlight1($text): StockItemRetailAdvertsInfoBuilder
+    {
+        $this->advertiserVehicleHighlight1 = $text;
+
+        return $this;
+    }
+
+    public function getAdvertiserVehicleHighlight1(): string
+    {
+        return $this->advertiserVehicleHighlight1;
+    }
+
+    public function setAdvertiserVehicleHighlight2($text): StockItemRetailAdvertsInfoBuilder
+    {
+        $this->advertiserVehicleHighlight2 = $text;
+
+        return $this;
+    }
+
+    public function getAdvertiserVehicleHighlight2(): string
+    {
+        return $this->advertiserVehicleHighlight2;
+    }
+
+    public function setAdvertiserVehicleHighlight3($text): StockItemRetailAdvertsInfoBuilder
+    {
+        $this->advertiserVehicleHighlight3 = $text;
+
+        return $this;
+    }
+
+    public function getAdvertiserVehicleHighlight3(): string
+    {
+        return $this->advertiserVehicleHighlight3;
+    }
+
+    public function setPriceCommentary($text): StockItemRetailAdvertsInfoBuilder
+    {
+        $this->priceCommentary = $text;
+
+        return $this;
+    }
+
+    public function getPriceCommentary(): string
+    {
+        return $this->priceCommentary;
+    }
+
     public function autotraderAdvert(): StockItemAdvertInfoBuilder
     {
         return $this->autotraderAdvert;
@@ -169,18 +225,22 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
         $this->validate();
 
         return $this->filterPrepareOutput([
-            'suppliedPrice'      => $this->suppliedPrice->toArray(),
-            'vatStatus'          => $this->vatStatus,
-            'priceOnApplication' => $this->priceOnApplication,
-            'attentionGrabber'   => $this->attentionGrabber,
-            'description'        => $this->description,
-            'description2'       => $this->description2,
-            'autotraderAdvert'   => $this->autotraderAdvert->toArray(),
-            'advertiserAdvert'   => $this->advertiserAdvert->toArray(),
-            'locatorAdvert'      => $this->locatorAdvert->toArray(),
-            'exportAdvert'       => $this->exportAdvert->toArray(),
-            'profileAdvert'      => $this->profileAdvert->toArray(),
-            'displayOptions'     => $this->displayOptions->toArray(),
+            'suppliedPrice'               => $this->suppliedPrice->toArray(),
+            'vatStatus'                   => $this->vatStatus,
+            'priceOnApplication'          => $this->priceOnApplication,
+            'attentionGrabber'            => $this->attentionGrabber,
+            'description'                 => $this->description,
+            'description2'                => $this->description2,
+            'advertiserVehicleHighlight1' => $this->advertiserVehicleHighlight1,
+            'advertiserVehicleHighlight2' => $this->advertiserVehicleHighlight2,
+            'advertiserVehicleHighlight3' => $this->advertiserVehicleHighlight3,
+            'priceCommentary'             => $this->priceCommentary,
+            'autotraderAdvert'            => $this->autotraderAdvert->toArray(),
+            'advertiserAdvert'            => $this->advertiserAdvert->toArray(),
+            'locatorAdvert'               => $this->locatorAdvert->toArray(),
+            'exportAdvert'                => $this->exportAdvert->toArray(),
+            'profileAdvert'               => $this->profileAdvert->toArray(),
+            'displayOptions'              => $this->displayOptions->toArray(),
         ]);
     }
 }
