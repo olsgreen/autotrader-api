@@ -38,7 +38,15 @@ class StockItemRetailAdvertsInfoBuilder extends AbstractBuilder
 
     protected $displayOptions;
 
-    protected $allowEmpty = ['vatStatus'];
+    protected $allowEmpty = [
+        'vatStatus',
+        'attentionGrabber',
+        'description',
+        'advertiserVehicleHighlight1',
+        'advertiserVehicleHighlight2',
+        'advertiserVehicleHighlight3',
+        'priceCommentary',
+    ];
 
     public function __construct(array $attributes = [])
     {
