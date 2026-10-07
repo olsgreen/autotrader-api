@@ -93,7 +93,7 @@ class VehicleInfoBuilder extends AbstractSchemableBuilder
         'exDemo'                            => 'bool',
         'keys'                              => 'bool',
         'v5Certificate'                     => 'bool',
-        'previousOwners'                    => 'integer',
+        'owners'                            => 'integer',
         'driverPosition'                    => 'string',
         'axleConfiguration'                 => AxleConfigurations::class,
         'upholstery'                        => 'string',
